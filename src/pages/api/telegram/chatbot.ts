@@ -29,7 +29,15 @@ export default async function handler(
       try{
         await axios.post(genHTTP('sendMessage'),{
           chat_id:chatId,
-          text: `tu mensaje [${text}]`
+          text: `Elije una opcion [${text}]`,
+          "reply_markup": {
+          "inline_keyboard": [
+            [
+              { "text": "Opción 1", "callback_data": "opcion_1" },
+              { "text": "Opción 2", "callback_data": "opcion_2" }
+            ]
+          ]
+        }
         })
         res.status(200).json({message: 'mensaje enviado correctamente'})
       }catch(err){
