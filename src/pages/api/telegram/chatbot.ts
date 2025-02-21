@@ -19,18 +19,18 @@ export default async function handler(
   console.log('recibiendo algo')
   
   // if (req.method === 'POST') {
-    const { message, callback_query } = req.body;
+    const { message } = req.body;
 
       const chatId = message.chat.id;
       const text = message.text;
 
-      const data = callback_query.data
+      // const data = callback_query.data
       // console.log(text)
       // Aquí puedes manejar el mensaje de los usuarios
       try{
         await axios.post(genHTTP('sendMessage'),{
           chat_id:chatId,
-          text: `Elije una opcion [${text} ${data}]`,
+          text: `Elije una opcion [${JSON.stringify(req.body)}]`,
           "reply_markup": {
             "inline_keyboard": [
               [
