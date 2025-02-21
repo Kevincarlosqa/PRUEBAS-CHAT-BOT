@@ -16,19 +16,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   
+    const {body} = req
     const { message } = req.body;
     const chatId = message.chat.id;
     // const text = message.text;
 
-    let msg = ''
-    if (req.body.callback_query) {
-      // 📌 Respuesta a Inline Keyboard
-      const msg = req.body.callback_query.data;
-  
-  
-      // 📌 Responder según el botón presionado
-     
-      }
+    let msg = 'vacio'
   
     // if (req.body.callback_query) {
     //   const callbackId = req.body.callback_query.id;
@@ -40,6 +33,27 @@ export default async function handler(
     //   });
     
     // }
+    if (body.callback_query) {
+      // 📌 Respuesta a Inline Keyboard
+      const chatId = body.callback_query.message.chat.id;
+      const callbackData = body.callback_query.data;
+      const messageId = body.callback_query.message.message_id;
+  
+      console.log("Callback recibido:", callbackData);
+  
+      // 📌 Responder según el botón presionado
+      let responseText = "Opción no reconocida.";
+      if (callbackData === "opcion1") responseText = "Elegiste Opción 1 🎉";
+      if (callbackData === "opcion2") responseText = "Elegiste Opción 2 🎯";
+  
+      // 📌 Enviar una edición al mensaje original
+      await axios.post(genHTTP('editMessageText'),{
+        chat_id: chatId,
+        message_id: messageId,
+        text: responseText
+      })
+  
+    }
 
     try{
       await axios.post(genHTTP('sendMessage'),{
