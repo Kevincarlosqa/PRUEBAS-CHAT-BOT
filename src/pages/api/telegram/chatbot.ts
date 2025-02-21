@@ -1,5 +1,4 @@
 import { genHTTP } from '@/helpers/telegram/helpers';
-import { CallbackQuery } from '@telegraf/types';
 import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -21,6 +20,16 @@ export default async function handler(
     const chatId = message.chat.id;
     // const text = message.text;
 
+    let msg = ''
+    if (req.body.callback_query) {
+      // 📌 Respuesta a Inline Keyboard
+      const msg = req.body.callback_query.data;
+  
+  
+      // 📌 Responder según el botón presionado
+     
+      }
+  
     // if (req.body.callback_query) {
     //   const callbackId = req.body.callback_query.id;
     
@@ -35,7 +44,7 @@ export default async function handler(
     try{
       await axios.post(genHTTP('sendMessage'),{
         chat_id:chatId,
-        text: JSON.stringify(req.body,null,2)
+        text: msg + ' ' + JSON.stringify(req.body,null,2)
       })
       res.status(200).json({message: 'mensaje enviado correctamente'})
     }catch(err){
@@ -43,18 +52,18 @@ export default async function handler(
     }
 }
 
-async function sendTelegramMessage(chatId: number, text: string) {
-  const token = process.env.TELEGRAM_KEY;
-  const url = `https://api.telegram.org/bot${token}/sendMessage`;
+// async function sendTelegramMessage(chatId: number, text: string) {
+//   const token = process.env.TELEGRAM_KEY;
+//   const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-  await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text: text,
-    }),
-  });
-}
+//   await fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       chat_id: chatId,
+//       text: text,
+//     }),
+//   });
+// }
