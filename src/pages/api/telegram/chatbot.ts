@@ -19,12 +19,23 @@ export default async function handler(
   
     const { message } = req.body;
     const chatId = message.chat.id;
-    const text = message.text;
+    // const text = message.text;
+
+    // if (req.body.callback_query) {
+    //   const callbackId = req.body.callback_query.id;
+    
+    //   await axios.post(genHTTP('answerCallbackQuery'), {
+    //     callback_query_id: callbackId,
+    //     text: "Opción recibida ✅",
+    //     show_alert: false
+    //   });
+    
+    // }
 
     try{
       await axios.post(genHTTP('sendMessage'),{
         chat_id:chatId,
-        text: JSON.stringify(req.body)
+        text: JSON.stringify(req.body,null,2)
       })
       res.status(200).json({message: 'mensaje enviado correctamente'})
     }catch(err){
