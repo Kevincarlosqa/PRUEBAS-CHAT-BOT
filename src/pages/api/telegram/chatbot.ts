@@ -1,4 +1,5 @@
 import { genHTTP } from '@/helpers/telegram/helpers';
+import { CallbackQuery } from '@telegraf/types';
 import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -18,23 +19,23 @@ export default async function handler(
   console.log('recibiendo algo')
   
   // if (req.method === 'POST') {
-    const { message }: TelegramMessage = req.body;
+    const { message, callback_query } = req.body;
 
       const chatId = message.chat.id;
       const text = message.text;
 
-
+      const data = callback_query.data
       // console.log(text)
       // Aquí puedes manejar el mensaje de los usuarios
       try{
         await axios.post(genHTTP('sendMessage'),{
           chat_id:chatId,
-          text: `Elije una opcion [${text} ${chatId}]`,
+          text: `Elije una opcion [${text} ${data}]`,
           "reply_markup": {
             "inline_keyboard": [
               [
-                { "text": "Opción 1", "callback_data": "opcion_1" },
-                { "text": "Opción 2", "callback_data": "opcion_2" }
+                { "text": "Opción 1", "callback_data": "eres cabro" },
+                { "text": "Opción 2", "callback_data": "el layme es cabro" }
               ]
             ]
           }
