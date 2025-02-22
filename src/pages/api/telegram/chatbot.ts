@@ -62,7 +62,10 @@ export default async function handler(
       })
       res.status(200).json({message: 'mensaje enviado correctamente'})
     }catch(err){
-      console.log(err)
+      await axios.post(genHTTP('sendMessage'),{
+        chat_id:chatId,
+        text: msg + ' ' + JSON.stringify(err,null,2)
+      })
     }
 }
 
