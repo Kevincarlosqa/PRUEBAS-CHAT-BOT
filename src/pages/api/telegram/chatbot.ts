@@ -19,7 +19,7 @@ export default async function handler(
     const {body} = req
     const { message } = req.body;
     const chatId = message.chat.id;
-    // const text = message.text;
+    console.log(chatId)
 
     let msg = 'vacio'
   
