@@ -21,7 +21,7 @@ export default async function handler(
 
     try{
       await axios.post(genHTTP('sendMessage'),{
-        chat_id: body.message.chat.id,
+        chat_id: 1568853312,
         text: JSON.stringify(body,null,2)
       })
       res.status(200).json({message: 'mensaje enviado correctamente'})
