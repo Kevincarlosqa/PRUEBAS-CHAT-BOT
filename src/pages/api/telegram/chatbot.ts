@@ -49,12 +49,13 @@ export default async function handler(
 
 
     const {body} = req
-    const [text,chat_id] = getResponseValue(body)
-    const {stage,message_id} = await searchUser(chat_id)
+    // const [text,chat_id] = getResponseValue(body)
+    // const {stage,message_id} = await searchUser(chat_id)
 
     
 
-    
+    const chat_id = 1568853312
+    const text = JSON.stringify(body,null,2)
 
     try{
       await axios.post(genHTTP('sendMessage'),{ chat_id, text})
