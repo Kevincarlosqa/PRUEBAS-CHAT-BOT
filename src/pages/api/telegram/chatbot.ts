@@ -6,14 +6,20 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 type Body = ResChatText | ResChatInlineKeyboard
 
 // HELPERS
-  // Obtener el valor del mensaje
-  const isResChat = (body:Body): body is ResChatText => 'message' in body
-  const getResponseValue = (body:any):string => { // obtener el valor de
-    return isResChat(body) ? body.message.text : body.callback_query.data
+  // Obtener el valor del input
+  const isResChat         = (body:Body): body is ResChatText => 'message' in body
+  const getResponseValue  = (body:any):[string,number] => {
+    if(isResChat(body)){
+      const base = body.message
+      return [base.text, base.from.id]
+    }else{
+      const base = body.callback_query
+      return [base.data, base.from.id]
+    }
   }
 
 
-
+  // CASO 0 => eL El clienate no esta en la base de datos
 
 
 
@@ -27,16 +33,16 @@ export default async function handler(
 ) {
   
     const {body} = req
-    const value = getResponseValue(body)
+    const [text,chat_id] = getResponseValue(body)
+
+
+    
 
     try{
-      await axios.post(genHTTP('sendMessage'),{
-        chat_id: 1568853312,
-        text: value
-      })
-      res.status(200).json({message: 'mensaje enviado correctamente'})
+      await axios.post(genHTTP('sendMessage'),{ chat_id, text})
+      return res.status(200).json({message: 'mensaje enviado correctamente'})
     }catch(err){
-      console.log(err)
+      return console.log(err)
     }
 }
 
