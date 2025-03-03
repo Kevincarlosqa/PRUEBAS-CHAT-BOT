@@ -1,3 +1,5 @@
+// ENVIAR INFORMACION AL CHAT
+
 // INLINE KEYBOARD
   export interface InlineKeyboardSend {
     chat_id:      number;

@@ -2,6 +2,7 @@
 import { createUser, readJson, saveUserInfo } from "@/helpers/json_routes";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+
 type Data = {
   message: any;
 };
