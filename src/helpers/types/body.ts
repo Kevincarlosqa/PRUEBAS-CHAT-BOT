@@ -1,10 +1,10 @@
 // ENVIAR INFORMACION AL CHAT
 
 // INLINE KEYBOARD
-  export interface InlineKeyboardSend {
+  export interface ResponseInfo {
     chat_id:      number;
     text:         string;
-    reply_markup: ReplyMarkup;
+    reply_markup?: ReplyMarkup;
   }
 
   interface ReplyMarkup {
@@ -16,9 +16,3 @@
     callback_data: string;
   }
 
-
-// TEXT
-  export interface TextSend {
-    chat_id: number;
-    text:    string;
-  }
