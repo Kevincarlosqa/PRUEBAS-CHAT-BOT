@@ -196,23 +196,23 @@ export default async function handler(
         console.log(err)
       }
     }
-    foo_stages[stage](id,text)
-    // Obtener el id del chat
-    // 
-    // const [text,chat_id] = getResponseValue(body)
-    // const {stage,message_id} = await searchUser(chat_id)
+    // foo_stages[stage](id,text)
+    // // Obtener el id del chat
+    // // 
+    // // const [text,chat_id] = getResponseValue(body)
+    // // const {stage,message_id} = await searchUser(chat_id)
 
     
 
-    const chat_id = 1568853312
-    // const text = JSON.stringify(body,null,2)
+    // const chat_id = 1568853312
+    // // const text = JSON.stringify(body,null,2)
 
-    try{
-      await axios.post(genHTTP('sendMessage'),{ chat_id, text})
-      return res.status(200).json({message: 'mensaje enviado correctamente'})
-    }catch(err){
-      return console.log(err)
-    }
+    // try{
+    //   await axios.post(genHTTP('sendMessage'),{ chat_id, text})
+    //   return res.status(200).json({message: 'mensaje enviado correctamente'})
+    // }catch(err){
+    //   return console.log(err)
+    // }
 }
 
 
