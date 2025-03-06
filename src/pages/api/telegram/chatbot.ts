@@ -1,6 +1,7 @@
 // import { saveUserInfo, searchUser } from '@/helpers/json_routes';
 import { bookList, casesInfo, stageTwoOptions } from '@/helpers/hardInfo';
 import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage, genHTTP } from '@/helpers/message';
+import { getUserStatus } from '@/helpers/prisma';
 import { resUserMessage } from '@/helpers/types';
 import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -22,6 +23,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
   const foo_stage00 = async (chat_id:number, name:string) => {
     const text = `Bienvenido ${name} al [nombre del chat bot]!!!`
     await Bot_SendMessage(text,chat_id)
+
     //? funcion o ruta para cambiar el estado del usuario a 1
   }
 
@@ -181,38 +183,25 @@ export default async function handler(
 ) {
     const {body} = req
     const {first_name,id,text} = getBodyInfo(body)
-
-    const stage = 0 //? Funcio o ruta para obtener el estado del usuario
-
     try{
-      const data = stage == 0 ? first_name : text
-      await foo_stages[stage](id,data)
+
+      const stage = await getUserStatus(id) //? Funcio o ruta para obtener el estado del usuario
+      
+      if(stage){
+        await foo_stages[stage](id,text)
+      }else{
+        await foo_stage00(id,first_name)
+      }
       return res.status(200).json({message:'todo ok'})
 
     }catch(err){
       try{
-        await Bot_SendMessage(JSON.stringify(err,null,2),1568853312) // si pasa un error que envie nuestro telegram
+        return await Bot_SendMessage(JSON.stringify(err,null,2),1568853312) // si pasa un error que envie nuestro telegram
       }catch(err){
-        console.log(err)
+        return res.status(400).json(err)
       }
     }
-    // foo_stages[stage](id,text)
-    // // Obtener el id del chat
-    // // 
-    // // const [text,chat_id] = getResponseValue(body)
-    // // const {stage,message_id} = await searchUser(chat_id)
 
-    
-
-    // const chat_id = 1568853312
-    // // const text = JSON.stringify(body,null,2)
-
-    // try{
-    //   await axios.post(genHTTP('sendMessage'),{ chat_id, text})
-    //   return res.status(200).json({message: 'mensaje enviado correctamente'})
-    // }catch(err){
-    //   return console.log(err)
-    // }
 }
 
 

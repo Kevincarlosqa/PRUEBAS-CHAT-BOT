@@ -59,3 +59,12 @@ interface ReplyMarkup {
 interface Keyboard {
   text: string;
 }
+
+
+// DATA USER
+export interface UserMode {
+  id: number,
+  stage_id: number,
+  book_id: number,
+  case_id: number
+}

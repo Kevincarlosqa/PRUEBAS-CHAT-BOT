@@ -1,30 +1,69 @@
-// // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-// // import { createUser, readJson, saveUserInfo } from "@/helpers/no usar/json_routes";
-// import type { NextApiRequest, NextApiResponse } from "next";
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+// import { createUser, readJson, saveUserInfo } from "@/helpers/no usar/json_routes";
+import { Prisma } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 
-// type Data = {
-//   message: any;
-// };
+const prisma = new PrismaClient()
 
-// export default async function handler(
-//   req: NextApiRequest,
-//   res: NextApiResponse,
-// ) {
-//   try{
-//     await saveUserInfo(12320928741000,10,200000)
-//     const data = await readJson()
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const data = {
+    id:1,
+    book_id:1,
+    case_id:1,
+    stage_id:1
+  }
+
   
-//     res.status(200).json(data)
-//   }catch(err){
-//     console.log(err)
-//   }
+  try{
+    const user = await prisma.user.findFirst({where:{id:10}})
 
-//   // const route = genHTTP('getMe')
-//   // try{
-//   //   const {data} = await axios.get(genHTTP('getWebhookInfo'))
-//   //   res.status(200).json(data)
-//   // }catch(err){
-//   //   console.log(err)
-//   // }
-// }
+
+    return res.status(200).json(user)
+
+  }catch(err){
+    return res.status(400).json(err)
+  }
+
+  // const route = genHTTP('getMe')
+  // try{
+  //   const {data} = await axios.get(genHTTP('getWebhookInfo'))
+  //   res.status(200).json(data)
+  // }catch(err){
+  //   console.log(err)
+  // }
+}
+
+
+/*
+  Requerimientos:
+    - Saber si el usuario existe
+    - Traer la informacion del usuario
+    - ACtualizar la informacion del usuario
+    - 
+
+  Crear Usuario: 
+    const user = await prisma.user.create({data})
+
+  Buscar uno: 
+    const user = await prisma.usr.findUnique({
+      where:{
+        email: ''
+      }  
+    })
+
+  Actualizar 
+    const updateUser = await prisma.user.update({
+      where:{
+        email: ''
+      },
+      data:{
+        name:''
+      }
+    })
+
+*/
