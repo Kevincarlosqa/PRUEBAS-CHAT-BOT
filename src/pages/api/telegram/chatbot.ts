@@ -34,7 +34,7 @@ export default async function handler(
     try{
 
       // const user = await findUser(id) //? Funcio o ruta para obtener el estado del usuario
-      const user = await prisma.user.findFirst({where:{id}}) //? Funcio o ruta para obtener el estado del usuario
+      // const user = await prisma.user.findFirst({where:{id}}) //? Funcio o ruta para obtener el estado del usuario
       
       // if(user){
       //   const {stage_id} = user
@@ -42,7 +42,7 @@ export default async function handler(
       // }else{
       //   await foo_stage00(id,first_name)
       // }
-      return await Bot_SendMessage(JSON.stringify(user,null,2),id) // si pasa un error que envie nuestro telegram
+      return await Bot_SendMessage(JSON.stringify(id,null,2),id) // si pasa un error que envie nuestro telegram
 
       return res.status(200).json({message:true ? 'chi' : 'nho'})
 
