@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client"
 import { User_DB } from "./types"
 
-const prisma = new PrismaClient()
+export const prisma = new PrismaClient()
 
 export const createUser = async (user_id:number) => {
   const data:User_DB = {
