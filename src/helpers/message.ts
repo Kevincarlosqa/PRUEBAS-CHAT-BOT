@@ -27,7 +27,7 @@ export const Bot_BadOptionMessage = async (chat_id:number) => {
 
 export const Bot_SendKeyboard = async (text:string,chat_id:number,options:string[]) => {
   const route = genHTTP(send)
-  const keyboard = options.map(text => ({text}))
+  const keyboard = options.map(text => [{text}])
   const resize_keyboard = true
   const one_time_keyboard = true
   const reply_markup = {keyboard,resize_keyboard,one_time_keyboard}

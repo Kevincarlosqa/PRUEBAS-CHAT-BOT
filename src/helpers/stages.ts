@@ -9,7 +9,9 @@ export const foo_stage00 = async (user_id:number, name:string) => {
   console.log(name)
   await createUser(user_id)
   await Bot_SendMessage(text,user_id)
-  // await foo_stage01(user_id)
+  const listCases = casesInfo.map(el => el.name) 
+  const text1 = 'Selecciona un caso para continuar:'
+  await Bot_SendKeyboard(text1,user_id,listCases)
 }
 
 //* STAGE 01: Menu para ver casos disponibles

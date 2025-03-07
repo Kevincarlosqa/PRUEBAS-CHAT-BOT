@@ -1,7 +1,7 @@
 // import { saveUserInfo, searchUser } from '@/helpers/json_routes';
 import { bookList, casesInfo, stageTwoOptions } from '@/helpers/hardInfo';
 import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage, genHTTP } from '@/helpers/message';
-import { findUser, prisma } from '@/helpers/prisma';
+import { createUser, findUser, prisma } from '@/helpers/prisma';
 import { foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11 } from '@/helpers/stages';
 import { resUserMessage } from '@/helpers/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -28,14 +28,16 @@ export default async function handler(
     const {first_name,id,text} = getBodyInfo(body)
 
     try{
-      const user = await findUser(id)
+      // const user = await findUser(id)
 
-      if(user){
-        const {stage_id} = user
-        await foo_stages[stage_id](id,text)
-      }else{
-        await foo_stage00(id,first_name)
-      }
+      // if(user){
+      //   const {stage_id} = user
+      //   await foo_stages[stage_id](id,text)
+      // }else{
+      //   await foo_stage00(id,first_name)
+      // }
+
+      await createUser(10)
 
       return res.status(200).json({message: `interaccion del usr ${id}`})
 
