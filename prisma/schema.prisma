@@ -15,7 +15,7 @@ datasource db {
 }
 
 model User{
-  id Int @id
+  id BigInt @id
   stage_id Int
   book_id Int
   case_id Int

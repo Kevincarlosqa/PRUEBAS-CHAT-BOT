@@ -154,7 +154,7 @@ export const foo_stage10 = async (user_id:number) => {
 
 //* STAG4E 11: Pregunta del diagnostico
 export const foo_stage11 = async (user_id:number,input:string) => {
-  const answerCorrect = true //! FUNCION QUE VERIFICA SI EL DIAGNOSTICO ES CORRECTO CON LA IA
+  const answerCorrect = Math.floor(Math.random()*10) % 2 == 0 //! FUNCION QUE VERIFICA SI EL DIAGNOSTICO ES CORRECTO CON LA IA
   const text = 'Explicacion de porque la espuesta esta bien o mal' //! TEXTO GENERADO CNO LA IA
     await Bot_SendMessage(text,user_id)
 
