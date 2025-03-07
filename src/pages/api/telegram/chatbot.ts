@@ -26,14 +26,12 @@ export default async function handler(
 ) {
     const {body} = req
     const {first_name,id,text} = getBodyInfo(body)
-    console.log(body)
-    console.log(getBodyInfo(body))
+
     try{
       const user = await findUser(id)
 
       if(user){
         const {stage_id} = user
-        console.log(stage_id)
         await foo_stages[stage_id](id,text)
       }else{
         await foo_stage00(id,first_name)

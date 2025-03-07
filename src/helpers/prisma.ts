@@ -14,7 +14,6 @@ export const createUser = async (user_id:number) => {
 }
 
 export const findUser = async (user_id:number) => {
-  console.log(user_id)
   return await prisma.user.findFirst({where:{id:user_id}})
 }
 
