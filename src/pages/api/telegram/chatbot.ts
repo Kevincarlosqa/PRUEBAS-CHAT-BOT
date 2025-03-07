@@ -29,8 +29,8 @@ export default async function handler(
     try{
 
       const user = await findUser(id) //? Funcio o ruta para obtener el estado del usuario
-      console.log({first_name,id,text})
-
+      console.log(body)
+      console.log(getBodyInfo(body))
 
       if(user){
         const {stage_id} = user
