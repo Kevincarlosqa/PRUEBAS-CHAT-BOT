@@ -5,13 +5,9 @@ import { createUser, resetUser, updateUser } from "./prisma"
 //* STAGE 00: Mensaje de saludo para usuarios nuevos
 export const foo_stage00 = async (user_id:number, name:string) => {
   const text = `Bienvenido ${name} al [nombre del chat bot]!!!`
-  console.log(user_id)
-  console.log(name)
   await createUser(user_id)
   await Bot_SendMessage(text,user_id)
-  const listCases = casesInfo.map(el => el.name) 
-  const text1 = 'Selecciona un caso para continuar:'
-  await Bot_SendKeyboard(text1,user_id,listCases)
+  await foo_stage01(user_id)
 }
 
 //* STAGE 01: Menu para ver casos disponibles
@@ -82,7 +78,6 @@ export const foo_stage04 = async (user_id:number, input:string) => {
     return await foo_stage01(user_id)
   }
 }
-
 
 //* STAGE 05: Menu para seleccionar foto del caso
 export const foo_stage05 = async (user_id:number) => {
