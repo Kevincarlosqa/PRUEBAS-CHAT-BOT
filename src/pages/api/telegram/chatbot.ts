@@ -41,7 +41,7 @@ export default async function handler(
       // }else{
       //   await foo_stage00(id,first_name)
       // }
-      return await Bot_SendMessage(JSON.stringify(id,null,2),id) // si pasa un error que envie nuestro telegram
+      // return await Bot_SendMessage(JSON.stringify(id,null,2),id) // si pasa un error que envie nuestro telegram
 
       return res.status(200).json({message:true ? 'chi' : 'nho'})
 
