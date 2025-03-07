@@ -35,13 +35,13 @@ export default async function handler(
 
       const user = await findUser(id) //? Funcio o ruta para obtener el estado del usuario
       
-      if(user){
-        const {stage_id} = user
-        await foo_stages[stage_id](id,text)
-      }else{
-        await foo_stage00(id,first_name)
-      }
-      return res.status(200).json({message:'todo ok'})
+      // if(user){
+      //   const {stage_id} = user
+      //   await foo_stages[stage_id](id,text)
+      // }else{
+      //   await foo_stage00(id,first_name)
+      // }
+      return res.status(200).json({message:user ? 'chi' : 'nho'})
 
     }catch(err){
       try{
