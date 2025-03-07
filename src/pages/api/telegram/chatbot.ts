@@ -26,11 +26,10 @@ export default async function handler(
 ) {
     const {body} = req
     const {first_name,id,text} = getBodyInfo(body)
+    console.log(body)
+    console.log(getBodyInfo(body))
     try{
-
-      const user = await findUser(id) //? Funcio o ruta para obtener el estado del usuario
-      console.log(body)
-      console.log(getBodyInfo(body))
+      const user = await findUser(id)
 
       if(user){
         const {stage_id} = user
