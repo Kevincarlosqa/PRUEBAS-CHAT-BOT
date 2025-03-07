@@ -28,16 +28,16 @@ export default async function handler(
     const {first_name,id,text} = getBodyInfo(body)
 
     try{
-      // const user = await findUser(id)
+      const user = await findUser(id)
 
-      // if(user){
-      //   const {stage_id} = user
-      //   await foo_stages[stage_id](id,text)
-      // }else{
-      //   await foo_stage00(id,first_name)
-      // }
+      if(user){
+        const {stage_id} = user
+        await foo_stages[stage_id](id,text)
+      }else{
+        await foo_stage00(id,first_name)
+      }
 
-      await createUser(10)
+      // await createUser(10)
 
       return res.status(200).json({message: `interaccion del usr ${id}`})
 
