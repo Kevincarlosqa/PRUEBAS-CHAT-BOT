@@ -4,6 +4,9 @@ type BotRoute = 'sendMessage' | 'editMessageText'
 
 const send = 'sendMessage'
 
+const chat_chrls1 = 1573982513
+const chat_chrls2 = 1568853312
+
 
 export const genHTTP = (method:BotRoute) => {
   const base = 'https://api.telegram.org/bot'

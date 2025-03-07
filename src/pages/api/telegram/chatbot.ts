@@ -15,12 +15,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
     return {text,id,first_name}
   }
-// En cada peticion al weebhook se consulta sobre
-// const foo_stage = async () => {}
 
-
-
-
+  
 const foo_stages = [ foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11]
 
 
@@ -40,13 +36,13 @@ export default async function handler(
       }else{
         await foo_stage00(id,first_name)
       }
-      await Bot_SendMessage('funciona porfavor',id) // si pasa un error que envie nuestro telegram
 
       return res.status(200).json({message: `interaccion del usr ${id}`})
 
     }catch(err){
       try{
-        return await Bot_SendMessage(JSON.stringify(err,null,2),1568853312) // si pasa un error que envie nuestro telegram
+        await Bot_SendMessage(JSON.stringify(err,null,2),1573982513)
+        return res.status(200).json(err)
       }catch(err){
         return res.status(400).json(err)
       }
