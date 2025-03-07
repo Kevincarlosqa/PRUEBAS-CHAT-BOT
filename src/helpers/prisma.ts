@@ -13,7 +13,7 @@ export const prisma =
       env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
   });
 
-if (env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+if (env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export const createUser = async (user_id:number) => {
   const data:User_DB = {
