@@ -1,10 +1,9 @@
 // import { saveUserInfo, searchUser } from '@/helpers/json_routes';
 import { bookList, casesInfo, stageTwoOptions } from '@/helpers/hardInfo';
 import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage, genHTTP } from '@/helpers/message';
-import { findUser, prisma } from '@/helpers/prisma';
+import { findUser } from '@/helpers/prisma';
 import { foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11 } from '@/helpers/stages';
 import { resUserMessage } from '@/helpers/types';
-import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 
