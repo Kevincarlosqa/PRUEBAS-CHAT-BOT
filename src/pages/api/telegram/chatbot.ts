@@ -29,9 +29,11 @@ export default async function handler(
     try{
 
       const user = await findUser(id) //? Funcio o ruta para obtener el estado del usuario
+      console.log(user)
       
       if(user){
         const {stage_id} = user
+        console.log(stage_id)
         await foo_stages[stage_id](id,text)
       }else{
         await foo_stage00(id,first_name)
