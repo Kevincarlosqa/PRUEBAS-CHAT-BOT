@@ -33,7 +33,7 @@ export default async function handler(
     const {first_name,id,text} = getBodyInfo(body)
     try{
 
-      const user = await findUser(id) //? Funcio o ruta para obtener el estado del usuario
+      // const user = await findUser(id) //? Funcio o ruta para obtener el estado del usuario
       
       // if(user){
       //   const {stage_id} = user
@@ -41,7 +41,7 @@ export default async function handler(
       // }else{
       //   await foo_stage00(id,first_name)
       // }
-      return res.status(200).json({message:user ? 'chi' : 'nho'})
+      return res.status(200).json({message:true ? 'chi' : 'nho'})
 
     }catch(err){
       try{
