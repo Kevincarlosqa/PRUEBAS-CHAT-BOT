@@ -35,12 +35,14 @@ export default async function handler(
 
       const user = await findUser(id) //? Funcio o ruta para obtener el estado del usuario
       
-      if(user){
-        const {stage_id} = user
-        await foo_stages[stage_id](id,text)
-      }else{
-        await foo_stage00(id,first_name)
-      }
+      // if(user){
+      //   const {stage_id} = user
+      //   await foo_stages[stage_id](id,text)
+      // }else{
+      //   await foo_stage00(id,first_name)
+      // }
+      return await Bot_SendMessage(JSON.stringify(user,null,2),id) // si pasa un error que envie nuestro telegram
+
       return res.status(200).json({message:true ? 'chi' : 'nho'})
 
     }catch(err){
