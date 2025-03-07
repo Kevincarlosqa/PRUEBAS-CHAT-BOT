@@ -20,3 +20,13 @@ model User{
   book_id Int
   case_id Int
 }
+
+// model Books{
+//   id Int @id
+//   name String
+//   autor String
+// }
+
+// model Cases{
+
+// }

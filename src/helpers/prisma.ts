@@ -1,38 +1,43 @@
 import { PrismaClient } from "@prisma/client"
-import { UserMode } from "./types"
-import { use } from "react"
+import { User_DB } from "./types"
 
 const prisma = new PrismaClient()
 
-export const createUser = async (chat_id:number) => {
-  const data:UserMode = {
+export const createUser = async (user_id:number) => {
+  const data:User_DB = {
     book_id:0,
     case_id:0,
-    stage_id:0,
-    id:chat_id
+    stage_id:1,
+    id:user_id
   }
   await prisma.user.create({data})
 }
 
-export const findUser = async (chat_id:number) => {
-  return await prisma.user.findFirst({where:{id:chat_id}})
+export const findUser = async (user_id:number) => {
+  return await prisma.user.findFirst({where:{id:user_id}})
 }
 
-export const updateUser = async (chat_id:number,prop: keyof UserMode, value: number) => {
-  await prisma.user.update({where:{id:chat_id},data:{[prop]:value}})
+export const updateUser = async (user_id:number,props:(keyof User_DB)[], values: number[]) => {
+
+  const newVals:Partial<User_DB> = {}
+  props.forEach((prop,ix) => {
+    newVals[prop] = values[ix]
+  })
+
+  await prisma.user.update({where:{id:user_id},data:{...newVals}})
 }
 
-export const resetUser = async (chat_id:number) => {
-  const data:UserMode = {
+export const changeUserStatus = async (user_id:number, status: number)=>{
+  await updateUser(user_id,["stage_id"],[status])
+}
+
+
+export const resetUser = async (user_id:number) => {
+  const data:User_DB = {
     book_id:0,
     case_id:0,
     stage_id:1,
-    id:chat_id
+    id:user_id
   }
-  await prisma.user.update({where:{id:chat_id},data})
-}
-
-export const getUserStatus = async (chat_id:number) => {
-  const user = await findUser(chat_id)
-  return !user ? 0 : user.stage_id
+  await prisma.user.update({where:{id:user_id},data})
 }

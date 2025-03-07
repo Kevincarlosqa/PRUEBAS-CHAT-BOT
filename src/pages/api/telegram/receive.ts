@@ -20,10 +20,8 @@ export default async function handler(
 
   
   try{
-    const user = await prisma.user.findFirst({where:{id:10}})
-
-
-    return res.status(200).json(user)
+    // await updateUserV2(1,['book_id','case_id'],[10,10])
+    return res.status(200).json('chi che pudo')
 
   }catch(err){
     return res.status(400).json(err)

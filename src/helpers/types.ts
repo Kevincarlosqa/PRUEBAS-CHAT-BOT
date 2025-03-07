@@ -62,7 +62,7 @@ interface Keyboard {
 
 
 // DATA USER
-export interface UserMode {
+export interface User_DB {
   id: number,
   stage_id: number,
   book_id: number,
