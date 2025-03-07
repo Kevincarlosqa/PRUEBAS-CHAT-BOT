@@ -121,8 +121,8 @@ export const foo_stage07 = async (user_id:number) => {
 export const foo_stage08 = async (user_id:number,book_name:string) => {
   const bookInfo = bookList.find(el => el.name === book_name)
   if(!bookInfo){ // si el libro es invalido, vuelve a solicitar el libro
-    //?Funcion o ruta para cambiar el estado del usuario a 7
-    await updateUser(user_id,["stage_id"],[7])
+    //?Funcion o ruta para cambiar el estado del usuario a 9
+    await updateUser(user_id,["stage_id"],[9])
     await Bot_BadOptionMessage(user_id)
     return await foo_stage07(user_id)
   }
