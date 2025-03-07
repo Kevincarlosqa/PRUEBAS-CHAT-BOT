@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 // import { createUser, readJson, saveUserInfo } from "@/helpers/no usar/json_routes";
+import { Bot_SendMessage } from "@/helpers/message";
 import { findUser } from "@/helpers/prisma";
 import { Prisma } from "@prisma/client";
 import { PrismaClient } from "@prisma/client";
@@ -23,6 +24,7 @@ export default async function handler(
   try{
     // await updateUserV2(1,['book_id','case_id'],[10,10])
     const user = await findUser(0)
+    Bot_SendMessage('holi',1573982513)
     return res.status(200).json(user)
 
   }catch(err){
