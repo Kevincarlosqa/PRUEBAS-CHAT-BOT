@@ -1,5 +1,5 @@
 import { bookList, casesInfo, stageTwoOptions } from "./hardInfo"
-import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage } from "./message"
+import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage, Bot_SendPhoto } from "./message"
 import { createUser, resetUser, updateUser } from "./prisma"
 
 //* STAGE 00: Mensaje de saludo para usuarios nuevos
@@ -102,7 +102,7 @@ export const foo_stage06 = async (user_id:number, photo_name:string) => {
     return await foo_stage05(user_id)
   }
   const {url} = photoInfo
-  await Bot_SendMessage(url,user_id) //? Funcion o ruta para enviar la imagen del usuario
+  await Bot_SendPhoto(url,user_id) //? Funcion o ruta para enviar la imagen del usuario
   //?Funcion o ruta para cambiar el estado del usuario a 3
   await updateUser(user_id,["stage_id"],[3])
   await foo_stage03(user_id)

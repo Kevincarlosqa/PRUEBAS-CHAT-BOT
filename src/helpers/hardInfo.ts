@@ -20,9 +20,9 @@
       patient: 'Varón de 6 años y 10 meses con buen estado de salud de conducta dócil',
       info: 'Acude a consulta acompañado de su madre. Presenta varias lesiones cariosas, incluyendo una pieza dental inferior que parece tener un proceso fistuloso; no se precisa el tiempo de aparición, pero actualmente está asintomático. Sus hábitos alimenticios incluyen el consumo frecuente de dulces, como galletas de chocolate y helados. A los dos años tuvo una infección por el virus mano-pie-boca. \nExamen clínico:El examen clínico intraoral presenta una dentición mixta temprana. Se observan varias lesiones cariosas en distintas piezas dentales, con lesiones de diversa profundidad. En el primer cuadrante, la pieza 55 presenta una pequeña cavidad en la superficie oclusal, afectando el esmalte. En el segundo cuadrante, la pieza 65 tiene una cavidad que abarca la dentina de poca profundidad. En el tercer cuadrante, la pieza 74 presenta una cavidad superficial en el esmalte, mientras que el diente 75 presenta una cavidad profunda que compromete la pulpa. En el cuarto cuadrante, la pieza 85 presenta una cavidad en distal, también comprometiendo la pulpa dental. En general, las encías y tejidos blandos están en buen estado, con una adecuada inserción gingival y una cantidad de saliva serosa, fluida y abundante.',
       photos: [
-        {name: 'pieza x', url: 'case 1 - url 1'},
-        {name: 'pieza y', url: 'case 1 - url 2'},
-        {name: 'pieza z', url: 'case 1 - url 3'},
+        {name: 'pieza x', url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/132.png'},
+        {name: 'pieza y', url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/132.png'},
+        {name: 'pieza z', url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png'},
       ],
       answer: 'chi'
     },
@@ -32,10 +32,10 @@
       patient: 'Varón de 7 años con buen estado de salud de conducta dócil',
       info: 'Acude a consulta acompañado de su madre. Presenta varios dientes con pigmentaciones negruzcas y, a veces, le causa dolor. Tiene antecedentes de tratamiento odontológico previo con fluorización y restauraciones \nExamen clínico:El examen clínico intraoral presenta una dentición mixta temprana. Se observan varias lesiones cariosas en distintas piezas dentales, con lesiones de diversa profundidad. En el primer cuadrante, la pieza 54 presenta lesión cavitada de coloración negruzca en caras oclusal y palatina no presenta dolor a la percusión ni reacción a los cambios térmicos. La pieza 64 presenta lesión cavitada de coloración negruzca en cara oclusal, no presenta dolor a la percusión ni reacción a los cambios térmicos tiene una cavidad que abarca la dentina de poca profundidad. En el tercer cuadrante, la pieza 74. Presencia de material de restauración con bordes regulares y negruzco. Compatible con recidiva caritas. 84. Presencia de material de restauración con bordes regulares y negruzco. Compatible con recidiva caritas. En general, las encías y tejidos blandos están en buen estado, con una adecuada inserción gingival y una cantidad de saliva serosa, fluida y abundante.',
       photos: [
-        {name: 'pieza a', url: 'case 2 - url 1'},
-        {name: 'pieza b', url: 'case 2 - url 2'},
-        {name: 'pieza c', url: 'case 2 - url 3'},
-        {name: 'pieza d', url: 'case 2 - url 4'},
+        {name: 'pieza a', url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png'},
+        {name: 'pieza b', url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/7.png'},
+        {name: 'pieza c', url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/7.png'},
+        {name: 'pieza d', url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/11.png'},
       ],
       answer: 'ño'
     },
