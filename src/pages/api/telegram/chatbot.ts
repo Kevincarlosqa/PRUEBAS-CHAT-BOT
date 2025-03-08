@@ -24,32 +24,31 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-    const {body} = req
-    const {first_name,id,text} = getBodyInfo(body)
+  const {body} = req
+  const {first_name,id,text} = getBodyInfo(body)
 
-    try{
-      const user = await findUser(id)
+  try{
+    const user = await findUser(id)
 
-      if(user){
-        const {stage_id} = user
-        await foo_stages[stage_id](id,text)
-      }else{
-        await foo_stage00(id,first_name)
-      }
-
-      // await createUser(10)
-
-      return res.status(200).json({message: `interaccion del usr ${id}`})
-
-    }catch(err){
-      try{
-        await Bot_SendMessage(JSON.stringify(err,null,2),1573982513)
-        return res.status(200).json(err)
-      }catch(err){
-        return res.status(400).json(err)
-      }
+    
+    if(user){
+      const {stage_id} = user
+      await Bot_SendMessage(`${stage_id}`,id)
+      await foo_stages[stage_id](id,text)
+    }else{
+      await foo_stage00(id,first_name)
     }
 
+    // await createUser(10)
+
+    return res.status(200).json({message: `interaccion del usr ${id}`})
+
+  }catch(err){
+    try{
+      await Bot_SendMessage(JSON.stringify(err,null,2),1573982513)
+      return res.status(200).json(err)
+    }catch(err){
+      return res.status(400).json(err)
+    }
+  }
 }
-
-
