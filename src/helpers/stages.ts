@@ -149,7 +149,7 @@ export const foo_stage09 = async (user_id:number, input:string) => {
 export const foo_stage10 = async (user_id:number) => {
   const text = 'Cual es el diagnostico?'
   //?Funcino o ruta para cambiar el estado del usuario a 10
-  await updateUser(user_id,["stage_id"],[10])
+  await updateUser(user_id,["stage_id"],[11])
   await Bot_SendMessage(text,user_id)
 }
 

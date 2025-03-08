@@ -33,7 +33,6 @@ export default async function handler(
     
     if(user){
       const {stage_id} = user
-      await Bot_SendMessage(`${stage_id}`,id)
       await foo_stages[stage_id](id,text)
     }else{
       await foo_stage00(id,first_name)
