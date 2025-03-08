@@ -122,15 +122,16 @@ export const foo_stage08 = async (user_id:number,book_name:string) => {
   const bookInfo = bookList.find(el => el.name === book_name)
   if(!bookInfo){ // si el libro es invalido, vuelve a solicitar el libro
     //?Funcion o ruta para cambiar el estado del usuario a 9
-    await updateUser(user_id,["stage_id"],[9])
+    await updateUser(user_id,["stage_id"],[7])
     await Bot_BadOptionMessage(user_id)
     return await foo_stage07(user_id)
   }
-
+  
   const {id} = bookInfo
   //?Funcion o ruta para guardar el id del libro 
   const text = `Que deseas buscar en ${book_name}?`
   await Bot_SendMessage(text,user_id)
+  await updateUser(user_id,["stage_id"],[9])
 }
 
 //* STAG4E 09: Respuesta para la pregunta del libro
