@@ -11,6 +11,9 @@
     "migrate": "prisma migrate depploy"
   },
   "dependencies": {
+    "@langchain/community": "^0.3.36",
+    "@langchain/openai": "^0.4.7",
+    "@langchain/textsplitters": "^0.1.0",
     "@prisma/client": "^6.4.1",
     "axios": "^1.7.7",
     "next": "14.2.7",
