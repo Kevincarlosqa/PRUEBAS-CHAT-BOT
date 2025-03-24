@@ -21,12 +21,37 @@ model User{
   case_id Int
 }
 
-// model Books{
-//   id Int @id
-//   name String
-//   autor String
-// }
+model Case{
+  id Int @id @default(autoincrement())
+  info String
+  books CasesOnBooks[]
+}
 
-// model Cases{
+model Book{
+  id Int @id @default(autoincrement())
+  title String @unique
+  author String
+  embeddings Embedding[]
+  cases CasesOnBooks[]
+}
 
-// }
+model CasesOnBooks{
+  case Case @relation(fields: [case_id], references: [id])
+  case_id Int
+  book Book @relation(fields: [book_id], references: [id])
+  book_id Int
+
+  @@id([case_id,book_id])
+}
+
+model Embedding{
+  id Int @id @default(autoincrement())
+  book Book @relation(fields: [book_id],references: [id])
+  book_id Int
+  vector Unsupported("vector")
+}
+
+
+// tabla libros => id name author caso-id
+// tabla casos => id info
+// tabla de embeddings => id libro-id vector
