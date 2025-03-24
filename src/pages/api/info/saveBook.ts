@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   // console.log(req)
-  
-  res.status(200).json(req);
+  console.log(req)
+  res.status(200).json({});
 
 }
