@@ -45,7 +45,7 @@ datasource db {
     id Int @id @default(autoincrement())
     biblio Biblio @relation(fields: [biblio_id],references: [id])
     biblio_id Int
-    vector Unsupported("vector")
+    // vector Unsupported("vector")
   }
 
 // CASOS
@@ -95,36 +95,3 @@ datasource db {
     @@id([biblio_id,tema_id])
   }
 
-
-// model Book{
-//   id Int @id @default(autoincrement())
-//   title String @unique
-//   author String
-//   embeddings Embedding[]
-//   cases CasesOnBooks[]
-// }
-
-// model CasesOnBooks{
-//   case Case @relation(fields: [case_id], references: [id])
-//   case_id Int
-//   book Book @relation(fields: [book_id], references: [id])
-//   book_id Int
-
-//   @@id([case_id,book_id])
-// }
-
-
-
-// tabla libros => id name author caso-id
-// tabla casos => id info
-// tabla de embeddings => id libro-id vector
-/*
-  click FORM
-  
-  const idBook =  await axios(ruteAPI/saveBook)
-
-  await addEmbeddin(bookId,vectores)
-
-
-
-*/
