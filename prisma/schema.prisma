@@ -45,7 +45,7 @@ datasource db {
     id Int @id @default(autoincrement())
     biblio Biblio @relation(fields: [biblio_id],references: [id])
     biblio_id Int
-    // vector Unsupported("vector")
+    vector Unsupported("vector")
   }
 
 // CASOS
