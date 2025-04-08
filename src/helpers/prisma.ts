@@ -52,3 +52,18 @@ export const resetUser = async (user_id:number) => {
   }
   await prisma.user.update({where:{id:user_id},data})
 }
+
+
+export const addEmbeddings = async (data:{book_id:number,vector:number[]}[]) => {
+  const values = data.map(el => `(${el.book_id}, '${JSON.stringify(el.vector)}')`).join(', ')
+  const query = `INSERT INTO "Embedding" (book_id, vector) VALUES ${values}`
+
+  try{
+    const res = await prisma.$executeRawUnsafe(query);
+    console.log(res)
+  } catch (error){
+    console.error('tmr')
+  }finally{
+    await prisma.$disconnect()
+  }
+}

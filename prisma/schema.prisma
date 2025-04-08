@@ -14,44 +14,117 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model User{
-  id BigInt @id
-  stage_id Int
-  book_id Int
-  case_id Int
-}
+// USUARIOS
 
-model Case{
-  id Int @id @default(autoincrement())
-  info String
-  books CasesOnBooks[]
-}
+  model User{
+    id BigInt @id
+    stage_id Int
+    book_id Int
+    case_id Int
+  }
 
-model Book{
-  id Int @id @default(autoincrement())
-  title String @unique
-  author String
-  embeddings Embedding[]
-  cases CasesOnBooks[]
-}
+// BIBLIOGRAFIA
 
-model CasesOnBooks{
-  case Case @relation(fields: [case_id], references: [id])
-  case_id Int
-  book Book @relation(fields: [book_id], references: [id])
-  book_id Int
+  model Biblio{
+    id Int @id @default(autoincrement())
+    title String @unique
+    autor String
+    type TypeBiblio @relation(fields: [type_id],references: [id])
+    type_id Int
+    embeddings Embedding[]
+    temas BibliosOnTemas[]
+  }
 
-  @@id([case_id,book_id])
-}
+  model TypeBiblio{
+    id Int @id @default(autoincrement())
+    biblios Biblio[]
+    name String
+  }
 
-model Embedding{
-  id Int @id @default(autoincrement())
-  book Book @relation(fields: [book_id],references: [id])
-  book_id Int
-  vector Unsupported("vector")
-}
+  model Embedding{
+    id Int @id @default(autoincrement())
+    biblio Biblio @relation(fields: [biblio_id],references: [id])
+    biblio_id Int
+    vector Unsupported("vector")
+  }
+
+// CASOS
+
+  model Case{
+    id Int @id @default(autoincrement())
+    title String
+    ante String
+    exam String
+    images Image[]
+    temas CasesOnTemas[]
+    // books CasesOnBooks[]
+  }
+
+  model Image{
+    id Int @id @default(autoincrement())
+    tipo Int
+    url String
+    case Case @relation(fields: [case_id],references: [id])
+    case_id Int
+  }
+  
+
+// TEMAS
+  model Tema{
+    id Int @id @default(autoincrement())
+    cases CasesOnTemas[]
+    biblios BibliosOnTemas[]
+    nombre String
+  }
+
+  model CasesOnTemas{
+    case Case @relation(fields: [case_id], references: [id])
+    case_id Int
+    tema Tema @relation(fields: [tema_id], references: [id])
+    tema_id Int
+
+    @@id([case_id,tema_id])
+  }
+
+  model BibliosOnTemas{
+    biblio Biblio @relation(fields: [biblio_id], references: [id])
+    biblio_id Int
+    tema Tema @relation(fields: [tema_id], references: [id])
+    tema_id Int
+
+    @@id([biblio_id,tema_id])
+  }
+
+
+// model Book{
+//   id Int @id @default(autoincrement())
+//   title String @unique
+//   author String
+//   embeddings Embedding[]
+//   cases CasesOnBooks[]
+// }
+
+// model CasesOnBooks{
+//   case Case @relation(fields: [case_id], references: [id])
+//   case_id Int
+//   book Book @relation(fields: [book_id], references: [id])
+//   book_id Int
+
+//   @@id([case_id,book_id])
+// }
+
 
 
 // tabla libros => id name author caso-id
 // tabla casos => id info
 // tabla de embeddings => id libro-id vector
+/*
+  click FORM
+  
+  const idBook =  await axios(ruteAPI/saveBook)
+
+  await addEmbeddin(bookId,vectores)
+
+
+
+*/
