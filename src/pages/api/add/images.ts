@@ -25,7 +25,7 @@ export default async function handler(
     const {case_id,info} = body
     if(!case_id || !info) return res.status(400).json({error:'Bad body structure'})
     
-    const case_exist = await prisma.case.findUnique({where:{id:case_id}})
+    const case_exist = await prisma.case.findUnique({where:{id:+case_id}})
     if(!case_exist) return res.status(400).json({error:'That case no exist'})
 
     const allImages = info.map( (el:any) => 
