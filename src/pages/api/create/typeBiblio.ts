@@ -20,6 +20,9 @@ export default async function handler(
     const {name} = body
     if(!name) return res.status(400).json({error:'Bad body structure'})
 
+    const exist = await prisma.typeBiblio.findFirst({where:{name}})
+    if(exist) return res.status(400).json({error:'value Exist'})
+
     const data = {
       name
     }

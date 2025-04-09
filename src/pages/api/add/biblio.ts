@@ -1,7 +1,6 @@
 import { prisma } from '@/helpers/prisma';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-
 /*
   body = {
     title: string,
@@ -10,8 +9,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
     temas: number[]
   }
 */
-
-
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,6 +21,10 @@ export default async function handler(
   try{
     const {title,autor,type,temas} = body
     if(!title || !autor || !type || !temas) return res.status(400).json({error:'Bad body structure'})
+
+    const exist = await prisma.biblio.findFirst({where:{title}})
+    if(exist) return res.status(400).json({error:'value Exist'})
+
     
     const connect = { id: type}
     const create = temas.map((id:number) => ({tema: {connect:{id}}}))

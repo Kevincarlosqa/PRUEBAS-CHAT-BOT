@@ -1,4 +1,5 @@
 import { prisma } from '@/helpers/prisma';
+import { connect } from 'http2';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // 01(radiografia)
@@ -10,7 +11,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
     info: {url:string, tipo: 1 | 2}[]
   }
 */
-
 
 
 export default async function handler(
@@ -28,14 +28,27 @@ export default async function handler(
     const case_exist = await prisma.case.findUnique({where:{id:case_id}})
     if(!case_exist) return res.status(400).json({error:'That case no exist'})
 
-    const data = {
-      images: {
-        create: info
-      }
-    } 
-    const where = {id:case_id}
+    const allImages = info.map( (el:any) => {
+      prisma.image.create({
+        data:{
+          tipo: el.tipo,
+          url: el.url,
+          case:{
+            connect: {id:case_id}
+          }
+        }
+      })
+    })
+    
+    await Promise.all(allImages)
+    // const data = {
+    //   images: {
+    //     create: info
+    //   }
+    // } 
+    // const where = {id:case_id}
 
-    await prisma.case.update({where,data})
+    // await prisma.case.update({where,data})
     return res.status(200).json({msg:'Images save succesfully'})
   }catch(err){
     return res.status(400).json(err)

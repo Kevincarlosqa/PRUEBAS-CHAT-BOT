@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 /*
   body = {
-    nombre: string
+    name: string
   }
 */
 
@@ -19,6 +19,9 @@ export default async function handler(
   try{
     const {nombre} = body
     if(!nombre) return res.status(400).json({error:'Bad body structure'})
+      
+    const exist = await prisma.tema.findFirst({where:{nombre}})
+    if(exist) return res.status(400).json({error:'value Exist'})
 
     const data = {
       nombre

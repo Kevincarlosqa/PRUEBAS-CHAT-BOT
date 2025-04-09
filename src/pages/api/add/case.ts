@@ -1,7 +1,6 @@
 import { prisma } from '@/helpers/prisma';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-
 /*
   body = {
     title: string,
@@ -10,8 +9,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
     temas: number[]
   }
 */
-
-
 
 export default async function handler(
   req: NextApiRequest,
