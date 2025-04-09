@@ -28,7 +28,7 @@ export default async function handler(
     const case_exist = await prisma.case.findUnique({where:{id:case_id}})
     if(!case_exist) return res.status(400).json({error:'That case no exist'})
 
-    const allImages = info.map( (el:any) => {
+    const allImages = info.map( (el:any) => 
       prisma.image.create({
         data:{
           tipo: el.tipo,
@@ -38,7 +38,7 @@ export default async function handler(
           }
         }
       })
-    })
+    )
     
     await Promise.all(allImages)
     // const data = {
