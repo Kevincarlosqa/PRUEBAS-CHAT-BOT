@@ -68,3 +68,12 @@ export interface User_DB {
   book_id: number,
   case_id: number
 }
+
+export interface TypeBiblio_DB {
+  name: string
+}
+
+export interface Tema_DB{
+  nombre: string
+}
+
