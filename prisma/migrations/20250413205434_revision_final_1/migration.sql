@@ -3,23 +3,15 @@ CREATE TABLE "Biblio" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "autor" TEXT NOT NULL,
-    "type_id" INTEGER NOT NULL,
 
     CONSTRAINT "Biblio_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "TypeBiblio" (
-    "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
-
-    CONSTRAINT "TypeBiblio_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Embedding" (
     "id" SERIAL NOT NULL,
     "biblio_id" INTEGER NOT NULL,
+    "vector" vector NOT NULL,
 
     CONSTRAINT "Embedding_pkey" PRIMARY KEY ("id")
 );
@@ -70,9 +62,6 @@ CREATE TABLE "BibliosOnTemas" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Biblio_title_key" ON "Biblio"("title");
-
--- AddForeignKey
-ALTER TABLE "Biblio" ADD CONSTRAINT "Biblio_type_id_fkey" FOREIGN KEY ("type_id") REFERENCES "TypeBiblio"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Embedding" ADD CONSTRAINT "Embedding_biblio_id_fkey" FOREIGN KEY ("biblio_id") REFERENCES "Biblio"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -29,16 +29,8 @@ datasource db {
     id Int @id @default(autoincrement())
     title String @unique
     autor String
-    type TypeBiblio @relation(fields: [type_id],references: [id])
-    type_id Int
     embeddings Embedding[]
     temas BibliosOnTemas[]
-  }
-
-  model TypeBiblio{
-    id Int @id @default(autoincrement())
-    biblios Biblio[]
-    name String
   }
 
   model Embedding{
