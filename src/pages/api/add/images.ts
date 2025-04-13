@@ -8,6 +8,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 /*
   body = {
     case_id: number,
+    name: string,
     info: {url:string, tipo: 1 | 2}[]
   }
 */
@@ -22,8 +23,8 @@ export default async function handler(
   if(method != 'POST') return res.status(400).json({error: 'Only post method'})
   
   try{
-    const {case_id,info} = body
-    if(!case_id || !info) return res.status(400).json({error:'Bad body structure'})
+    const {case_id,info,name} = body
+    if(!case_id || !info || !name) return res.status(400).json({error:'Bad body structure'})
     
     const id = +case_id
 
@@ -35,6 +36,7 @@ export default async function handler(
         data:{
           tipo: el.tipo,
           url: el.url,
+          name: el.name,
           case:{
             connect: {id}
           }
