@@ -21,7 +21,7 @@ export const Bot_SendMessage = async (text:string,chat_id:number) => {
 
 export const Bot_BadOptionMessage = async (chat_id:number) => {
   const route = genHTTP(send)
-  const text = 'Opcion no valida!!'
+  const text = 'Debes elegir una de las opciones.'
   await axios.post(route,{text,chat_id})
 }
 

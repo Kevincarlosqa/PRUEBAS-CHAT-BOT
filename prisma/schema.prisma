@@ -44,7 +44,7 @@ datasource db {
 
   model Case{
     id Int @id @default(autoincrement())
-    title String
+    title String @unique
     ante String
     exam String
     images Image[]
@@ -54,6 +54,7 @@ datasource db {
 
   model Image{
     id Int @id @default(autoincrement())
+    name String
     tipo Int
     url String
     case Case @relation(fields: [case_id],references: [id])

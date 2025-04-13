@@ -29,6 +29,7 @@ CREATE TABLE "Case" (
 -- CreateTable
 CREATE TABLE "Image" (
     "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
     "tipo" INTEGER NOT NULL,
     "url" TEXT NOT NULL,
     "case_id" INTEGER NOT NULL,
@@ -62,6 +63,9 @@ CREATE TABLE "BibliosOnTemas" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Biblio_title_key" ON "Biblio"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Case_title_key" ON "Case"("title");
 
 -- AddForeignKey
 ALTER TABLE "Embedding" ADD CONSTRAINT "Embedding_biblio_id_fkey" FOREIGN KEY ("biblio_id") REFERENCES "Biblio"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -18,7 +18,7 @@ export const createUser = async (user_id:number) => {
   const data:User_DB = {
     book_id:0,
     case_id:0,
-    stage_id:1,
+    stage_id:0,
     id:user_id
   }
   await prisma.user.create({data})
@@ -47,7 +47,7 @@ export const resetUser = async (user_id:number) => {
   const data:User_DB = {
     book_id:0,
     case_id:0,
-    stage_id:1,
+    stage_id:-1,
     id:user_id
   }
   await prisma.user.update({where:{id:user_id},data})

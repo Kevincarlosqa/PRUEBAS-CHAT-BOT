@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 /*
   body = {
-    name: string
+    nombre: string
   }
 */
 

@@ -17,7 +17,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
   }
 
   
-const foo_stages = [ foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11]
+const foo_stages = [ 
+  foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11]
 
 
 export default async function handler(
@@ -40,7 +41,7 @@ export default async function handler(
 
     // await createUser(10)
 
-    return res.status(200).json({message: `interaccion del usr ${id}`})
+    return res.status(200).json({message: `interaccion del user ${id}`})
 
   }catch(err){
     try{
