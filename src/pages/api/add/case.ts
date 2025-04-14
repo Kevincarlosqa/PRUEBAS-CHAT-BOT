@@ -7,6 +7,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
     ante: string,
     exam: string,
     temas: number[]
+    ans: string,
   }
 */
 
@@ -19,12 +20,12 @@ export default async function handler(
   if(method != 'POST') return res.status(400).json({error: 'Only post method'})
   
   try{
-    const {title,ante,exam,temas} = body
-    if(!title || !ante || !exam || !temas) return res.status(400).json({error:'Bad body structure'})
+    const {title,ante,exam,temas,ans} = body
+    if(!title || !ante || !exam || !temas || !ans) return res.status(400).json({error:'Bad body structure'})
     
     const create = temas.map((id:number) => ({tema: {connect:{id}}}))
     const data = {
-      title,ante,exam,
+      title,ante,exam,ans,
       temas: { create }
     }
 

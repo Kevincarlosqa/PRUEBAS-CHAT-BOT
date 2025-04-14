@@ -47,6 +47,7 @@ datasource db {
     title String @unique
     ante String
     exam String
+    ans String
     images Image[]
     temas CasesOnTemas[]
     // books CasesOnBooks[]

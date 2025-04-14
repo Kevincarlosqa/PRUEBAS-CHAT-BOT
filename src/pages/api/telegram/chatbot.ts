@@ -2,9 +2,17 @@
 import { bookList, casesInfo, stageTwoOptions } from '@/helpers/hardInfo';
 import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage, genHTTP } from '@/helpers/message';
 import { createUser, findUser, prisma } from '@/helpers/prisma';
-import { foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11 } from '@/helpers/stages';
+import { foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage12, foo_stage13, foo_stage14, foo_stage15, foo_stage11, foo_stage_msg, foo_stage_start} from '@/helpers/stages2';
+// import { foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11 } from '@/helpers/stages';
 import { resUserMessage } from '@/helpers/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
+
+export interface StageInputParameters {
+  userId: number,
+  input: string,
+  caseId: number,
+  bookId: number,
+} 
 
 
 // HELPERS
@@ -17,9 +25,12 @@ import type { NextApiRequest, NextApiResponse } from 'next';
   }
 
   
-const foo_stages = [ 
-  foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11]
+// const foo_stages = [ 
+//   foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11]
 
+const foo_stages1 = [
+  foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11, foo_stage12, foo_stage13, foo_stage14, foo_stage15
+]
 
 export default async function handler(
   req: NextApiRequest,
@@ -32,11 +43,20 @@ export default async function handler(
     const user = await findUser(id)
 
     
+
     if(user){
-      const {stage_id} = user
-      await foo_stages[stage_id](id,text)
+      const {stage_id,case_id,book_id} = user
+      const inputInfo:StageInputParameters = {
+        userId: id,
+        input: text,
+        caseId: case_id,
+        bookId:book_id,
+      }
+
+      await foo_stages1[stage_id](inputInfo)
     }else{
-      await foo_stage00(id,first_name)
+      // await foo_stage00(id,first_name)
+      await foo_stage_msg({bookId:0,caseId:0,input:'',userId:id})
     }
 
     // await createUser(10)

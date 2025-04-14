@@ -22,6 +22,7 @@ CREATE TABLE "Case" (
     "title" TEXT NOT NULL,
     "ante" TEXT NOT NULL,
     "exam" TEXT NOT NULL,
+    "ans" TEXT NOT NULL,
 
     CONSTRAINT "Case_pkey" PRIMARY KEY ("id")
 );
