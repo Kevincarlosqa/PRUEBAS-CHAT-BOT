@@ -1,4 +1,4 @@
-import { dataCreateMany } from "@/helpers/hardInfo";
+// import { dataCreateMany } from "@/helpers/hardInfo";
 import { addEmbeddings } from "@/helpers/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   // console.log(req)
   try{
-    await addEmbeddings(dataCreateMany)
+    // await addEmbeddings(dataCreateMany)
     // console.log('chi')
     return res.status(200).json({});
   }catch(err){
