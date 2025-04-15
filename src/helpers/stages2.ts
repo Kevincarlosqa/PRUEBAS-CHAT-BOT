@@ -234,7 +234,7 @@ export const foo_stage13 = async (inputInfo:StageInputParameters) => {
 
   //! LOGFICA RAG PARA VALIDACION DE RESPUESTA
 
-  const valueAns = true
+  const valueAns = false
 
   if(valueAns){
     const text = 'Felicidades por participar, tu respuesta es correcta!!!'
@@ -275,7 +275,7 @@ export const foo_stage15 = async (inputInfo:StageInputParameters) => {
   if(ans == 1){
     // const caso = await prisma.case.findUnique({where:{id:caseId}})
     
-    const answer = '' // caso.ans
+    const answer = 'Este mensaje no puede estar vacio' // caso.ans
     await Bot_SendMessage(answer,userId)
     // await resetUser(userId)
     return await foo_stage_start(inputInfo)
