@@ -95,7 +95,7 @@ export const foo_stage03 = async (inputInfo:StageInputParameters) => {
 
 //* STAGE 04: MENU DE MAS INFORMACION
 const stage04_options = [
-  'Paciente',
+  'Mas informacion de paciente',
   'Ver Fotografias'
 ]
 export const foo_stage04 = async (inputInfo:StageInputParameters) => {

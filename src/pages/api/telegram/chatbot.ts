@@ -56,7 +56,7 @@ export default async function handler(
       await foo_stages1[stage_id](inputInfo)
     }else{
       // await foo_stage00(id,first_name)
-      await foo_stage_msg({bookId:0,caseId:0,input:'',userId:id})
+      await foo_stage_msg({bookId:0,caseId:0,input:first_name,userId:id})
     }
 
     // await createUser(10)
