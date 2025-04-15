@@ -233,8 +233,13 @@ export const foo_stage13 = async (inputInfo:StageInputParameters) => {
   const {userId,input} = inputInfo
 
   //! LOGFICA RAG PARA VALIDACION DE RESPUESTA
-
-  const valueAns = false
+  const randomBoolean = () => {
+    const {round,random} = Math
+    const [max,min] = [1,0]
+    const newNum = round(random()*(max-min)+min)
+    return newNum
+  }
+  const valueAns = randomBoolean()
 
   if(valueAns){
     const text = 'Felicidades por participar, tu respuesta es correcta!!!'
@@ -277,7 +282,7 @@ export const foo_stage15 = async (inputInfo:StageInputParameters) => {
     
     const answer = 'Este mensaje no puede estar vacio' // caso.ans
     await Bot_SendMessage(answer,userId)
-    // await resetUser(userId)
+    await resetUser(userId)
     return await foo_stage_start(inputInfo)
   }
 }
