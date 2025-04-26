@@ -2,6 +2,7 @@ import { userInfo } from "os"
 import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage, Bot_SendPhoto } from "./message"
 import { createUser, prisma, resetUser, updateUser } from "./prisma"
 import { StageInputParameters } from "@/pages/api/telegram/chatbot"
+import { ansQuestion } from "./openAI"
 
 
 
@@ -212,7 +213,7 @@ export const foo_stage11 = async (inputInfo:StageInputParameters) => {
 
   //! logica de rag para la respuesta
 
-  const answer = `Respuesta a la pregunta ${input}`
+  const answer = await ansQuestion(input)
   await Bot_SendMessage(answer,userId)
   await foo_stage02(inputInfo)
 }
