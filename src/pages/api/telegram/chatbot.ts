@@ -1,5 +1,5 @@
 // import { saveUserInfo, searchUser } from '@/helpers/json_routes';
-import { bookList, casesInfo, stageTwoOptions } from '@/helpers/hardInfo';
+import { bookList, casesInfo, stageTwoOptions } from '@/helpers/old/hardInfo';
 import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage, genHTTP } from '@/helpers/message';
 import { createUser, findUser, prisma } from '@/helpers/prisma';
 import { foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage12, foo_stage13, foo_stage14, foo_stage15, foo_stage11, foo_stage_msg, foo_stage_start} from '@/helpers/stages2';

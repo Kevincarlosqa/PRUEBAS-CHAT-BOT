@@ -6,27 +6,35 @@ const send = 'sendMessage'
 
 const chat_chrls1 = 1573982513
 const chat_chrls2 = 1568853312
+const chat_kevin = 6141714656
+
+const keys = [
+  process.env.TELEGRAM_KEY,
+  process.env.TELEGRAM_TEMA_01_KEY,
+  process.env.TELEGRAM_TEMA_02_KEY,
+]
 
 
-export const genHTTP = (method:BotRoute) => {
+
+export const genHTTP = (method:BotRoute,keyIndex:number) => {
   const base = 'https://api.telegram.org/bot'
-  const key = process.env.TELEGRAM_KEY
+  const key = keys[keyIndex]
   return base+key+'/'+method
 }
 
-export const Bot_SendMessage = async (text:string,chat_id:number) => {
-  const route = genHTTP(send)
+export const Bot_SendMessage = async (text:string,chat_id:number,botIndex:number=0) => {
+  const route = genHTTP(send,botIndex)
   await axios.post(route,{text,chat_id})
 }
 
-export const Bot_BadOptionMessage = async (chat_id:number) => {
-  const route = genHTTP(send)
+export const Bot_BadOptionMessage = async (chat_id:number,botIndex:number=0) => {
+  const route = genHTTP(send,botIndex)
   const text = 'Debes elegir una de las opciones.'
   await axios.post(route,{text,chat_id})
 }
 
-export const Bot_SendKeyboard = async (text:string,chat_id:number,options:string[]) => {
-  const route = genHTTP(send)
+export const Bot_SendKeyboard = async (text:string,chat_id:number,options:string[],botIndex:number=0) => {
+  const route = genHTTP(send,botIndex)
   const keyboard = options.map(text => [{text}])
   const resize_keyboard = true
   const one_time_keyboard = true
@@ -34,30 +42,9 @@ export const Bot_SendKeyboard = async (text:string,chat_id:number,options:string
   await axios.post(route,{text,chat_id,reply_markup})
 }
 
-export const Bot_SendPhoto = async (url:string,chat_id:number) => {
-  const route = genHTTP('sendPhoto')
+export const Bot_SendPhoto = async (url:string,chat_id:number,botIndex:number=0) => {
+  const route = genHTTP('sendPhoto',botIndex) 
   const photo = url
   await axios.post(route,{chat_id,photo})
 }
 
-
-// const genReplyMarkup = (options:[[string,string]]) => {
-//   const inline_keyboard = options.map(([text,callback_data]) => [{text,callback_data}])
-//   return {inline_keyboard}
-// }
-
-// export const Bot_SendOptions = async (text:string,chat_id:number,options:[[string,string]]) => {
-//   const route = genHTTP("sendMessage")
-//   const reply_markup = genReplyMarkup(options)
-//   await axios.post(route,{chat_id,text,reply_markup})
-// }
-
-// export const Bot_EditMessage = async (message_id:number,text:string,chat_id:number,options?:[[string,string]]) => {
-//   const route = genHTTP("editMessageText")
-//   const data = {message_id,text,chat_id}
-  
-//   if(!options) return await axios.post(route,data)
-
-//   const reply_markup = genReplyMarkup(options)
-//   await axios.post(route,{...data,reply_markup})
-// }

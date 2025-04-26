@@ -1,4 +1,4 @@
-import { bookList, casesInfo, stageTwoOptions } from "./hardInfo"
+import { bookList, casesInfo, stageTwoOptions } from "./old/hardInfo"
 import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage, Bot_SendPhoto } from "./message"
 import { createUser, resetUser, updateUser } from "./prisma"
 

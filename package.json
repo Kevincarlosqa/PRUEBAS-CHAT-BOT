@@ -21,6 +21,7 @@
     "axios": "^1.7.7",
     "langchain": "^0.3.21",
     "next": "14.2.7",
+    "openai": "^4.96.0",
     "pdf-parse": "^1.1.1",
     "pdfjs-dist": "^5.1.91",
     "react": "^18",

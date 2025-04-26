@@ -20,9 +20,11 @@ export default async function handler(
 
   
   try{
+    const {body} = req
+
     // await updateUserV2(1,['book_id','case_id'],[10,10])
-    await Bot_SendKeyboard('hola',1568853312,['pedro','juan','diego'])
-    return res.status(200).json({message:'ok'})
+    // await Bot_SendKeyboard('hola',1568853312,['pedro','juan','diego'])
+    return res.status(200).json(body)
 
   }catch(err){
     return res.status(400).json(err)

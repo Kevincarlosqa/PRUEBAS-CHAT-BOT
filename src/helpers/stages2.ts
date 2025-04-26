@@ -250,7 +250,7 @@ export const foo_stage13 = async (inputInfo:StageInputParameters) => {
     const text = 'Por poco, tu respuesta es diferente a la correcta!!!'
     await Bot_SendMessage(text,userId)
     await foo_stage14(inputInfo)
-  }
+  } 
 }
 
 //* STAGE 14: MENU DE INCORRECTO
