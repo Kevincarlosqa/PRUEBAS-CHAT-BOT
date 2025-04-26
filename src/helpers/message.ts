@@ -51,7 +51,7 @@ export const Bot_SendPhoto = async (url:string,chat_id:number,botIndex:number=0)
 
 export const Bot_sendInlineKeyboard = async (text:string,chat_id:number,options:string[],botIndex:number) => {
   const route = genHTTP(send,botIndex)
-  const inline_keyboard = options.map((el,ix) => [{text:el,callback_data:`btn${ix}`}])
+  const inline_keyboard = options.map((el,ix) => [{text:el,url:el}])
   const reply_markup = {
     inline_keyboard
   }
