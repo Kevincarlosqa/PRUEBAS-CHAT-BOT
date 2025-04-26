@@ -1,6 +1,6 @@
 import axios from "axios"
 
-type BotRoute = 'sendMessage' | 'editMessageText' | 'sendPhoto'
+type BotRoute = 'sendMessage' | 'editMessageText' | 'sendPhoto' 
 
 const send = 'sendMessage'
 
@@ -48,3 +48,12 @@ export const Bot_SendPhoto = async (url:string,chat_id:number,botIndex:number=0)
   await axios.post(route,{chat_id,photo})
 }
 
+
+export const Bot_sendInlineKeyboard = async (text:string,chat_id:number,options:string[],botIndex:number) => {
+  const route = genHTTP(send,botIndex)
+  const inline_keyboard = options.map((el,ix) => [{text:el,callback_data:`btn${ix}`}])
+  const reply_markup = {
+    inline_keyboard
+  }
+  await axios.post(route,{text,chat_id,reply_markup})
+}

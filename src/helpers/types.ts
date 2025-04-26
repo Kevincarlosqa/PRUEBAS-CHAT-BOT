@@ -77,3 +77,10 @@ export interface Tema_DB{
   nombre: string
 }
 
+export interface StageInputParameters {
+  userId: number,
+  input: string,
+  caseId: number,
+  bookId: number,
+  botIndex: number,
+} 
