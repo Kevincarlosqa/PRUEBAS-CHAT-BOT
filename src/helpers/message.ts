@@ -12,9 +12,10 @@ const keys = [
   process.env.TELEGRAM_KEY,
   process.env.TELEGRAM_TEMA_01_KEY,
   process.env.TELEGRAM_TEMA_02_KEY,
+  process.env.TELEGRAM_TEMA_03_KEY,
+  process.env.TELEGRAM_TEMA_04_KEY,
+  process.env.TELEGRAM_TEMA_05_KEY,
 ]
-
-
 
 export const genHTTP = (method:BotRoute,keyIndex:number) => {
   const base = 'https://api.telegram.org/bot'
