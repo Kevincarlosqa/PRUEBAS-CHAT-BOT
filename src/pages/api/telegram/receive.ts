@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 // import { createUser, readJson, saveUserInfo } from "@/helpers/no usar/json_routes";
 import { Bot_SendKeyboard, Bot_SendMessage } from "@/helpers/message";
-import { changeUserStatus, createUser, findUser, resetUser } from "@/helpers/prisma";
+import { createUser, findUser, resetUser } from "@/helpers/prisma";
 import { Prisma } from "@prisma/client";
 import { PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
