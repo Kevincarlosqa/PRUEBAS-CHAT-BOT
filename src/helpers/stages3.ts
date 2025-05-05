@@ -6,10 +6,6 @@ import { StageInputParameters } from "./types"
 
 
 
-const updateStage = async (user_id:number,stage_id:number) => {
-  await updateUser(user_id,["stage_id"],[stage_id])
-}
-
 //* MENSAJE DE BIENVENIDA PARA LOS NUEVOS USUARIOS
 export const foo_stage_msg = async (inputInfo:StageInputParameters) => {
   const {input,userId,botIndex} = inputInfo
@@ -19,7 +15,7 @@ export const foo_stage_msg = async (inputInfo:StageInputParameters) => {
       Prepárate para observar, pensar y decidir como un profesional. ¡Comencemos!`
   
   await Bot_SendMessage(text,userId,botIndex)
-  await createUser(userId)
+  await createUser(userId,botIndex)
   await foo_stage_start(inputInfo)
 }
 
@@ -28,13 +24,13 @@ export const foo_stage_start = async (inputInfo:StageInputParameters) => {
   const {userId,botIndex} = inputInfo
   const text = 'Escribe cualquier mensaje para iniciar'
   await Bot_SendMessage(text,userId,botIndex)
-  await updateStage(userId,0)
+  await updateUser(userId,botIndex,0)
 }
 
 //* STAGE 00: ENVIO DE CASOS DISPONIBLES EN LA DB
 export const foo_stage00 = async (inputInfo:StageInputParameters) => {
   const {userId,botIndex} = inputInfo
-  const list = await prisma.case.findMany({
+  const list = await prisma.dentalCase.findMany({
     select:{
       title:true
     }
@@ -44,13 +40,13 @@ export const foo_stage00 = async (inputInfo:StageInputParameters) => {
   const list_cases = list.map(el => el.title)
   
   await Bot_SendKeyboard(text,userId,list_cases,botIndex)
-  await updateStage(userId,1)
+  await updateUser(userId,botIndex,)
 }
 
 //* STAGE 01: RESPUESTA PARA CASOS DISPONIBLES
 export const foo_stage01 = async (inputInfo:StageInputParameters) => {
   const {userId,input:title_case,botIndex} = inputInfo
-  const caso = await prisma.case.findFirst({where:{title:title_case}})
+  const caso = await prisma.dentalCase.findFirst({where:{title:title_case}})
   if(!caso) {
     await Bot_BadOptionMessage(userId,botIndex)
     return foo_stage00(inputInfo)
@@ -58,7 +54,7 @@ export const foo_stage01 = async (inputInfo:StageInputParameters) => {
 
   const {id:case_id,exam} = caso
   await Bot_SendMessage(exam,userId,botIndex)
-  await updateUser(userId,['case_id'],[case_id])
+  await updateUser(userId,botIndex,null,null,case_id) //updateUser(userId,['case_id'],[case_id])
   await foo_stage02(inputInfo)
 }
 
@@ -73,7 +69,7 @@ export const foo_stage02 = async (inputInfo:StageInputParameters) => {
   const {userId,botIndex} = inputInfo
   const text = 'Por favor selecciona una opcion'
   await Bot_SendKeyboard(text,userId,stage02_options,botIndex)
-  await updateStage(userId,3)
+  await updateUser(userId,botIndex,3)//updateStage(userId,3)
 }
 
 //* STAGE 03: RESPUESTA AL MENU GENERAL DEL CASO
@@ -103,7 +99,7 @@ export const foo_stage04 = async (inputInfo:StageInputParameters) => {
   const {userId,botIndex} = inputInfo
   const text = 'Por favor selecciona una opcion'
   await Bot_SendKeyboard(text,userId,stage04_options,botIndex)
-  await updateStage(userId,5)
+  await updateUser(userId,botIndex,5)//updateU(userId,5)
 }
 
 //* STAGE 05: RESPUESTA AL MENU DE MAS INFORMACION
@@ -116,7 +112,7 @@ export const foo_stage05 = async (inputInfo:StageInputParameters) => {
   }
   
   if(nextStage == 0){ // ENVIO DE antecedentes
-    const {ante} = await prisma.case.findUnique({where: {id:caseId}}) || {ante:''}
+    const {ante} = await prisma.dentalCase.findUnique({where: {id:caseId}}) || {ante:''}
     await Bot_SendMessage(ante,userId,botIndex)
     return await foo_stage02(inputInfo)
   }
@@ -128,16 +124,16 @@ export const foo_stage05 = async (inputInfo:StageInputParameters) => {
 //* STAGE 06: MENU DE IMAGENES
 export const foo_stage06 = async (inputInfo:StageInputParameters) => {
   const {userId,caseId,botIndex} = inputInfo
-  const images = await prisma.image.findMany({where: {case_id:caseId}})
+  const images = await prisma.image.findMany({where: {idCase:caseId}})
   const text = 'Selecciona una imagen: '
   const listImages = images.map( el => {
-    const {id,name,tipo} = el
-    const base = tipo == 1 ? 'Radiografia' : 'Fotografia'
+    const {id,name,type} = el
+    const base = type == 1 ? 'Radiografia' : 'Fotografia'
     return `${base} ${name} || ${id}`
   })
 
   await Bot_SendKeyboard(text,userId,listImages,botIndex)
-  await updateStage(userId,7)
+  await updateUser(userId,botIndex,7)//updateStage(userId,7)
 }
 
 //* STAGE 07: RESPUESTA MENU DE IMAGENES
@@ -159,15 +155,15 @@ export const foo_stage07 = async (inputInfo:StageInputParameters) => {
 //* STAGE 08: MENU DE BIBLIOGRAFIA
 export const foo_stage08 = async (inputInfo:StageInputParameters) => {
   const {userId,caseId,botIndex} = inputInfo
-  const caso = await prisma.case.findUnique({where:{id:caseId},include:{temas:{select:{tema_id:true}}}}) 
+  const caso = await prisma.dentalCase.findUnique({where:{id:caseId},include:{topics:{select:{idTopic:true}}}}) 
 
-  const temas = caso?.temas.map(el => el.tema_id)
+  const temas = caso?.topics.map(el => el.idTopic)
 
-  const biblios = await prisma.biblio.findMany({
+  const biblios = await prisma.info.findMany({
     where:{
-      temas:{
+      topics:{
         some:{
-          tema_id:{in:temas}
+          idTopic:{in:temas}
         }
       }
     }
@@ -177,20 +173,20 @@ export const foo_stage08 = async (inputInfo:StageInputParameters) => {
 
   const text = 'Selecciona el libro del cual deseas consultar'
   await Bot_SendKeyboard(text,userId,libros,botIndex)
-  await updateStage(userId,9)
+  await updateUser(userId,botIndex,9) //updateStage(userId,9)
 }
 
 //* STAGE 09: RESPUESTA AL MENU DE BIBLIOGRAFIA
 export const foo_stage09 = async (inputInfo:StageInputParameters) => {
   const {userId,input,botIndex} = inputInfo
-  const book = await prisma.biblio.findUnique({where:{title:input}}) || {id:0}
+  const book = await prisma.info.findUnique({where:{title:input}}) || {id:0}
   if(!book || !book.id){
     await Bot_BadOptionMessage(userId,botIndex)
     await foo_stage08(inputInfo)
   }
 
   const {id} = book
-  await updateUser(userId,['book_id'],[id])
+  await updateUser(userId,botIndex,null,id) //updateUser(userId,['book_id'],[id])
   await foo_stage10(inputInfo)
 }
 
@@ -200,7 +196,7 @@ export const foo_stage10 = async (inputInfo:StageInputParameters) => {
   const text = `Has una consulta en ${input}`
 
   await Bot_SendMessage(text,userId,botIndex)
-  await updateStage(userId,11)
+  await updateUser(userId,botIndex,11) //updateStage(userId,11)
 
 }
 
@@ -226,7 +222,7 @@ export const foo_stage12 = async (inputInfo:StageInputParameters) => {
   const text = `Cual es el diagnostico que encontraste:`
 
   await Bot_SendMessage(text,userId,botIndex) 
-  await updateStage(userId,13)
+  await updateUser(userId,botIndex,13) //updateStage(userId,13)
 }
 
 //* STAGE 13: RESPUESTA DE DIAGNOSTICO
@@ -245,7 +241,7 @@ export const foo_stage13 = async (inputInfo:StageInputParameters) => {
   if(valueAns){
     const text = 'Felicidades por participar, tu respuesta es correcta!!!'
     await Bot_SendMessage(text,userId,botIndex)
-    await resetUser(userId)
+    await resetUser(userId,botIndex)
     await foo_stage_start(inputInfo)
   }else{
     const text = 'Por poco, tu respuesta es diferente a la correcta!!!'
@@ -263,7 +259,7 @@ export const foo_stage14 = async (inputInfo:StageInputParameters) => {
   const {userId,botIndex} = inputInfo
   const text = 'Que deseas hacer?'
   await Bot_SendKeyboard(text,userId,stage14_options,botIndex)
-  await updateStage(userId,15)
+  await updateUser(userId,botIndex,15) //updateStage(userId,15)
 }
 
 //* STAGE 15: RESPUESTA A MENU INCORRECTO
@@ -283,7 +279,7 @@ export const foo_stage15 = async (inputInfo:StageInputParameters) => {
     
     const answer = 'Este mensaje no puede estar vacio' // caso.ans
     await Bot_SendMessage(answer,userId,botIndex)
-    await resetUser(userId)
+    await resetUser(userId,botIndex)
     return await foo_stage_start(inputInfo)
   }
 }

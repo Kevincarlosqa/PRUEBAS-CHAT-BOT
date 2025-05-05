@@ -14,78 +14,176 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// USUARIOS
-
-  model User{
-    id BigInt @id
-    stage_id Int
-    book_id Int
-    case_id Int
-  }
-
-// BIBLIOGRAFIA
-
-  model Biblio{
+// INFO
+  model Info{
     id Int @id @default(autoincrement())
     title String @unique
     autor String
     embeddings Embedding[]
-    temas BibliosOnTemas[]
+    topics InfoOnTopics[]
   }
 
   model Embedding{
     id Int @id @default(autoincrement())
-    biblio Biblio @relation(fields: [biblio_id],references: [id])
-    biblio_id Int
+    info Info @relation(fields: [idInfo],references: [id])
+    idInfo Int
     vector Unsupported("vector")
+  }
+
+  model InfoOnTopics{
+    info Info @relation(fields: [idInfo], references: [id])
+    idInfo Int
+    topic Topic @relation(fields: [idTopic], references: [id])
+    idTopic Int
+
+    @@id([idInfo,idTopic])
+  }
+
+
+// TOPICS
+  model Topic{
+    id Int @id @default(autoincrement())
+    dentalCase CasesOnTopics[]
+    info InfoOnTopics[]
+    name String
+  }
+
+  model CasesOnTopics{
+    dentalCase DentalCase @relation(fields: [idCase], references: [id])
+    idCase Int
+    topic Topic @relation(fields: [idTopic], references: [id])
+    idTopic Int
+
+    @@id([idCase,idTopic])
   }
 
 // CASOS
 
-  model Case{
+  model DentalCase{
     id Int @id @default(autoincrement())
     title String @unique
     ante String
     exam String
     ans String
     images Image[]
-    temas CasesOnTemas[]
-    // books CasesOnBooks[]
+    topics CasesOnTopics[]
   }
 
   model Image{
     id Int @id @default(autoincrement())
     name String
-    tipo Int
+    type Int
     url String
-    case Case @relation(fields: [case_id],references: [id])
-    case_id Int
+    dentalCase DentalCase @relation(fields: [idCase],references: [id])
+    idCase Int
   }
   
 
-// TEMAS
-  model Tema{
-    id Int @id @default(autoincrement())
-    cases CasesOnTemas[]
-    biblios BibliosOnTemas[]
-    nombre String
+
+// USERS
+  model Users_Topic_01{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
   }
 
-  model CasesOnTemas{
-    case Case @relation(fields: [case_id], references: [id])
-    case_id Int
-    tema Tema @relation(fields: [tema_id], references: [id])
-    tema_id Int
-
-    @@id([case_id,tema_id])
+  model Users_Topic_02{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
   }
 
-  model BibliosOnTemas{
-    biblio Biblio @relation(fields: [biblio_id], references: [id])
-    biblio_id Int
-    tema Tema @relation(fields: [tema_id], references: [id])
-    tema_id Int
-
-    @@id([biblio_id,tema_id])
+  model Users_Topic_03{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
   }
+
+  model Users_Topic_04{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_05{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_06{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_07{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_08{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_09{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_10{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_11{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_12{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_13{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_14{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
+  model Users_Topic_15{
+    id BigInt @id
+    idStage Int
+    idBook Int
+    idCase Int
+  }
+
 

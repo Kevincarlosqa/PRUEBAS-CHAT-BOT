@@ -20,16 +20,16 @@ export default async function handler(
   if(method != 'POST') return res.status(400).json({error: 'Only post method'})
   
   try{
-    const {title,ante,exam,temas,ans} = body
-    if(!title || !ante || !exam || !temas || !ans) return res.status(400).json({error:'Bad body structure'})
+    const {title,ante,exam,topics,ans} = body
+    if(!title || !ante || !exam || !topics || !ans) return res.status(400).json({error:'Bad body structure'})
     
-    const create = temas.map((id:number) => ({tema: {connect:{id}}}))
+    const create = topics.map((id:number) => ({name: {connect:{id}}}))
     const data = {
       title,ante,exam,ans,
-      temas: { create }
+      topics: { create }
     }
 
-    const {id} = await prisma.case.create({data})
+    const {id} = await prisma.dentalCase.create({data})
 
     return res.status(200).json({msg:'Case added Succesfully',id})
   }catch(err){

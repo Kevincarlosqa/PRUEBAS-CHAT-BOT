@@ -1,3 +1,5 @@
+import { TopicKeys } from "./prisma";
+
 // RESPONSE MESSAGE USER => BOT
 export interface resUserMessage {
   update_id: number;
@@ -82,5 +84,5 @@ export interface StageInputParameters {
   input: string,
   caseId: number,
   bookId: number,
-  botIndex: number,
+  botIndex: TopicKeys,
 } 

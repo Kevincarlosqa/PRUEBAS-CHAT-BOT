@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { chat_with_bot } from '@/helpers/chatBot';
 
 
-const botIndex = 1
+const botIndex = 3
 
 export default async function handler(
   req: NextApiRequest,

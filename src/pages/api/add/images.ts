@@ -7,7 +7,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 /*
   body = {
-    case_id: number,
+    idCase: number,
     info: {url:string, tipo: 1 | 2,name}[]
   }
 */
@@ -22,21 +22,21 @@ export default async function handler(
   if(method != 'POST') return res.status(400).json({error: 'Only post method'})
   
   try{
-    const {case_id,info} = body
-    if(!case_id || !info) return res.status(400).json({error:'Bad body structure'})
+    const {idCase,info} = body
+    if(!idCase || !info) return res.status(400).json({error:'Bad body structure'})
     
-    const id = +case_id
+    const id = +idCase
 
-    const case_exist = await prisma.case.findUnique({where:{id}})
+    const case_exist = await prisma.dentalCase.findUnique({where:{id}})
     if(!case_exist) return res.status(400).json({error:'That case no exist'})
 
     const allImages = info.map( (el:any) => 
       prisma.image.create({
         data:{
-          tipo: el.tipo,
+          type: el.tipo,
           url: el.url,
           name: el.name,
-          case:{
+          dentalCase:{
             connect: {id}
           }
         }
@@ -44,14 +44,7 @@ export default async function handler(
     )
     
     await Promise.all(allImages)
-    // const data = {
-    //   images: {
-    //     create: info
-    //   }
-    // } 
-    // const where = {id:case_id}
 
-    // await prisma.case.update({where,data})
     return res.status(200).json({msg:'Images save succesfully'})
   }catch(err){
     return res.status(400).json(err)

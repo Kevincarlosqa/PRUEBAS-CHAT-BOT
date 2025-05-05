@@ -1,68 +1,31 @@
 // import { saveUserInfo, searchUser } from '@/helpers/json_routes';
-import { bookList, casesInfo, stageTwoOptions } from '@/helpers/old/hardInfo';
-import { Bot_BadOptionMessage, Bot_sendInlineKeyboard, Bot_SendKeyboard, Bot_SendMessage, genHTTP } from '@/helpers/message';
-import { createUser, findUser, prisma } from '@/helpers/prisma';
-import { foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage12, foo_stage13, foo_stage14, foo_stage15, foo_stage11, foo_stage_msg, foo_stage_start} from '@/helpers/stages2';
-// import { foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11 } from '@/helpers/stages';
-import { resUserMessage, StageInputParameters } from '@/helpers/types';
+import { getBodyInfo } from '@/helpers/chatBot';
+import {  Bot_sendInlineKeyboard, Bot_SendMessage } from '@/helpers/message';
+import { resUserMessage } from '@/helpers/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 
-
-const botIndex = 0
-// HELPERS
-  const getBodyInfo = (body:resUserMessage) => {
-    const { message } = body
-    const { text, chat } = message
-    const { id, first_name } = chat
-
-    return {text,id,first_name}
-  }
-
-  
-// const foo_stages = [ 
-//   foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11]
-
-const foo_stages1 = [
-  foo_stage00, foo_stage01, foo_stage02, foo_stage03, foo_stage04, foo_stage05, foo_stage06, foo_stage07, foo_stage08, foo_stage09, foo_stage10, foo_stage11, foo_stage12, foo_stage13, foo_stage14, foo_stage15
-]
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const {body} = req
-  const {first_name,id,text} = getBodyInfo(body)
+  const {userId} = getBodyInfo(body)
 
   try{
-    // const user = await findUser(id)
-
-    
-
-    // if(user){
-    //   const {stage_id,case_id,book_id} = user
-    //   const inputInfo:StageInputParameters = {
-    //     userId: id,
-    //     input: text,
-    //     caseId: case_id,
-    //     bookId:book_id,
-    //     botIndex
-    //   }
-
-    //   await foo_stages1[stage_id](inputInfo)
-    // }else{
-    //   // await foo_stage00(id,first_name)
-    //   await foo_stage_msg({bookId:0,caseId:0,input:first_name,userId:id,botIndex})
-    // }
 
     const chatBotList = [
       't.me/Tema01DemoDentistBot',
-      't.me/Tema02DemoDentistBot'
+      't.me/Tema02DemoDentistBot',
+      't.me/Tema03DemoDentistBot',
+      't.me/Tema04DemoDentistBot',
+      't.me/Tema05DemoDentistBot',
     ]
     const text = 'Hola, bienvenido al menu de temas, por favor selecciona el tema que desees'
 
-    await Bot_sendInlineKeyboard(text,id,chatBotList,botIndex)
-    return res.status(200).json({message: `interaccion del user ${id}`})
+    await Bot_sendInlineKeyboard(text,userId,chatBotList)
+    return res.status(200).json({message: `interaccion del user ${userId}`})
 
   }catch(err){
     try{
