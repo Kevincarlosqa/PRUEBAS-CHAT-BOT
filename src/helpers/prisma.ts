@@ -67,9 +67,9 @@ type PropVal = number | null
 
     // if(!idStage && !idBook && !idCase) return
 
-    if(idStage) newVals = {...newVals,idStage}
-    if(idBook) newVals = {...newVals,idBook}
-    if(idCase) newVals = {...newVals,idCase}
+    if(idStage !== null) newVals = {...newVals,idStage}
+    if(idBook !== null) newVals = {...newVals,idBook}
+    if(idCase !== null) newVals = {...newVals,idCase}
     
     //@ts-ignore
     await table.update({where:{id:idUser},data:{...newVals}}) 

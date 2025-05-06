@@ -3,6 +3,7 @@ import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage, Bot_SendPhoto 
 import { createUser, prisma, resetUser, updateUser } from "./prisma"
 import { ansQuestion } from "./openAI"
 import { StageInputParameters } from "@/types/res"
+import { log } from "console"
 
 
 
@@ -47,6 +48,8 @@ export const foo_stage00 = async (inputInfo:StageInputParameters) => {
 export const foo_stage01 = async (inputInfo:StageInputParameters) => {
   const {userId,input:title_case,botIndex} = inputInfo
   const caso = await prisma.dentalCase.findFirst({where:{title:title_case,topics:{some:{topic:{id:botIndex}}}}})
+
+  console.log(caso)
   if(!caso) {
     await Bot_BadOptionMessage(userId,botIndex)
     return foo_stage00(inputInfo)
