@@ -65,7 +65,7 @@ type PropVal = number | null
     //@ts-ignore
     let newVals = {}//await table.findUnique({where:{id:idUser}})
 
-    if(!idStage && !idBook && !idCase) return
+    // if(!idStage && !idBook && !idCase) return
 
     if(idStage) newVals = {...newVals,idStage}
     if(idBook) newVals = {...newVals,idBook}

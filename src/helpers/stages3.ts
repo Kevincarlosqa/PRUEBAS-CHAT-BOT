@@ -24,7 +24,7 @@ export const foo_stage_start = async (inputInfo:StageInputParameters) => {
   const {userId,botIndex} = inputInfo
   const text = 'Escribe cualquier mensaje para iniciar'
   await Bot_SendMessage(text,userId,botIndex)
-  await updateUser(userId,botIndex,0)
+  await updateUser(userId,botIndex,0,0,0)
 }
 
 //* STAGE 00: ENVIO DE CASOS DISPONIBLES EN LA DB
