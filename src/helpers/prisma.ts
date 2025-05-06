@@ -1,9 +1,5 @@
 import { PrismaClient } from "@prisma/client"
-import { User_DB } from "./types"
 import { DB_User_Topic } from "@/types/prisma";
-import { useTransition } from "react";
-import PreviousMap_ from "postcss/lib/previous-map";
-import { topicsList } from "@/helpers/infoBots";
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
