@@ -31,7 +31,7 @@ export const foo_stage_start = async (inputInfo:StageInputParameters) => {
 //* STAGE 00: ENVIO DE CASOS DISPONIBLES EN LA DB
 export const foo_stage00 = async (inputInfo:StageInputParameters) => {
   const {userId,botIndex} = inputInfo
-  const list = await prisma.dentalCase.findMany({
+  const list = await prisma.dentalCase.findMany({where:{topics:{some:{idTopic:botIndex}}},
     select:{
       title:true
     }
@@ -47,7 +47,7 @@ export const foo_stage00 = async (inputInfo:StageInputParameters) => {
 //* STAGE 01: RESPUESTA PARA CASOS DISPONIBLES
 export const foo_stage01 = async (inputInfo:StageInputParameters) => {
   const {userId,input:title_case,botIndex} = inputInfo
-  const caso = await prisma.dentalCase.findFirst({where:{title:title_case,topics:{some:{topic:{id:botIndex}}}}})
+  const caso = await prisma.dentalCase.findFirst({where:{title:title_case}})
 
   console.log(caso)
   if(!caso) {

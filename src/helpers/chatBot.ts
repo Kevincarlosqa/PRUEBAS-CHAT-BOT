@@ -26,7 +26,6 @@ const foo_stages = [
 export const chat_with_bot = async (body:resUserMessage ,botIndex:TopicKeys) => {
   const {input,userId,userName} = getBodyInfo(body)
 
-  console.log({input,userId,userName})
   const user = await findUser(userId,botIndex)
 
   if(user){
