@@ -72,7 +72,7 @@ type PropVal = number | null
     if(idCase) newVals = {...newVals,idCase}
     
     //@ts-ignore
-    await table.update({where:{id:idUser,data:newVals}}) 
+    await table.update({where:{id:idUser},data:{newVals}}) 
   }
 
   export const resetUser = async (idUser:number, idTopic:TopicKeys) => {
