@@ -26,6 +26,7 @@ const foo_stages = [
 export const chat_with_bot = async (body:resUserMessage ,botIndex:TopicKeys) => {
   const {input,userId,userName} = getBodyInfo(body)
 
+  console.log({input,userId,userName})
   const user = await findUser(userId,botIndex)
 
   if(user){
@@ -42,7 +43,7 @@ export const chat_with_bot = async (body:resUserMessage ,botIndex:TopicKeys) => 
 
   }else{
 
-    await foo_stage_msg({bookId:0,caseId:0,input:userName,userId,botIndex})
+    // await foo_stage_msg({bookId:0,caseId:0,input:userName,userId,botIndex})
   }
   
   return userId
