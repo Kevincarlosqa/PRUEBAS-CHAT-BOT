@@ -2,7 +2,7 @@ import { userInfo } from "os"
 import { Bot_BadOptionMessage, Bot_SendKeyboard, Bot_SendMessage, Bot_SendPhoto } from "./message"
 import { createUser, prisma, resetUser, updateUser } from "./prisma"
 import { ansQuestion } from "./openAI"
-import { StageInputParameters } from "./types"
+import { StageInputParameters } from "@/types/res"
 
 
 

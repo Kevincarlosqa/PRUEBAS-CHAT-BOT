@@ -1,4 +1,4 @@
-import { topicsList } from "@/pages/api/telegram/infoBots"
+import { topicsList } from "@/helpers/infoBots"
 import axios from "axios"
 
 type BotRoute = 'sendMessage' | 'editMessageText' | 'sendPhoto' 

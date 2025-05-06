@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { topicsList } from './infoBots';
+import { topicsList } from '../../../helpers/infoBots';
 
 
 export default async function handler(

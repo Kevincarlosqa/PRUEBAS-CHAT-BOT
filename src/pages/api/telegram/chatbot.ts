@@ -1,19 +1,9 @@
-// import { saveUserInfo, searchUser } from '@/helpers/json_routes';
-import { getBodyInfo } from '@/helpers/chatBot';
-import {  Bot_sendInlineKeyboard, Bot_SendMessage, genHTTP } from '@/helpers/message';
+import { getBodyInfo, resErrorAns } from '@/helpers/chatBot';
+import { genHTTP } from '@/helpers/message';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { topicsList } from './infoBots';
+import { topicsList } from '../../../helpers/infoBots';
 import axios from 'axios';
 
-
-// export const Bot_sendInlineKeyboard1 = async (text:string,chat_id:number,options:string[],botIndex:number=0) => {
-//   const route = genHTTP(send,botIndex)
-//   const inline_keyboard = options.map((el,ix) => [{text:el.text,url:el.url}])
-//   const reply_markup = {
-//     inline_keyboard
-//   }
-//   await axios.post(route,{text,chat_id,reply_markup})
-// }
 
 export default async function handler(
   req: NextApiRequest,
@@ -36,27 +26,14 @@ export default async function handler(
     const route = genHTTP('sendMessage',0)
     const reply_markup = { inline_keyboard }
 
-
-    const chatBotList = [
-      't.me/Tema01DemoDentistBot',
-      't.me/Tema02DemoDentistBot',
-      't.me/Tema03DemoDentistBot',
-      't.me/Tema04DemoDentistBot',
-      't.me/Tema05DemoDentistBot',
-    ]
     const text = 'Hola, bienvenido al menu de temas, por favor selecciona el tema que desees'
 
-
     await axios.post(route,{text,chat_id,reply_markup})
-    // await Bot_sendInlineKeyboard(text,userId,chatBotList)
+
     return res.status(200).json({message: `interaccion del user ${chat_id}`})
 
   }catch(err){
-    try{
-      await Bot_SendMessage(JSON.stringify(err,null,2),1573982513)
-      return res.status(200).json(err)
-    }catch(err){
-      return res.status(400).json(err)
-    }
+    await resErrorAns(err)
+    return res.status(400).json(err)
   }
 }
