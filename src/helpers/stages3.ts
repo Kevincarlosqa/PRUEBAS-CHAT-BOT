@@ -207,8 +207,8 @@ export const foo_stage10 = async (inputInfo:StageInputParameters) => {
 export const foo_stage11 = async (inputInfo:StageInputParameters) => {
   const {userId,input,bookId,botIndex} = inputInfo
 
-  const sqlPet = `SELECT vector FROM "Embedding" WHERE biblio_id=${bookId}`
-  const vector = await prisma.$queryRawUnsafe(sqlPet) || [{vector:[]}]
+  // const sqlPet = `SELECT vector FROM "Embedding" WHERE idInfo=${bookId}`
+  // const vector = await prisma.$queryRawUnsafe(sqlPet) || [{vector:[]}]
 
   //! logica de rag para la respuesta
 
