@@ -39,11 +39,11 @@ export const chat_with_bot = async (body:resUserMessage ,botIndex:TopicKeys) => 
       caseId:idCase,
     }
 
-    // await foo_stages[idStage](inputInfo)
+    await foo_stages[idStage](inputInfo)
 
   }else{
 
-    // await foo_stage_msg({bookId:0,caseId:0,input:userName,userId,botIndex})
+    await foo_stage_msg({bookId:0,caseId:0,input:userName,userId,botIndex})
   }
   
   return userId
