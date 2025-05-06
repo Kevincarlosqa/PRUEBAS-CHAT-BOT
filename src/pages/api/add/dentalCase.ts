@@ -6,7 +6,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
     title: string,
     ante: string,
     exam: string,
-    temas: number[]
+    topics: number[]
     ans: string,
   }
 */
@@ -23,7 +23,7 @@ export default async function handler(
     const {title,ante,exam,topics,ans} = body
     if(!title || !ante || !exam || !topics || !ans) return res.status(400).json({error:'Bad body structure'})
     
-    const create = topics.map((id:number) => ({name: {connect:{id}}}))
+    const create = topics.map((id:number) => ({topic: {connect:{id}}}))
     const data = {
       title,ante,exam,ans,
       topics: { create }

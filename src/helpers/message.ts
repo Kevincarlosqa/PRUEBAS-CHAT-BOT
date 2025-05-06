@@ -1,21 +1,13 @@
+import { topicsList } from "@/pages/api/telegram/infoBots"
 import axios from "axios"
 
 type BotRoute = 'sendMessage' | 'editMessageText' | 'sendPhoto' 
 
 const send = 'sendMessage'
 
-const chat_chrls1 = 1573982513
-const chat_chrls2 = 1568853312
-const chat_kevin = 6141714656
 
-const keys = [
-  process.env.TELEGRAM_KEY,
-  process.env.TELEGRAM_TEMA_01_KEY,
-  process.env.TELEGRAM_TEMA_02_KEY,
-  process.env.TELEGRAM_TEMA_03_KEY,
-  process.env.TELEGRAM_TEMA_04_KEY,
-  process.env.TELEGRAM_TEMA_05_KEY,
-]
+
+const keys =  topicsList.map(el => el.key)
 
 export const genHTTP = (method:BotRoute,keyIndex:number) => {
   const base = 'https://api.telegram.org/bot'
@@ -52,7 +44,7 @@ export const Bot_SendPhoto = async (url:string,chat_id:number,botIndex:number=0)
 
 export const Bot_sendInlineKeyboard = async (text:string,chat_id:number,options:string[],botIndex:number=0) => {
   const route = genHTTP(send,botIndex)
-  const inline_keyboard = options.map((el,ix) => [{text:el,url:el}])
+  const inline_keyboard = options.map((el,ix) => [{text:el.text,url:el.url}])
   const reply_markup = {
     inline_keyboard
   }

@@ -3,6 +3,7 @@ import { User_DB } from "./types"
 import { DB_User_Topic } from "@/types/prisma";
 import { useTransition } from "react";
 import PreviousMap_ from "postcss/lib/previous-map";
+import { topicsList } from "@/pages/api/telegram/infoBots";
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
@@ -16,6 +17,7 @@ export const prisma =
   });
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+
 
 
 const topicTables = {
@@ -35,6 +37,7 @@ const topicTables = {
   14:prisma.users_Topic_14,
   15:prisma.users_Topic_15,
 } as const;
+
 
 export type TopicKeys = keyof typeof topicTables
 type TopicModels = (typeof topicTables)[TopicKeys]

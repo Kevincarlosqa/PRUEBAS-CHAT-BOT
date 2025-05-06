@@ -27,7 +27,7 @@ export default async function handler(
     if(exist) return res.status(400).json({error:'value Exist'})
 
     
-    const create = topics.map((id:number) => ({name: {connect:{id}}}))
+    const create = topics.map((id:number) => ({topic: {connect:{id}}}))
     const data = {
       title, autor,
       topics: { create }
@@ -35,7 +35,7 @@ export default async function handler(
 
     const {id} = await prisma.info.create({data})
 
-    return res.status(200).json({msg:'Biblio added Succesfully',id})
+    return res.status(200).json({msg:'Information added Succesfully',id})
   }catch(err){
     return res.status(400).json(err)
   }

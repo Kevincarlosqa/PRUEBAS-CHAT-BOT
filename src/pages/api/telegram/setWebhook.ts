@@ -1,38 +1,34 @@
 import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { topicsList } from './infoBots';
+
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const token = process.env.TELEGRAM_TEMA_01_KEY;
-  const url = `https://api.telegram.org/bot${token}/setWebhook`;
+  const domain = process.env.DOMAIN_URL
 
-  const url1 = `https://api.telegram.org/bot${token}/getWebhookInfo`;
+  const genUrl = (token:string) => `https://api.telegram.org/bot${token}/setWebhook` // getWEbJookInfo
+  const genHook = (route:string) => `${domain}/api/telegram/${route}`
 
-  const webhookUrl = `${process.env.DOMAIN_URL}/api/telegram/chatTema05`; // URL de tu aplicación Next.js
-
-
+  const hooks = []
 
   try{
-    // const {data} = await axios.post(url,{url:webhookUrl});
-    const {data} = await axios.post(url1);
+
+    for(let i=1; i<topicsList.length; i++){
+      const {webhook,key} = topicsList[i]
+      if(!key) continue
+      const url = genUrl(key)
+      const hook = genHook(webhook)
+  
+      hooks.push(axios.post(url,{url:hook}))
+    }
+
+    const data = await Promise.all(hooks)
     return res.status(200).json(data)
 
   }catch(err){
     return res.status(400).json(err)
   }
-
-  // const response = await fetch(url, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //     url: webhookUrl,
-  //   }),
-  // });
-
-  // const data = await response.json();
-
 }

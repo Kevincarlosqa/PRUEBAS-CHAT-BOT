@@ -40,13 +40,13 @@ export const foo_stage00 = async (inputInfo:StageInputParameters) => {
   const list_cases = list.map(el => el.title)
   
   await Bot_SendKeyboard(text,userId,list_cases,botIndex)
-  await updateUser(userId,botIndex,)
+  await updateUser(userId,botIndex,1)
 }
 
 //* STAGE 01: RESPUESTA PARA CASOS DISPONIBLES
 export const foo_stage01 = async (inputInfo:StageInputParameters) => {
   const {userId,input:title_case,botIndex} = inputInfo
-  const caso = await prisma.dentalCase.findFirst({where:{title:title_case}})
+  const caso = await prisma.dentalCase.findFirst({where:{title:title_case,topics:{some:{topic:{id:botIndex}}}}})
   if(!caso) {
     await Bot_BadOptionMessage(userId,botIndex)
     return foo_stage00(inputInfo)
