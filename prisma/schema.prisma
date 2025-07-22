@@ -14,176 +14,203 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// INFO
-  model Info{
-    id Int @id @default(autoincrement())
-    title String @unique
-    autor String
-    embeddings Embedding[]
-    topics InfoOnTopics[]
-  }
-
-  model Embedding{
-    id Int @id @default(autoincrement())
-    info Info @relation(fields: [idInfo],references: [id])
-    idInfo Int
-    vector Unsupported("vector")
-  }
-
-  model InfoOnTopics{
-    info Info @relation(fields: [idInfo], references: [id])
-    idInfo Int
-    topic Topic @relation(fields: [idTopic], references: [id])
-    idTopic Int
-
-    @@id([idInfo,idTopic])
-  }
 
 
-// TOPICS
-  model Topic{
-    id Int @id @default(autoincrement())
-    dentalCase CasesOnTopics[]
-    info InfoOnTopics[]
-    name String
-  }
+model User{ 
+  id BigInt @id 
+  name String
 
-  model CasesOnTopics{
-    dentalCase DentalCase @relation(fields: [idCase], references: [id])
-    idCase Int
-    topic Topic @relation(fields: [idTopic], references: [id])
-    idTopic Int
+  steps Step[]
+}
 
-    @@id([idCase,idTopic])
-  }
+model Theme{
+  id Int @id @default(autoincrement())
+  name String
 
-// CASOS
+  steps Step[]
 
-  model DentalCase{
-    id Int @id @default(autoincrement())
-    title String @unique
-    ante String
-    exam String
-    ans String
-    images Image[]
-    topics CasesOnTopics[]
-  }
+  cases ThemesOnCases[]
+  papers ThemesOnPapers[]
+}
 
-  model Image{
-    id Int @id @default(autoincrement())
-    name String
-    type Int
-    url String
-    dentalCase DentalCase @relation(fields: [idCase],references: [id])
-    idCase Int
-  }
+model Answer{
+  id Int @id @default(autoincrement())
+  name String
+
+  cases AnswersOnCases[]
+}
+
+model Pain{
+  id Int @id @default(autoincrement())
+  name String
+
+  cases Case[]
+}
+
+model Case{
+  id Int @id @default(autoincrement())
+  title String
+  exam String
+  history String
+  background String
+
+  pain Pain @relation(fields: [painId], references:[id])
+  painId Int
+
+  images Image[]
+  steps Step[]
+
+  answers AnswersOnCases[]
+  themes ThemesOnCases[]
+}
+
+model AnswersOnCases{
+  answer Answer @relation(fields: [answerId], references: [id])
+  answerId Int
+  case Case @relation(fields: [caseId], references: [id])
+  caseId Int
+
+  isCorrect Boolean
+
+  @@id([answerId,caseId])
+}
+
+model ThemesOnCases{
+  theme Theme @relation(fields: [themeId], references: [id])
+  themeId Int
+  case Case @relation(fields: [caseId], references: [id])
+  caseId Int
+
+  @@id([themeId,caseId])
+}
+
+model Paper{
+  id Int @id @default(autoincrement())
+  title String
+  autor String
+
+  steps Step[]
+  embeddings Embedding[]
+
+  themes ThemesOnPapers[]
+}
+
+model ThemesOnPapers{
+  theme Theme @relation(fields: [themeId], references: [id])
+  themeId Int
+  paper Paper @relation(  fields: [paperId], references: [id])
+  paperId Int
+
+  @@id([themeId,paperId])
+}
+
+model Image{
+  id Int @id @default(autoincrement())
+  title String
+  type Boolean
+  info String
+  url String
+
+  case Case @relation(fields: [caseId], references: [id])
+  caseId Int
+}
+
+model Step{
+  id Int @id @default(autoincrement())
+  errors Int
+
+  user User @relation(fields: [userId], references: [id])
+  userId BigInt
+  theme Theme @relation(fields: [themeId], references: [id])
+  themeId Int
+  case Case @relation(fields: [caseId], references: [id])
+  caseId Int
+  paper Paper @relation(fields: [paperId], references: [id])
+  paperId Int
+}
+
+
+model Embedding{
+  id Int @id @default(autoincrement())
+  vector Unsupported("vector")
+
+  paper Paper @relation(fields: [paperId],references: [id])
+  paperId Int
+}
+
+
+
+
+// // INFO
+//   model Info{
+//     id Int @id @default(autoincrement())
+//     title String @unique
+//     autor String
+//     embeddings Embedding[]
+//     topics InfoOnTopics[]
+//   }
+
+//   model Embedding{
+//     id Int @id @default(autoincrement())
+//     info Info @relation(fields: [idInfo],references: [id])
+//     idInfo Int
+//     vector Unsupported("vector")
+//   }
+
+//   model InfoOnTopics{
+//     info Info @relation(fields: [idInfo], references: [id])
+//     idInfo Int
+//     topic Topic @relation(fields: [idTopic], references: [id])
+//     idTopic Int
+
+//     @@id([idInfo,idTopic])
+//   }
+
+
+// // TOPICS
+//   model Topic{
+//     id Int @id @default(autoincrement())
+//     dentalCase CasesOnTopics[]
+//     info InfoOnTopics[]
+//     name String
+//   }
+
+//   model CasesOnTopics{
+//     dentalCase DentalCase @relation(fields: [idCase], references: [id])
+//     idCase Int
+//     topic Topic @relation(fields: [idTopic], references: [id])
+//     idTopic Int
+
+//     @@id([idCase,idTopic])
+//   }
+
+// // CASOS
+
+//   model DentalCase{
+//     id Int @id @default(autoincrement())
+//     title String @unique
+//     ante String
+//     exam String
+//     ans String
+//     images Image[]
+//     topics CasesOnTopics[]
+//   }
+
+//   model Image{
+//     id Int @id @default(autoincrement())
+//     name String
+//     type Int
+//     url String
+//     dentalCase DentalCase @relation(fields: [idCase],references: [id])
+//     idCase Int
+//   }
   
 
 
-// USERS
-  model Users_Topic_01{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_02{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_03{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_04{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_05{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_06{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_07{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_08{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_09{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_10{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_11{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_12{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_13{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_14{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-  model Users_Topic_15{
-    id BigInt @id
-    idStage Int
-    idBook Int
-    idCase Int
-  }
-
-
+// // USERS
+//   model Users_Topic_01{
+//     id BigInt @id
+//     idStage Int
+//     idBook Int
+//     idCase Int
+//   }
