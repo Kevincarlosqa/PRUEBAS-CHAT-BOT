@@ -32,7 +32,7 @@ import { stage_09 } from "./stage_09";
     const { input, userId, botIndex, id } = inputInfo
     
     try{
-      const paper = await prisma.paper.findFirst({where:{autor:input}})
+      const paper = await prisma.paper.findFirst({where:{title:input}})
         
       if(!paper){
         await Bot_sendMsgBadChoice(userId,botIndex)
