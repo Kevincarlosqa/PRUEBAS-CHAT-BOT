@@ -9,12 +9,14 @@ import { stage_02 } from "./stage_02";
   export const stage_00 = async (inputInfo:stage_data) => {
     const { userId, themeId, botIndex, id } = inputInfo
     const text = 'Tenemos estos casos clinicos para que analices. Estas listo?'
+
     try{
       const list = await prisma.case.findMany({where:{themes:{some:{themeId}}},select:{title:true}})
       const list_cases = list.map( el => el.title)
       
       await Bot_sendKeyboard(text,userId,botIndex,list_cases)
       await updateStage(id,1)
+
     }catch{
       errorResponse(`Error en el stage00`,inputInfo)
     }

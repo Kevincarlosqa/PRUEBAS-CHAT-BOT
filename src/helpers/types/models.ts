@@ -38,7 +38,7 @@ export interface intPapers{
 export interface intSteps{
   id?: number
   errors?: number
-  userId?: number
+  userId?: string
   themeId?: number
   caseId?: number
   stage?:number

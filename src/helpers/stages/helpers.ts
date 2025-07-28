@@ -3,7 +3,7 @@ import { prisma } from "../db/prisma"
 import { intSteps } from "../types/models"
 
 // Manejo de usuarios
-  export const findUser = async (id:number) => {
+  export const findUser = async (id:string) => {
     try{
       return await prisma.user.findFirst({where:{id}})
     }catch{
@@ -11,7 +11,7 @@ import { intSteps } from "../types/models"
     }
   }
 
-  export const createUser = async (userId:bigint,name:string) => {
+  export const createUser = async (userId:string,name:string) => {
     try{
       return await prisma.user.create({data:{id:userId,name}})
     }catch{
@@ -19,7 +19,7 @@ import { intSteps } from "../types/models"
     }
   }
 
-  export const createStep = async (userId:bigint,themeId:number) => {
+  export const createStep = async (userId:string,themeId:number) => {
     const data = {
       userId,themeId,
       stage:0,

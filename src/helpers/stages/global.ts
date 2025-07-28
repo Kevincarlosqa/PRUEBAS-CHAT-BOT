@@ -19,7 +19,7 @@ export const getBodyInfo = (body:botResponse) => {
   const { id, first_name, last_name } = chat
 
   const userName = `${first_name} ${last_name}`
-  const userId = id
+  const userId = `${id}`
   const input = text
 
   return {userName,userId,input}
@@ -37,7 +37,7 @@ export const getBodyInfo = (body:botResponse) => {
  */
 
 const stages:Function[] = [
-  stage_00,//stage_01,stage_03,stage_05,stage_07,stage_10,stage_12,stage_13
+  stage_00,stage_01,stage_03,stage_05,stage_07,stage_10,stage_12,stage_13
 ]
 
 export const chat_with_bot = async (body:botResponse,botIndex:number) => {
@@ -48,10 +48,9 @@ export const chat_with_bot = async (body:botResponse,botIndex:number) => {
     
     if(!user) await createUser(userId,userName)
       
-      const step = await prisma.step.findFirst({where:{userId,theme:{botIndex}}})
+    const step = await prisma.step.findFirst({where:{userId,theme:{botIndex}}})
       
-      if(step){
-      console.log(`Interaccion ${userId}: ${step.id}`)
+    if(step){
       const {stage} = step
       const data:stage_data = {...step, input, botIndex, userName}
       await stages[stage](data)
@@ -60,7 +59,7 @@ export const chat_with_bot = async (body:botResponse,botIndex:number) => {
     }
     return userId
   }catch(err){
-    errorResponse(`Error al hacer la interaccion con ${userId} y entrad: ${input}`)
+    errorResponse(`Error al hacer la interaccion con ${userId} y entrad: ${input}`,{err})
   }
 }
 
@@ -74,6 +73,6 @@ export const resErrorAns = async (err:any) => {
   try{
     await axios.post(url,{text,chat_id:chat_chrls1})
   }catch(err){
-    errorResponse(`Error al enviar la bad_response a ${chat_chrls1}`)
+    errorResponse(`Error al enviar la bad_response a ${chat_chrls1}`,{err})
   }
 }

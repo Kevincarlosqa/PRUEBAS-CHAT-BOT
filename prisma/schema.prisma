@@ -17,7 +17,7 @@ datasource db {
 
 
 model User{ 
-  id BigInt @id 
+  id String @id 
   name String
 
   steps Step[]
@@ -115,7 +115,7 @@ model Step{
   stage Int
 
   user User @relation(fields: [userId], references: [id])
-  userId BigInt
+  userId String
   theme Theme @relation(fields: [themeId], references: [id])
   themeId Int
   case Case? @relation(fields: [caseId], references: [id])

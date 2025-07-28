@@ -3,7 +3,7 @@ export interface stage_data {
   input: string
   botIndex: number
   errors: number
-  userId: bigint
+  userId: string
   themeId: number
   caseId: number | null
   paperId: number | null
@@ -12,7 +12,7 @@ export interface stage_data {
 }
 
 export interface welcome_data{
-  userId: bigint
+  userId: string
   userName: string
   botIndex: number
 }
