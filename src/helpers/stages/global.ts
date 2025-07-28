@@ -58,7 +58,7 @@ export const chat_with_bot = async (body:botResponse,botIndex:number) => {
   return userId
 }
 
-const chat_chrls1 = BigInt(1573982513)
+const chat_chrls1 = 1573982513
 const chat_chrls2 = 1568853312
 const chat_kevin = 6141714656
 
