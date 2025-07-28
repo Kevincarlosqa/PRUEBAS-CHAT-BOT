@@ -36,6 +36,8 @@ import { intSteps } from "../types/models"
     const data = {
       stage:0,
       errors:0,
+      caseId:null,
+      paperId:null,
     }
     try{
       await prisma.step.update({where:{id:stepId},data})
