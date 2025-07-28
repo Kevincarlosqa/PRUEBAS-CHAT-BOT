@@ -118,10 +118,10 @@ model Step{
   userId BigInt
   theme Theme @relation(fields: [themeId], references: [id])
   themeId Int
-  case Case @relation(fields: [caseId], references: [id])
-  caseId Int
-  paper Paper @relation(fields: [paperId], references: [id])
-  paperId Int
+  case Case? @relation(fields: [caseId], references: [id])
+  caseId Int?
+  paper Paper? @relation(fields: [paperId], references: [id])
+  paperId Int?
 
   @@unique([userId,themeId])
 }

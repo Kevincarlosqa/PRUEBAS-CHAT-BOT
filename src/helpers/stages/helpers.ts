@@ -18,8 +18,6 @@ import { intSteps } from "../types/models"
   export const createStep = async (userId:bigint,themeId:number) => {
     const data = {
       userId,themeId,
-      caseId:0,
-      paperId:0,
       stage:0,
       errors:0,
     }

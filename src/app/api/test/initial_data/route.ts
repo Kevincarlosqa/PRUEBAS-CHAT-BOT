@@ -15,7 +15,9 @@ export async function GET(request: Request) {
       prisma.themesOnPapers.deleteMany()
     ]
     
-    await Promise.all(deletes)
+    // await Promise.all(deletes)
+    // Usuarios
+      await prisma.user.create({data:{id:BigInt(1573982513),name:'Carlos Test'}})
 
     // Bibliografia
       await prisma.paper.createMany({data: papers_info})
