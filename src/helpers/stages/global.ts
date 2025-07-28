@@ -43,15 +43,15 @@ const stages:Function[] = [
 export const chat_with_bot = async (body:botResponse,botIndex:number) => {
   const {input,userId,userName} = getBodyInfo(body)
 
-  console.log(`Interaccion ${userId}: ${input}`)
   try{
     const user = await prisma.user.findFirst({where:{id:userId}})
-
-    if(!user) await createUser(userId,userName)
     
-    const step = await prisma.step.findFirst({where:{userId,theme:{botIndex}}})
-
-    if(step){
+    if(!user) await createUser(userId,userName)
+      
+      const step = await prisma.step.findFirst({where:{userId,theme:{botIndex}}})
+      
+      if(step){
+      console.log(`Interaccion ${userId}: ${step.id}`)
       const {stage} = step
       const data:stage_data = {...step, input, botIndex, userName}
       await stages[stage](data)
