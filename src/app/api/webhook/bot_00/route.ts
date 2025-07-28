@@ -10,7 +10,7 @@ export async function POST(request:Request) {
   const { userId } = getBodyInfo(body)
   try{
     const inline_keyboard = []
-    for(let i=0; i<themeList.length; i++){
+    for(let i=1; i<themeList.length; i++){
       const { key, link, name } = themeList[i]
       if(!key || !link || !name) continue
 
