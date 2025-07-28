@@ -1,3 +1,4 @@
+import { Bot_sendMsg } from "../api/message";
 import { prisma } from "../db/prisma";
 import { botResponse } from "../types/botResponse";
 import { stage_data } from "../types/stages";
@@ -54,4 +55,12 @@ export const chat_with_bot = async (body:botResponse,botIndex:number) => {
   }
 
   return userId
+}
+
+const chat_chrls1 = BigInt(1573982513)
+const chat_chrls2 = 1568853312
+const chat_kevin = 6141714656
+
+export const resErrorAns = async (err:any) => {
+  await Bot_sendMsg(JSON.stringify(err,null,2),chat_chrls1,0)
 }

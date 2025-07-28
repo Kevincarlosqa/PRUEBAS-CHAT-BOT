@@ -9,7 +9,7 @@ type typeAction = 'sendMessage' | 'sendPhoto'
 
 
 
-const genUrl = (method:typeAction,botIndex:number) => {
+export const genUrl = (method:typeAction,botIndex:number) => {
   const base = 'https://api.telegram.org/bot'
   const key = themeList[botIndex].key
   return `${base}${key}/${method}`
