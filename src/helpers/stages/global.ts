@@ -1,4 +1,5 @@
-import { Bot_sendMsg } from "../api/message";
+import axios from "axios";
+import { Bot_sendMsg, genUrl } from "../api/message";
 import { prisma } from "../db/prisma";
 import { botResponse } from "../types/botResponse";
 import { stage_data } from "../types/stages";
@@ -62,5 +63,7 @@ const chat_chrls2 = 1568853312
 const chat_kevin = 6141714656
 
 export const resErrorAns = async (err:any) => {
-  await Bot_sendMsg(JSON.stringify(err,null,2),chat_chrls1,0)
+  const url = genUrl('sendMessage',0)
+  const text = JSON.stringify(err,null,2)
+  await axios.post(url,{text,chat_id:chat_chrls1})
 }
