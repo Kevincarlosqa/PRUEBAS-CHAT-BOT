@@ -11,6 +11,7 @@ import { stage_10 } from "./stage_09";
 import { stage_12 } from "./stage_11";
 import { stage_13 } from "./stage_13";
 import { stage_welcome } from "./stage_welcome";
+import { errorResponse } from "../api/response";
 
 export const getBodyInfo = (body:botResponse) => {
   const { message } = body
@@ -36,28 +37,31 @@ export const getBodyInfo = (body:botResponse) => {
  */
 
 const stages:Function[] = [
-  stage_00,stage_01,stage_03,stage_05,stage_07,stage_10,stage_12,stage_13
+  stage_00,//stage_01,stage_03,stage_05,stage_07,stage_10,stage_12,stage_13
 ]
 
 export const chat_with_bot = async (body:botResponse,botIndex:number) => {
   const {input,userId,userName} = getBodyInfo(body)
 
   console.log(`Interaccion ${userId}: ${input}`)
-  const user = await prisma.user.findFirst({where:{id:userId}})
+  try{
+    const user = await prisma.user.findFirst({where:{id:userId}})
 
-  if(!user) await createUser(userId,userName)
-  
-  const step = await prisma.step.findFirst({where:{userId,theme:{botIndex}}})
+    if(!user) await createUser(userId,userName)
+    
+    const step = await prisma.step.findFirst({where:{userId,theme:{botIndex}}})
 
-  if(step){
-    const {stage} = step
-    const data:stage_data = {...step, input, botIndex, userName}
-    await stages[stage](data)
-  }else{
-    await stage_welcome({userId,userName,botIndex})
+    if(step){
+      const {stage} = step
+      const data:stage_data = {...step, input, botIndex, userName}
+      await stages[stage](data)
+    }else{
+      await stage_welcome({userId,userName,botIndex})
+    }
+    return userId
+  }catch(err){
+    errorResponse(`Error al hacer la interaccion con ${userId} y entrad: ${input}`)
   }
-
-  return userId
 }
 
 const chat_chrls1 = 1573982513
@@ -67,5 +71,9 @@ const chat_kevin = 6141714656
 export const resErrorAns = async (err:any) => {
   const url = genUrl('sendMessage',0)
   const text = JSON.stringify(err,null,2)
-  await axios.post(url,{text,chat_id:chat_chrls1})
+  try{
+    await axios.post(url,{text,chat_id:chat_chrls1})
+  }catch(err){
+    errorResponse(`Error al enviar la bad_response a ${chat_chrls1}`)
+  }
 }

@@ -1,6 +1,6 @@
+import { errorResponse } from "./response"
 import { themeList } from "../db/keys"
 import axios from "axios"
-import { errorResponse } from "./response"
 
 
 const sendMsg = 'sendMessage' 
@@ -18,15 +18,21 @@ export const genUrl = (method:typeAction,botIndex:number) => {
 
 export const Bot_sendMsg = async (text:string,userId:bigint,botIndex:number) => {
   const url = genUrl(sendMsg,botIndex)
-  
-  await axios.post(url,{text,chat_id:userId})
+  try{
+    await axios.post(url,{text,chat_id:userId})
+  }catch(err){
+    errorResponse(`Error el enviar un mensaje a ${userId}`)
+  }
 }
 
 export const Bot_sendMsgBadChoice = async (userId:bigint, botIndex:number) => {
   const url = genUrl(sendMsg,botIndex)
   const text = 'Debes elegir una opcion de la lista'
-
-  await axios.post(url,{text,chat_id:userId})
+  try{
+    await axios.post(url,{text,chat_id:userId})
+  }catch(err){
+    errorResponse(`Error al enviar un mensaje a ${userId}`)
+  }
 }
 
 export const Bot_sendKeyboard = async (text:string,userId:bigint,botIndex:number,options:string[]) => {
@@ -35,14 +41,20 @@ export const Bot_sendKeyboard = async (text:string,userId:bigint,botIndex:number
   const resize_keyboard = true
   const one_time_keyboard = true
   const reply_markup = {keyboard,resize_keyboard,one_time_keyboard}
-  
-  await axios.post(url,{text,chat_id:userId,reply_markup})
+  try{
+    await axios.post(url,{text,chat_id:userId,reply_markup})
+  }catch(err){
+    errorResponse(`Error al enviar un keyboard a ${userId}`)
+  }
 }
 
 export const Bot_sendPhoto = async (photo:string,userId:bigint,botIndex:number) => {
   const url = genUrl(sendPho,botIndex)
-
-  await axios.post(url,{photo,chat_id:userId})
+  try{
+    await axios.post(url,{photo,chat_id:userId})
+  }catch(err){
+    errorResponse(`Error al enviar una foto a ${userId}`)
+  }
 }
 
 
@@ -50,7 +62,10 @@ export const Bot_sendInlineKeyboard = async (text:string,userId:bigint,botIndex:
   const url = genUrl(sendMsg,botIndex)
   const inline_keyboard = options.map(el => [{text:el,url:el}])
   const reply_markup = {inline_keyboard}
-
-  await axios.post(url,{text,chat_id:userId,reply_markup})
+  try{
+    await axios.post(url,{text,chat_id:userId,reply_markup})
+  }catch(err){
+    errorResponse(`Error al enviar el inline_keyboard ${userId}`)
+  }
 }
 

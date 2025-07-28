@@ -10,7 +10,7 @@ export const badResponse = (err:Object) => {
   return NextResponse.json(err,{status:400})
 }
 
-export const errorResponse = (message:string,err:Object) => {
+export const errorResponse = (message:string,err?:Object) => {
   throw new Error(JSON.stringify({message,...err},null,2)) 
 }
 
