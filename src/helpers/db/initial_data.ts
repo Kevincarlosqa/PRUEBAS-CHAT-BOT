@@ -56,7 +56,7 @@ export const answers_case01 =[
 ]
 
 export const themes = [
-  {name: 'Tema 01'}
+  {name: 'Tema 01',botIndex:1}
 ]
 
 export const themes_case01 = [
