@@ -32,6 +32,8 @@ import { stage_11 } from "./stage_11";
     const { input, userId, botIndex, caseId } = inputInfo
     const choice = options.indexOf(input)
 
+    if(!caseId) return console.log('CaseId null en stage_10')
+
     const select = choice === 3 // si es true son radiografias
     if(select || choice === 4) {
       const list = await prisma.image.findMany({ where:{ caseId, type: select }})

@@ -5,8 +5,8 @@ export interface stage_data {
   errors: number
   userId: bigint
   themeId: number
-  caseId: number
-  paperId: number
+  caseId: number | null
+  paperId: number | null
   stage: number
   userName: string
 }

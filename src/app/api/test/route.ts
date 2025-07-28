@@ -13,6 +13,13 @@ export async function GET(request: Request) {
   // await axios.post(url,{text,chat_id:1573982513})
 
   // await createUser(test,'Carlos Test')
-  await createStep(test,1)
-  return goodResponse('holi')
+  // await createStep(test,1)
+  const ans = await prisma.step.findUnique({
+        where:{id:8},
+        select:{
+          case: {select:{answers:{where:{isCorrect:true},select:{answer:{select:{name:true}}}}}}
+        }
+      })
+  
+  return goodResponse('holi',{ans})
 }

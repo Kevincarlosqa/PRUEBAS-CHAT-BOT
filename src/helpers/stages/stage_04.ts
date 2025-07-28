@@ -1,4 +1,5 @@
 import { Bot_sendKeyboard, Bot_sendMsg, Bot_sendMsgBadChoice } from "../api/message";
+import { badResponse } from "../api/response";
 import { prisma } from "../db/prisma";
 import { stage_data } from "../types/stages";
 import { updateStage } from "./helpers";
@@ -8,6 +9,9 @@ import { stage_start } from "./stage_start";
 //* MENU DIAGNOSTICO
   export const stage_04 = async (inputInfo:stage_data) => {
     const { caseId, userId, botIndex, id } = inputInfo
+
+    if(!caseId) return console.log('CaseId null en stage_04')
+
     const answers = await prisma.answer.findMany({
       where:{cases:{some:{caseId}}}
     })
@@ -23,6 +27,9 @@ import { stage_start } from "./stage_start";
 //* RESPUESTA MENU DIAGNOSTICO
   export const stage_05 = async (inputInfo:stage_data) => {
     const { input, userId, botIndex, caseId } = inputInfo
+
+    if(!caseId) return console.log('caseId null en stage_05')
+
     const { isCorrect } = await prisma.answersOnCases.findFirst({
       where:{caseId,answer:{name:input}}
     }) || {isCorrect:false}
@@ -84,7 +91,11 @@ import { stage_start } from "./stage_start";
         case: {select:{answers:{where:{isCorrect:true},select:{answer:{select:{name:true}}}}}}
       }
     })
-    const answer = result?.case.answers[0]?.answer.name
+    if(!result) return console.log('no hay coincidencias')
+    if(!result.case) return console.log('no hay coincidencias')
+
+    const answer = result.case.answers[0].answer.name
+
     const text = `La respuesta al caso es: ${answer}`
 
     await Bot_sendMsg(text,userId,botIndex)
