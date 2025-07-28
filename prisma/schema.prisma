@@ -26,6 +26,7 @@ model User{
 model Theme{
   id Int @id @default(autoincrement())
   name String
+  botIndex Int @unique
 
   steps Step[]
 
@@ -35,16 +36,9 @@ model Theme{
 
 model Answer{
   id Int @id @default(autoincrement())
-  name String
+  name String @unique
 
   cases AnswersOnCases[]
-}
-
-model Pain{
-  id Int @id @default(autoincrement())
-  name String
-
-  cases Case[]
 }
 
 model Case{
@@ -53,9 +47,8 @@ model Case{
   exam String
   history String
   background String
-
-  pain Pain @relation(fields: [painId], references:[id])
-  painId Int
+  work String
+  pain String
 
   images Image[]
   steps Step[]
@@ -104,6 +97,7 @@ model ThemesOnPapers{
   @@id([themeId,paperId])
 }
 
+// true para radiografias
 model Image{
   id Int @id @default(autoincrement())
   title String
@@ -118,6 +112,7 @@ model Image{
 model Step{
   id Int @id @default(autoincrement())
   errors Int
+  stage Int
 
   user User @relation(fields: [userId], references: [id])
   userId BigInt
@@ -127,6 +122,8 @@ model Step{
   caseId Int
   paper Paper @relation(fields: [paperId], references: [id])
   paperId Int
+
+  @@unique([userId,themeId])
 }
 
 
@@ -137,80 +134,3 @@ model Embedding{
   paper Paper @relation(fields: [paperId],references: [id])
   paperId Int
 }
-
-
-
-
-// // INFO
-//   model Info{
-//     id Int @id @default(autoincrement())
-//     title String @unique
-//     autor String
-//     embeddings Embedding[]
-//     topics InfoOnTopics[]
-//   }
-
-//   model Embedding{
-//     id Int @id @default(autoincrement())
-//     info Info @relation(fields: [idInfo],references: [id])
-//     idInfo Int
-//     vector Unsupported("vector")
-//   }
-
-//   model InfoOnTopics{
-//     info Info @relation(fields: [idInfo], references: [id])
-//     idInfo Int
-//     topic Topic @relation(fields: [idTopic], references: [id])
-//     idTopic Int
-
-//     @@id([idInfo,idTopic])
-//   }
-
-
-// // TOPICS
-//   model Topic{
-//     id Int @id @default(autoincrement())
-//     dentalCase CasesOnTopics[]
-//     info InfoOnTopics[]
-//     name String
-//   }
-
-//   model CasesOnTopics{
-//     dentalCase DentalCase @relation(fields: [idCase], references: [id])
-//     idCase Int
-//     topic Topic @relation(fields: [idTopic], references: [id])
-//     idTopic Int
-
-//     @@id([idCase,idTopic])
-//   }
-
-// // CASOS
-
-//   model DentalCase{
-//     id Int @id @default(autoincrement())
-//     title String @unique
-//     ante String
-//     exam String
-//     ans String
-//     images Image[]
-//     topics CasesOnTopics[]
-//   }
-
-//   model Image{
-//     id Int @id @default(autoincrement())
-//     name String
-//     type Int
-//     url String
-//     dentalCase DentalCase @relation(fields: [idCase],references: [id])
-//     idCase Int
-//   }
-  
-
-
-// // USERS
-//   model Users_Topic_01{
-//     id BigInt @id
-//     idStage Int
-//     idBook Int
-//     idCase Int
-//   }

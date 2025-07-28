@@ -1,74 +1,73 @@
 export interface intAnswers{
-  id?: Number
-  name?: String
+  id?: number
+  name: string
 }
 
 export interface intCases{
-  id?: Number
-  title?: String
-  exam?: String
-  history?: String
-  background?: String
-  painId?: Number
+  id?: number
+  title: string
+  exam: string
+  history: string
+  background: string
+  pain: string
+  work: string
 }
 
 export interface intEmbeddings{
-  id?: Number
-  vector?: Number[]
-  paperId?: Number
+  id?: number
+  vector?: number[]
+  paperId?: number
 }
 
 export interface intImages{
-  id?: Number
-  url?: String
-  title?: String
-  info?: String
-  type?: boolean // true: radiografia || false: imagen clinica
-  caseId?: Number
+  id?: number
+  url: string
+  title: string
+  info: string
+  type: boolean // true: radiografia || false: imagen clinica
+  caseId?: number
 }
 
-export interface intPains{
-  id?: Number
-  name?: String
-}
 
 export interface intPapers{
-  id?: Number
-  title?: String
-  autor?: String
+  id: number
+  title: string
+  autor: string
 }
 
 export interface intSteps{
-  id?: Number
-  errors?: Number
-  userId?: Number
-  themeId?: Number
-  caseId?: Number
-  paperId?: Number
+  id?: number
+  errors?: number
+  userId?: number
+  themeId?: number
+  caseId?: number
+  stage?:number
+  paperId?: number
 }
 
 export interface intThemes{
-  id?: Number
-  name?: String
+  id?: number
+  name?: string
+  botIndex?: number
 }
 
 export interface intUsers{
-  id?: Number
-  name?: String
+  id?: number
+  name?: string
 }
 
 export interface intAnswersOnCases{
-  answerId?: Number
-  caseId?: Number
+  answerId?: number
+  caseId?: number
   isCorrect?: Boolean
 }
 
 export interface intThemesOnCases{
-  themeId?: Number
-  caseId?: Number
+  themeId?: number
+  caseId?: number
 }
 
 export interface intThemesOnPapers{
-  themeId?: Number
-  paperId?: Number
+  themeId?: number
+  paperId?: number
 }
