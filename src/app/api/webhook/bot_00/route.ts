@@ -30,5 +30,3 @@ export async function POST(request:Request) {
     return badResponse({err})
   }
 }
-
-Bot_sendKeyboard
