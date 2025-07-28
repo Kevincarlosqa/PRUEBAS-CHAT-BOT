@@ -21,7 +21,7 @@ export async function POST(request:Request) {
     const route = genUrl('sendMessage',0)
     const reply_markup = { inline_keyboard }
 
-    const text = 'Hola, bienvenido al menu de temas, porfavor selecciona el que desees'
+    const text = 'Hola, bienvenido al menu de temas, porfavor selecciona el que desees!!'
 
     await axios.post(route,{text,chat_id:userId,reply_markup})
 
