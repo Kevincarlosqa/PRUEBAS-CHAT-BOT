@@ -34,8 +34,6 @@ import { intSteps } from "../types/models"
 
   export const resetStep = async (stepId:number) => {
     const data = {
-      caseId:0,
-      paperId:0,
       stage:0,
       errors:0,
     }
