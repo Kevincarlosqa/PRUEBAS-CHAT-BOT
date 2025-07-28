@@ -3,7 +3,7 @@ import { chat_with_bot, resErrorAns } from "@/helpers/stages/global";
 
 const botIndex = 2
 
-export async function GET(request:Request) {
+export async function PPST(request:Request) {
   try{
     const body = await request.json()
 

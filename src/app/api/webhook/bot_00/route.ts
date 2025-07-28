@@ -5,10 +5,9 @@ import { getBodyInfo } from "@/helpers/stages/global";
 import axios from "axios";
 
 
-export async function GET(request:Request) {
+export async function POST(request:Request) {
   const body = await request.json()
   const { userId } = getBodyInfo(body)
-
   try{
     const inline_keyboard = []
     for(let i=0; i<themeList.length; i++){
@@ -26,8 +25,7 @@ export async function GET(request:Request) {
 
     await axios.post(route,{text,chat_id:userId,reply_markup})
 
-    return goodResponse('holi')
-    
+    return goodResponse('Mensaje enviado correctamente')
   }catch(err){
     return badResponse({err})
   }
