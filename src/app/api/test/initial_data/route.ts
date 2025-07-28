@@ -17,7 +17,7 @@ export async function GET(request: Request) {
     
     // await Promise.all(deletes)
     // Usuarios
-      await prisma.user.create({data:{id:BigInt(1573982513),name:'Carlos Test'}})
+      await prisma.user.create({data:{id:'1573982513',name:'Carlos Test'}})
 
     // Bibliografia
       await prisma.paper.createMany({data: papers_info})
