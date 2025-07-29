@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-
+/**
+ * Formulario de acceso
+ * Menu de informacion
+ * 
+ */
 
 export const metadata: Metadata = {
   title: "Create Next App",

@@ -1,5 +1,6 @@
+import { Bot_sendMsg } from "@/helpers/api/message";
 import { badResponse, goodResponse } from "@/helpers/api/response";
-import { chat_with_bot, resErrorAns } from "@/helpers/stages/global";
+import { chat_with_bot, getBodyInfo, resErrorAns } from "@/helpers/stages/global";
 
 const botIndex = 2
 
@@ -7,7 +8,10 @@ export async function POST(request:Request) {
   try{
     const body = await request.json()
 
-    const userId = await chat_with_bot(body,botIndex)
+    const {userId} = getBodyInfo(body)
+
+    await Bot_sendMsg(JSON.stringify(body,null,2),'1573982513',0)
+
     
     return goodResponse(`Interaccion de ${userId} en el chat: ${botIndex}`)
   }catch(err){

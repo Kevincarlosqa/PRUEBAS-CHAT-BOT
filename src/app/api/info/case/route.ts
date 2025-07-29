@@ -2,6 +2,14 @@ import { badResponse, goodResponse } from '@/helpers/api/response';
 import { prisma } from '@/helpers/db/prisma';
 import { post_case_body } from '@/helpers/types/api';
 
+
+/**
+ * Obtener los id-title de los todos casos
+ * Obtener la info del caso por el id
+ * Editar la informacion de un caso
+ * Agregar un caso
+ */
+
 /*
   body = {
     case:{title,exam,history,background,work,pain}

@@ -1,6 +1,14 @@
 import { badResponse, goodResponse } from '@/helpers/api/response';
 import { prisma } from '@/helpers/db/prisma';
 
+/**
+ * Agregar un paper
+ * Editar un paper
+ * Obtener los paper
+ */
+
+
+
 export async function GET() { 
   try{  
     const ans = await prisma.paper.findMany()

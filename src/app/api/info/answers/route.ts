@@ -2,6 +2,14 @@ import { badResponse, goodResponse } from '@/helpers/api/response';
 import { prisma } from '@/helpers/db/prisma';
 import { basic_table } from '@/helpers/types/api';
 
+
+/**
+ * Obtener todos las respuestas
+ * Agregar respuestas
+ * Editar respuestas
+ */
+
+
 // Obtener todos las opciones de respuesta
   export async function GET() { 
     try{  

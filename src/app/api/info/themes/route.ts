@@ -1,6 +1,13 @@
 import { badResponse, goodResponse } from '@/helpers/api/response';
 import { prisma } from '@/helpers/db/prisma';
 
+
+/**
+ * Obtener todos los temas
+ * Agregar Temas
+ * Editar Temas
+ */
+
 export async function GET() { 
   try{  
     const ans = await prisma.theme.findMany()
