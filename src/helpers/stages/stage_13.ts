@@ -14,7 +14,7 @@ const ansQuestion = async (input:string) => {
   try{
     const response = await client.responses.create({
       model: 'gpt-3.5-turbo',
-      instructions: 'Habla como un dentista sindecirlo',
+      instructions: 'Habla como un dentista sin decir que lo eres',
       input
     })
     
@@ -31,11 +31,8 @@ export const stage_13 = async (inputInfo:stage_data) => {
   if(!paperId) return 
   
   try{
-
-
     const answer = await ragAnswer(input,paperId)
 
-    // const answer = await ansQuestion(input) || 'Ups'
     await Bot_sendMsg(answer,userId,botIndex)
     await stage_09(inputInfo)
   }catch{

@@ -33,8 +33,10 @@ import { stage_02 } from "./stage_02";
         return await stage_00(inputInfo)
       }
         
-      const { id:caseId, exam } = caso
-      await Bot_sendMsg(exam,userId,botIndex)
+      const { id:caseId, exam, work } = caso
+
+      const text = `${exam}\n${work}`
+      await Bot_sendMsg(text,userId,botIndex)
       await updateStep(id,{caseId})
       await stage_02(inputInfo)
     }catch{
