@@ -34,7 +34,7 @@ export const stage_13 = async (inputInfo:stage_data) => {
 
     const vectors = await prisma.embedding.findMany({where:{paperId}})
 
-    const answer = await ragAnswer(input,vectors)
+    const answer = await ragAnswer(input,paperId)
 
     // const answer = await ansQuestion(input) || 'Ups'
     await Bot_sendMsg(answer,userId,botIndex)

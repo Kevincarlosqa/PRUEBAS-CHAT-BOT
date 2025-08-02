@@ -46,6 +46,7 @@ export const createEmbeddings = async (pdfRoute:string,paperId:number) => {
       paperId
     }
     ans.push(val)
+    
   }
 
   return ans

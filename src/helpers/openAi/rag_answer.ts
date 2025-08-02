@@ -1,15 +1,18 @@
 import { ChatOpenAI } from "@langchain/openai"
 import { OpenAi_Embeddings } from "./createEmbeddings"
+import { createContext, createContext1, EmbeddingsRAG } from "./createContext"
 
 
-export const ragAnswer = async (question:string,data:EmbeddingsRAG[]) => {
+export const ragAnswer = async (question:string,paperId:number) => {
 
   const questionVector = await OpenAi_Embeddings.embedQuery(question)
   
-  const context = createContext(data,questionVector,10)
+  // const context = createContext(data,questionVector,10)
+
+  const context1 = createContext1(paperId,questionVector)
 
   const prompt = `Usa la siguiente contexto y responde como dentista
-  Contexto: ${context}
+  Contexto: ${context1}
   Pregunta: ${question}
   `
   const llm = new ChatOpenAI({

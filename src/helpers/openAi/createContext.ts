@@ -1,5 +1,7 @@
+import { Embeddings } from "openai/resources/embeddings.mjs";
+import { prisma } from "../db/prisma";
 
-interface EmbeddingsRAG {
+export interface EmbeddingsRAG {
   id?: number;
   index: number;
   content: string;
@@ -35,7 +37,48 @@ const similitudCoseno = (splitVector:number[],questionVector:number[]):number =>
 }
 
 
-const createContext = (embeddings:EmbeddingsRAG[],questionVector:number[],size:number) => {
+interface separateEmbedding {
+  id: number,
+  content: string,
+}
+
+const size = 10
+
+const genIdsContent = async (paperId:number,questionVector:number[]) => {
+  const vectors = await prisma.embedding.findMany({
+    where:{paperId},
+    select:{id:true,vector:true}
+  })
+
+  if(!vectors) return
+
+  const simil = []
+  for (let i = 0; i < vectors.length; i++) {
+    const el= vectors[i];
+    const vector:number[] = JSON.parse(el.vector)
+    const score = similitudCoseno(vector,questionVector)
+    simil.push([el.id,score])
+  }
+
+  simil.sort((a,b) => b[1]-a[1])
+  
+  return simil.slice(size).map(el => el[0])
+}
+
+export const createContext1 = async (paperId:number,questionVector:number[]) => {
+  const idsContent = await genIdsContent(paperId,questionVector)
+  
+  if(!idsContent) return
+
+  const vals = await prisma.embedding.findMany({
+    where:{id:{in:idsContent}},
+    select:{content:true}
+  })
+
+  return vals.join('\n')
+}
+
+export const createContext = (embeddings:EmbeddingsRAG[],questionVector:number[],size:number) => {
   const len = embeddings.length
   if(size>=len) throw new Error('El size del context no puede ser mayor que la data')
 
@@ -56,4 +99,10 @@ const createContext = (embeddings:EmbeddingsRAG[],questionVector:number[],size:n
   }
 
   return context
+
+  // retornar ids
+
 }
+
+
+
