@@ -21,6 +21,7 @@ model User{
   name String
 
   steps Step[]
+  questions Question[]
 }
 
 model Theme{
@@ -135,5 +136,14 @@ model Embedding{
 
   paper Paper @relation(fields: [paperId],references: [id])
   paperId Int
+}
+
+model Question{
+  id Int @id @default(autoincrement())
+  question String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId],references: [id])
+  userId String
 }
 

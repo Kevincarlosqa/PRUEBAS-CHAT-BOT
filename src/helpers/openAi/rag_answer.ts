@@ -7,11 +7,9 @@ export const ragAnswer = async (question:string,paperId:number) => {
 
   const questionVector = await OpenAi_Embeddings.embedQuery(question)
   
-  // const context = createContext(data,questionVector,10)
-
   const context1 = createContext1(paperId,questionVector)
 
-  const prompt = `Usa la siguiente contexto y responde como dentista
+  const prompt = `Usa la siguiente contexto y responde para estudiantes dentistas
   Contexto: ${context1}
   Pregunta: ${question}
   `

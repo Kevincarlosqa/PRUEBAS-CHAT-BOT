@@ -1,13 +1,10 @@
 import { badResponse, goodResponse } from '@/helpers/api/response';
 import { prisma } from '@/helpers/db/prisma';
+import { basic_table } from '@/helpers/types/api';
 
 
-/**
- * Obtener todos los temas
- * Agregar Temas
- * Editar Temas
- */
-
+//* GET: Obtener todos los temas 
+// return {id,name}[]
 export async function GET() { 
   try{  
     const ans = await prisma.theme.findMany()
@@ -17,15 +14,36 @@ export async function GET() {
   }
 }
 
+//* POST: Agregar tema
+// body = {name,botIndex}
+
+interface BodyPostTheme {
+  name: string,
+  botIndex: number
+}
 export async function POST(request:Request){
   try{
-    const body:string[] = await request.json()
-    const data = body.map(el => ({name:el.toLowerCase()}))
+    const data:BodyPostTheme = await request.json()
 
-    await prisma.answer.createMany({data,skipDuplicates:true})
+    await prisma.theme.create({data})
 
-    return goodResponse('Opciones subidas correctamente')
+    return goodResponse('Tema subido correctamente')
   }catch(err){
     return badResponse({err})
   }
 }
+
+//* PUT: Cambiar el nombre de un tema
+// body = {id,name:newName}
+  export async function PUT(request:Request){
+    try{
+      const body:basic_table = await request.json()
+      const {id,name} = body
+
+      await prisma.theme.update({where:{id},data:{name}})
+
+      return goodResponse(`Respuesta actualizada correctamente`)
+    }catch(err){
+      return badResponse({err})
+    }
+  }

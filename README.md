@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## ESTRUCTURA BASE DE DATOS
+### Tablas Principales
+  - Respuestas (answer) => Guarda todas las respuestas a los diagnosticos de todos los casos
+  - Casos (case) => Guarda toda la informacion de los casos (titulo, examen, historial, antecedentes, tarea, dolor)
+  - Imagenes (image) => Guarda la informacion de las imagenes (url, titulo, tipo, informacion, caso asignado)
+  - Bibliografia (paper) => Guarda la informacion de los papers a consultar (titulo y autor)
+  - Consultas IA (Question) => Guarda todas las consultas hechas por los usuarios a la IA (question, userId, date)
+  - Pasos (Step) => Guarda el nivel en el que estan los usuarios en los chats (errores, user, tema, caso, paper, stage)
+  - Temas (Theme) => Guarda los temas de cada chat (name, botIndex)
+  - Usuarios (User) => Guarda los usuarios que usan el chat (telegramId, name)
 
-## Getting Started
+### Tablas relacionadas
+  - Respuestas y Casos (AnsersOnCases) => Guarda las opciones de respuesta que van a aparecer en cada caso, ademas de cual es la correcta (answerId, caseId, isCorrect)
+  - Temas y Casos (ThemesOnCases) => Guarda los casos que van a aparecer en tema o cada chat (themeId, caseId)
+  - Temas y Bibliografias (ThemesOnPapers) => Guarda las bibliografias que van a aparecer en cada tema o chat (themeId, paperId)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### INSTRUCTIVO
+  - Exsite un chat general que en cada mensaje va a enviar un indice con los chats disponibles.
+#### CHATS
+  - El usuario proveedor (doctor) debe definir cuantos temas va a tener en total
+  - Debe crear el bot para cada tema, subir las credenciales al archivo .env usando el nombre patron **TELEGRAM_TEMA_nn_KEY**.
+  - En la ruta **src/helpers/db/keys** se debe agregar si el valor no existe
+    - key: para la variable de entorno con la credencial del chat
+    - link: el enlace del chat
+    - webhook: el nombre de la ruta sin considerar **app/api/webhook/**
+    - name: El nombre del tema que va a aparecer en el chat general
+  - Para setear los webhooks se tiene la ruta GET **api/setWebhooks**, la cual va a revisar que exista *key* y *webhook*
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  - Cada chat va a mostrar los casos asignados al tema
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### RUTAS
+  - Todas las rutas para obtener, editar o agregar informacion estaran en la carpeta **api/info**
+  - Todos los datos devueltos estan en la propiedad **data**

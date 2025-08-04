@@ -67,7 +67,9 @@ import { stage_11 } from "./stage_11";
         return await stage_09(inputInfo)
       }
       
-      const {background,history,pain} = await prisma.case.findFirst({where:{id:caseId}}) || {background:'',history:'',pain:''}
+      const {background,history,pain} = await prisma.case.findFirst({
+        where:{id:caseId}
+      }) || {background:'',history:'',pain:''}
 
       if (choice === 0) await Bot_sendMsg(background,userId,botIndex) // Enviar antecedentes
 

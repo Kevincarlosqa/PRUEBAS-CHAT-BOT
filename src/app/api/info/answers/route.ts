@@ -3,14 +3,9 @@ import { prisma } from '@/helpers/db/prisma';
 import { basic_table } from '@/helpers/types/api';
 
 
-/**
- * Obtener todos las respuestas
- * Agregar respuestas
- * Editar respuestas
- */
 
-
-// Obtener todos las opciones de respuesta
+//* GET: Obtener todos las opciones de respuesta
+// return {id,name}[]
   export async function GET() { 
     try{  
       const ans = await prisma.answer.findMany()
@@ -20,7 +15,8 @@ import { basic_table } from '@/helpers/types/api';
     }
   }
 
-// Agregar una lista de respuestas
+//* POST: Agregar una lista de respuestas
+// body = string[]
   export async function POST(request:Request){
     try{
       const body:string[] = await request.json()
@@ -35,7 +31,8 @@ import { basic_table } from '@/helpers/types/api';
   }
 
 
-// Cambiar el valor de una respuesta
+//* PUT: Cambiar el valor de una respuesta
+// body = {id,name:newName}
   export async function PUT(request:Request){
     try{
       const body:basic_table = await request.json()

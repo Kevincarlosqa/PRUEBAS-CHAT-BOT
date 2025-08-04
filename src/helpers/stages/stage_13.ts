@@ -1,28 +1,11 @@
 import { Bot_sendMsg } from "../api/message";
 import { stage_data } from "../types/stages"
-import OpenAI from "openai";
 import { stage_09 } from "./stage_09";
 import { errorResponse } from "../api/response";
-import { prisma } from "../db/prisma";
 import { ragAnswer } from "../openAi/rag_answer";
+import { prisma } from "../db/prisma";
 
 
-
-const ansQuestion = async (input:string) => {
-  const client = new OpenAI();
-  
-  try{
-    const response = await client.responses.create({
-      model: 'gpt-3.5-turbo',
-      instructions: 'Habla como un dentista sin decir que lo eres',
-      input
-    })
-    
-    return response.output_text
-  }catch{
-    errorResponse(`Error en responder con la IA`)
-  }
-}
 
 //* RESPUESTA AL CONTENIDO
 export const stage_13 = async (inputInfo:stage_data) => {
@@ -31,6 +14,7 @@ export const stage_13 = async (inputInfo:stage_data) => {
   if(!paperId) return 
   
   try{
+    await prisma.question.create({data:{userId,question:input}})
     const answer = await ragAnswer(input,paperId)
 
     await Bot_sendMsg(answer,userId,botIndex)

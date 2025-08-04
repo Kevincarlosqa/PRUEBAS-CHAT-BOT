@@ -1,9 +1,12 @@
 import { badResponse, goodResponse } from "@/helpers/api/response";
+import { prisma } from "@/helpers/db/prisma";
 
 
-export async function GET(request:Request) {
+//* GET: Obtener todos los usuarios
+export async function GET() {
   try{
-    return goodResponse('holi')
+    const users = await prisma.user.findMany()
+    return goodResponse('Usuarios totales',users)
   }catch(err){
     return badResponse({err})
   }
