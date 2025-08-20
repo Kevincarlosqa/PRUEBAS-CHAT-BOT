@@ -6,6 +6,7 @@ const botIndex = 2
 
 export async function POST(request:Request) {
   try{
+    return goodResponse(`Quitar cuando se tenga informacion con el tema 2`)
     const body = await request.json()
 
     const {userId} = getBodyInfo(body)

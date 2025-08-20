@@ -5,6 +5,8 @@ const botIndex = 5
 
 export async function POST(request:Request) {
   try{
+    return goodResponse(`Quitar cuando se tenga informacion con el tema 5`)
+
     const body = await request.json()
 
     const userId = await chat_with_bot(body,botIndex)
