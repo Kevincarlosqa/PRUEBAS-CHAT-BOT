@@ -7,33 +7,33 @@ export const themeList = [
   },
   {
     key:process.env.TELEGRAM_TEMA_01_KEY , 
-    link:'' , 
+    link:'t.me/Tema01DemoDentistBot' , 
     webhook: 'bot_01', 
-    name:'' 
+    name:'Tema 01 Demo' 
   },
   {
     key:process.env.TELEGRAM_TEMA_02_KEY , 
-    link:'t.me/Tema02DemoDentistBot' , 
+    link:'' , 
     webhook: 'bot_02', 
-    name:'Tema 02' 
+    name:'' 
   },
   {
     key:process.env.TELEGRAM_TEMA_03_KEY , 
-    link:'t.me/Tema03DemoDentistBot' , 
+    link:'' , 
     webhook: 'bot_03', 
-    name:'Tema 03' 
+    name:'' 
   },
   {
     key:process.env.TELEGRAM_TEMA_04_KEY , 
-    link:'t.me/Tema04DemoDentistBot' , 
+    link:'' , 
     webhook: 'bot_04', 
-    name:'Tema 04' 
+    name:'' 
   },
   {
     key:process.env.TELEGRAM_TEMA_05_KEY , 
-    link:'t.me/Tema05DemoDentistBot' , 
+    link:'' , 
     webhook: 'bot_05', 
-    name:'Tema 05' 
+    name:'' 
   },
   {
     key:process.env.TELEGRAM_TEMA_06_KEY , 
