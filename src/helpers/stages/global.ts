@@ -16,8 +16,12 @@ import { errorResponse } from "../api/response";
 export const getBodyInfo = (body:botResponse) => {
   console.log(JSON.stringify(body,null,2))
   const { message } = body
-  const { text, chat } = message
-  const { id, first_name, last_name } = chat
+  if(!message) errorResponse('No message in body',{body})
+    const { text, chat } = message
+  if(!text) errorResponse('No text in body',{body})
+  if(!chat) errorResponse('No chat in body',{body})
+    const { id, first_name, last_name } = chat
+  if(!id) errorResponse('No userId in body',{body})
 
   const userName = `${first_name} ${last_name}`
   const userId = `${id}`
