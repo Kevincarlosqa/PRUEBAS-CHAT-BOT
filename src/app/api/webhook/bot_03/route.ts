@@ -9,7 +9,7 @@ export async function POST(request:Request) {
 
   try{
     const {input,userId,userName} = getBodyInfo(body)
-    Bot_sendMsg('Aun no hay casos para este chat',userId,botIndex)
+    await Bot_sendMsg('Aun no hay casos para este chat',userId,botIndex)
     // const userId = await chat_with_bot(body,botIndex)
     
     return goodResponse(`Interaccion de ${userId} en el chat: ${botIndex}`)

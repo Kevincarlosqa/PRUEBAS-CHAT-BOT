@@ -14,6 +14,7 @@ import { stage_welcome } from "./stage_welcome";
 import { errorResponse } from "../api/response";
 
 export const getBodyInfo = (body:botResponse) => {
+  console.log({body})
   const { message } = body
   const { text, chat } = message
   const { id, first_name, last_name } = chat
