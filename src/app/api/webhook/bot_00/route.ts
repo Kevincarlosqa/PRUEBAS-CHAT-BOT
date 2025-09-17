@@ -8,6 +8,7 @@ import axios from "axios";
 export async function POST(request:Request) {
   const body = await request.json()
   const { userId } = getBodyInfo(body)
+  return goodResponse('Menu de temas enviado')
   try{
     const inline_keyboard = []
     for(let i=1; i<themeList.length; i++){
