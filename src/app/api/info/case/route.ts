@@ -1,6 +1,6 @@
 import { badResponse, goodResponse } from '@/helpers/api/response';
-import { prisma } from '@/helpers/db/prisma';
 import { post_case_body } from '@/helpers/types/api';
+import { prisma } from '@/lib/prisma';
 
 
 //* POST:  Agregar un caso

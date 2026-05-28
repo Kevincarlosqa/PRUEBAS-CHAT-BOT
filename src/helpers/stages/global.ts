@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Bot_sendMsg, genUrl } from "../api/message";
-import { prisma } from "../db/prisma";
 import { botResponse } from "../types/botResponse";
 import { stage_data } from "../types/stages";
 import { createUser } from "./helpers";
@@ -12,6 +11,7 @@ import { stage_12 } from "./stage_11";
 import { stage_13 } from "./stage_13";
 import { stage_welcome } from "./stage_welcome";
 import { errorResponse } from "../api/response";
+import { prisma } from "@/lib/prisma";
 
 export const getBodyInfo = (body:botResponse) => {
   console.log(JSON.stringify(body,null,2))
@@ -73,6 +73,7 @@ const chat_chrls2 = 1568853312
 const chat_kevin = 6141714656
 
 export const resErrorAns = async (err:any) => {
+  return console.log('Error en la interaccion con el bot',err)
   const url = genUrl('sendMessage',0)
   const text = JSON.stringify(err,null,2)
   try{

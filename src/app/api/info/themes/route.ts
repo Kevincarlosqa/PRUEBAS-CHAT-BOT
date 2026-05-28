@@ -1,6 +1,6 @@
 import { badResponse, goodResponse } from '@/helpers/api/response';
-import { prisma } from '@/helpers/db/prisma';
 import { basic_table } from '@/helpers/types/api';
+import { prisma } from '@/lib/prisma';
 
 
 //* GET: Obtener todos los temas 

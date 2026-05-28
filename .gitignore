@@ -43,3 +43,5 @@ next-env.d.ts
 .env
 NOTAS.md
 /src/generated/prisma
+
+/src/generated/prisma

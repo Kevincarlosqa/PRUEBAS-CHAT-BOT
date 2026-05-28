@@ -1,5 +1,4 @@
 import { goodResponse } from "@/helpers/api/response"
-import { prisma } from "@/helpers/db/prisma"
 import { createEmbeddings } from "@/helpers/openAi/createEmbeddings"
 import { ragAnswer } from "@/helpers/openAi/rag_answer"
 import { stage_13 } from "@/helpers/stages/stage_13"

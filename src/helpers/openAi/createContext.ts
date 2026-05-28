@@ -1,5 +1,5 @@
+import { prisma } from "@/lib/prisma";
 import { Embeddings } from "openai/resources/embeddings.mjs";
-import { prisma } from "../db/prisma";
 
 export interface EmbeddingsRAG {
   id?: number;

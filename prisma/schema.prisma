@@ -1,149 +1,137 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
 }
-
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
-
-
-model User{ 
-  id String @id 
+model User {
+  id   String @id
   name String
 
-  steps Step[]
+  steps     Step[]
   questions Question[]
 }
 
-model Theme{
-  id Int @id @default(autoincrement())
-  name String
-  botIndex Int @unique
+model Theme {
+  id       Int    @id @default(autoincrement())
+  name     String
+  botIndex Int    @unique
 
   steps Step[]
 
-  cases ThemesOnCases[]
+  cases  ThemesOnCases[]
   papers ThemesOnPapers[]
 }
 
-model Answer{
-  id Int @id @default(autoincrement())
+model Answer {
+  id   Int    @id @default(autoincrement())
   name String @unique
 
   cases AnswersOnCases[]
 }
 
-model Case{
-  id Int @id @default(autoincrement())
-  title String
-  exam String
-  history String
+model Case {
+  id         Int    @id @default(autoincrement())
+  title      String
+  exam       String
+  history    String
   background String
-  work String
-  pain String
+  work       String
+  pain       String
 
   images Image[]
-  steps Step[]
+  steps  Step[]
 
   answers AnswersOnCases[]
-  themes ThemesOnCases[]
+  themes  ThemesOnCases[]
 }
 
-model AnswersOnCases{
-  answer Answer @relation(fields: [answerId], references: [id])
+model AnswersOnCases {
+  answer   Answer @relation(fields: [answerId], references: [id])
   answerId Int
-  case Case @relation(fields: [caseId], references: [id])
-  caseId Int
+  case     Case   @relation(fields: [caseId], references: [id])
+  caseId   Int
 
   isCorrect Boolean
 
-  @@id([answerId,caseId])
+  @@id([answerId, caseId])
 }
 
-model ThemesOnCases{
-  theme Theme @relation(fields: [themeId], references: [id])
+model ThemesOnCases {
+  theme   Theme @relation(fields: [themeId], references: [id])
   themeId Int
-  case Case @relation(fields: [caseId], references: [id])
-  caseId Int
+  case    Case  @relation(fields: [caseId], references: [id])
+  caseId  Int
 
-  @@id([themeId,caseId])
+  @@id([themeId, caseId])
 }
 
-model Paper{
-  id Int @id @default(autoincrement())
+model Paper {
+  id    Int    @id @default(autoincrement())
   title String
   autor String
 
-  steps Step[]
+  steps      Step[]
   embeddings Embedding[]
 
   themes ThemesOnPapers[]
 }
 
-model ThemesOnPapers{
-  theme Theme @relation(fields: [themeId], references: [id])
+model ThemesOnPapers {
+  theme   Theme @relation(fields: [themeId], references: [id])
   themeId Int
-  paper Paper @relation(  fields: [paperId], references: [id])
+  paper   Paper @relation(fields: [paperId], references: [id])
   paperId Int
 
-  @@id([themeId,paperId])
+  @@id([themeId, paperId])
 }
 
 // true para radiografias
-model Image{
-  id Int @id @default(autoincrement())
+model Image {
+  id    Int     @id @default(autoincrement())
   title String
-  type Boolean
-  info String
-  url String
+  type  Boolean
+  info  String
+  url   String
 
-  case Case @relation(fields: [caseId], references: [id])
+  case   Case @relation(fields: [caseId], references: [id])
   caseId Int
 }
 
-model Step{
-  id Int @id @default(autoincrement())
+model Step {
+  id     Int @id @default(autoincrement())
   errors Int
-  stage Int
+  stage  Int
 
-  user User @relation(fields: [userId], references: [id])
-  userId String
-  theme Theme @relation(fields: [themeId], references: [id])
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
+  theme   Theme  @relation(fields: [themeId], references: [id])
   themeId Int
-  case Case? @relation(fields: [caseId], references: [id])
-  caseId Int?
-  paper Paper? @relation(fields: [paperId], references: [id])
+  case    Case?  @relation(fields: [caseId], references: [id])
+  caseId  Int?
+  paper   Paper? @relation(fields: [paperId], references: [id])
   paperId Int?
 
-  @@unique([userId,themeId])
+  @@unique([userId, themeId])
 }
 
-
-model Embedding{
-  id Int @id @default(autoincrement())
-  index Int
+model Embedding {
+  id      Int    @id @default(autoincrement())
+  index   Int
   content String
-  vector String
+  vector  String
 
-  paper Paper @relation(fields: [paperId],references: [id])
+  paper   Paper @relation(fields: [paperId], references: [id])
   paperId Int
 }
 
-model Question{
-  id Int @id @default(autoincrement())
-  question String
+model Question {
+  id        Int      @id @default(autoincrement())
+  question  String
   createdAt DateTime @default(now())
 
-  user User @relation(fields: [userId],references: [id])
+  user   User   @relation(fields: [userId], references: [id])
   userId String
 }
-

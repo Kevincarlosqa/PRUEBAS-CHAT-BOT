@@ -3,7 +3,7 @@ import { stage_data } from "../types/stages"
 import { stage_09 } from "./stage_09";
 import { errorResponse } from "../api/response";
 import { ragAnswer } from "../openAi/rag_answer";
-import { prisma } from "../db/prisma";
+import { prisma } from "@/lib/prisma";
 
 
 

@@ -5,7 +5,7 @@ const botIndex = 1
 
 export async function POST(request:Request) {
   const body = await request.json() 
-  return goodResponse('Menu de temas enviado')
+  // return goodResponse('Menu de temas enviado')
   try{
     const userId = await chat_with_bot(body,botIndex)
     

@@ -1,5 +1,5 @@
 import { badResponse, goodResponse } from '@/helpers/api/response';
-import { prisma } from '@/helpers/db/prisma';
+import { prisma } from '@/lib/prisma';
 
 //* POST: Subir una bibliografia
 //! El vectorizado debe hacerce en el front

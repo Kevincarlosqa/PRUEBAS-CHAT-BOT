@@ -1,6 +1,6 @@
+import { prisma } from "@/lib/prisma";
 import { Bot_sendKeyboard, Bot_sendMsg, Bot_sendMsgBadChoice, Bot_sendPhoto } from "../api/message";
 import { errorResponse } from "../api/response";
-import { prisma } from "../db/prisma";
 import { stage_data } from "../types/stages";
 import { updateStage } from "./helpers";
 import { stage_04 } from "./stage_04";

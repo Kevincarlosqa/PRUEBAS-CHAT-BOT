@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" BIGINT NOT NULL,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
@@ -10,6 +10,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Theme" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
+    "botIndex" INTEGER NOT NULL,
 
     CONSTRAINT "Theme_pkey" PRIMARY KEY ("id")
 );
@@ -86,10 +87,10 @@ CREATE TABLE "Step" (
     "id" SERIAL NOT NULL,
     "errors" INTEGER NOT NULL,
     "stage" INTEGER NOT NULL,
-    "userId" BIGINT NOT NULL,
+    "userId" TEXT NOT NULL,
     "themeId" INTEGER NOT NULL,
-    "caseId" INTEGER NOT NULL,
-    "paperId" INTEGER NOT NULL,
+    "caseId" INTEGER,
+    "paperId" INTEGER,
 
     CONSTRAINT "Step_pkey" PRIMARY KEY ("id")
 );
@@ -97,13 +98,32 @@ CREATE TABLE "Step" (
 -- CreateTable
 CREATE TABLE "Embedding" (
     "id" SERIAL NOT NULL,
+    "index" INTEGER NOT NULL,
+    "content" TEXT NOT NULL,
+    "vector" TEXT NOT NULL,
     "paperId" INTEGER NOT NULL,
 
     CONSTRAINT "Embedding_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Question" (
+    "id" SERIAL NOT NULL,
+    "question" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "userId" TEXT NOT NULL,
+
+    CONSTRAINT "Question_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Theme_botIndex_key" ON "Theme"("botIndex");
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Answer_name_key" ON "Answer"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Step_userId_themeId_key" ON "Step"("userId", "themeId");
 
 -- AddForeignKey
 ALTER TABLE "AnswersOnCases" ADD CONSTRAINT "AnswersOnCases_answerId_fkey" FOREIGN KEY ("answerId") REFERENCES "Answer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -133,10 +153,13 @@ ALTER TABLE "Step" ADD CONSTRAINT "Step_userId_fkey" FOREIGN KEY ("userId") REFE
 ALTER TABLE "Step" ADD CONSTRAINT "Step_themeId_fkey" FOREIGN KEY ("themeId") REFERENCES "Theme"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Step" ADD CONSTRAINT "Step_caseId_fkey" FOREIGN KEY ("caseId") REFERENCES "Case"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Step" ADD CONSTRAINT "Step_caseId_fkey" FOREIGN KEY ("caseId") REFERENCES "Case"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Step" ADD CONSTRAINT "Step_paperId_fkey" FOREIGN KEY ("paperId") REFERENCES "Paper"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Step" ADD CONSTRAINT "Step_paperId_fkey" FOREIGN KEY ("paperId") REFERENCES "Paper"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Embedding" ADD CONSTRAINT "Embedding_paperId_fkey" FOREIGN KEY ("paperId") REFERENCES "Paper"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Question" ADD CONSTRAINT "Question_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

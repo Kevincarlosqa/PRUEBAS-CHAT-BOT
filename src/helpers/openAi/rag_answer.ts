@@ -5,14 +5,17 @@ import { createContext, createContext1, EmbeddingsRAG } from "./createContext"
 
 export const ragAnswer = async (question:string,paperId:number) => {
 
-  const questionVector = await OpenAi_Embeddings.embedQuery(question)
+  // const questionVector = await OpenAi_Embeddings.embedQuery(question)
   
-  const context1 = createContext1(paperId,questionVector)
+  // const context1 = createContext1(paperId,questionVector)
 
-  const prompt = `Usa la siguiente contexto y responde para estudiantes dentistas
-  Contexto: ${context1}
-  Pregunta: ${question}
+  // Contexto: ${context1}
+  // const prompt = `Usa el siguiente contexto y responde para estudiantes dentistas
+  const prompt = `responde la pregunta para estudiantes dentistas
+   ${question}
   `
+
+  return prompt
   const llm = new ChatOpenAI({
     modelName: 'gpt-3.5-turbo',
     temperature: 0

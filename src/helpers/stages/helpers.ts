@@ -1,5 +1,5 @@
+import { prisma } from "@/lib/prisma"
 import { badResponse, errorResponse } from "../api/response"
-import { prisma } from "../db/prisma"
 import { intSteps } from "../types/models"
 
 // Manejo de usuarios

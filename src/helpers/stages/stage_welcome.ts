@@ -3,8 +3,8 @@ import { Bot_sendMsg } from "../api/message";
 import { stage_data, welcome_data } from "../types/stages";
 import { createStep } from "./helpers";
 import { stage_start } from "./stage_start";
-import { prisma } from "../db/prisma";
 import { errorResponse } from "../api/response";
+import { prisma } from "@/lib/prisma";
 
 const mess = (msg:string,tema:string) => `Bienvenido ${msg} al chat ${tema}   
     Nos alegra tenerte aquí. Este espacio ha sido diseñado especialmente para que puedas aprender, explorar y fortalecer tus conocimientos en odontología a través del análisis de casos clínicos reales.

@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 export async function POST(request:Request) {
-  return goodResponse('Menu de temas enviado')
+  // return goodResponse('Menu de temas enviado')
   const body = await request.json()
   const { userId } = getBodyInfo(body)
   try{
