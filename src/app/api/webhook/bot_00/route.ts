@@ -1,5 +1,5 @@
 import { Bot_sendKeyboard, genUrl } from "@/helpers/api/message";
-import { badResponse, goodResponse } from "@/helpers/api/response";
+import { badResponse, consoleError, goodResponse } from "@/helpers/api/response";
 import { themeList } from "@/helpers/db/keys";
 import { getBodyInfo } from "@/helpers/stages/global";
 import axios from "axios";
@@ -29,6 +29,7 @@ export async function POST(request:Request) {
 
     return goodResponse('Mensaje enviado correctamente')
   }catch(err){
+    consoleError(err)
     return badResponse({err})
   }
 }

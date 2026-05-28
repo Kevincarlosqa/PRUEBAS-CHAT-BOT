@@ -1,5 +1,5 @@
 import { Bot_sendMsg } from "@/helpers/api/message";
-import { badResponse, goodResponse } from "@/helpers/api/response";
+import { badResponse, consoleError, goodResponse } from "@/helpers/api/response";
 import { chat_with_bot, getBodyInfo, resErrorAns } from "@/helpers/stages/global";
 
 const botIndex = 2
@@ -12,11 +12,13 @@ export async function POST(request:Request) {
     // await Bot_sendMsg('Aun no hay casos para este chat',userId,botIndex)
     
     const userId = await chat_with_bot(body,botIndex)
+    if(!userId) return badResponse(`Error en la interaccion`)
     
     return goodResponse(`Interaccion de ${userId} en el chat: ${botIndex}`)
     
   }catch(err){
-    await resErrorAns(err)
+    consoleError(err)
+    // await resErrorAns(err)
     return badResponse(`Error en la interaccion`) 
   }
 }

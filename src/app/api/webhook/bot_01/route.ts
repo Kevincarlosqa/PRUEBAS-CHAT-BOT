@@ -8,6 +8,7 @@ export async function POST(request:Request) {
   // return goodResponse('Menu de temas enviado')
   try{
     const userId = await chat_with_bot(body,botIndex)
+    if(!userId) return badResponse(`Error en la interaccion`)
     
     return goodResponse(`Interaccion de ${userId} en el chat: ${botIndex}`)
     

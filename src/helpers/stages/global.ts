@@ -10,7 +10,7 @@ import { stage_10 } from "./stage_09";
 import { stage_12 } from "./stage_11";
 import { stage_13 } from "./stage_13";
 import { stage_welcome } from "./stage_welcome";
-import { errorResponse } from "../api/response";
+import { consoleError, errorResponse } from "../api/response";
 import { prisma } from "@/lib/prisma";
 
 export const getBodyInfo = (body:botResponse) => {
@@ -64,7 +64,9 @@ export const chat_with_bot = async (body:botResponse,botIndex:number) => {
     }
     return userId
   }catch(err){
-    errorResponse(`Error al hacer la interaccion con ${userId} y entrad: ${input}`,{err})
+    // errorResponse(`Error al hacer la interaccion con ${userId} y entrad: ${input}`,{err})
+    consoleError(err)
+    return null
   }
 }
 
