@@ -1,21 +1,21 @@
 export const themeList = [
   {
     key:process.env.TELEGRAM_KEY , 
-    link:'t.me/dentis_aqp_bot' , 
+    link:'t.me/general_chat_rag_bot' , 
     webhook: 'bot_00', 
     name:'GENERAL' 
   },
   {
     key:process.env.TELEGRAM_TEMA_01_KEY , 
-    link:'t.me/Tema01DemoDentistBot' , 
+    link:'t.me/chat_rag_1_bot' , 
     webhook: 'bot_01', 
     name:'Tema 01 Demo' 
   },
   {
     key:process.env.TELEGRAM_TEMA_02_KEY , 
-    link:'' , 
+    link:'t.me/chat_rag_2_bot' , 
     webhook: 'bot_02', 
-    name:'' 
+    name:'Tema 02 Demo' 
   },
   {
     key:process.env.TELEGRAM_TEMA_03_KEY , 
