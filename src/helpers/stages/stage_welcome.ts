@@ -3,7 +3,7 @@ import { Bot_sendMsg } from "../api/message";
 import { stage_data, welcome_data } from "../types/stages";
 import { createStep } from "./helpers";
 import { stage_start } from "./stage_start";
-import { errorResponse } from "../api/response";
+import { consoleError, errorResponse } from "../api/response";
 import { prisma } from "@/lib/prisma";
 
 const mess = (msg:string,tema:string) => `Bienvenido ${msg} al chat ${tema}   
@@ -35,7 +35,8 @@ export const stage_welcome = async (inputInfo:welcome_data) => {
     }
     
     await stage_start(data)
-  }catch{
+  }catch(err){
+    consoleError(err)
     errorResponse(`Error en stage welcome`,inputInfo)
   }
 }
