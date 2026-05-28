@@ -14,7 +14,7 @@ import { consoleError, errorResponse } from "../api/response";
 import { prisma } from "@/lib/prisma";
 
 export const getBodyInfo = (body:botResponse) => {
-  console.log(JSON.stringify(body,null,2))
+  
   const { message } = body
   if(!message) errorResponse('No message in body',{body})
     const { text, chat } = message

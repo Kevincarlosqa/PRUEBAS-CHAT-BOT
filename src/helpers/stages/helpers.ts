@@ -1,12 +1,13 @@
 import { prisma } from "@/lib/prisma"
-import { badResponse, errorResponse } from "../api/response"
+import { badResponse, consoleError, errorResponse } from "../api/response"
 import { intSteps } from "../types/models"
 
 // Manejo de usuarios
   export const findUser = async (id:string) => {
     try{
       return await prisma.user.findFirst({where:{id}})
-    }catch{
+    }catch(err){
+      consoleError(err)
       errorResponse(`Error al buscar el usuario ${id}`)
     }
   }
@@ -14,7 +15,8 @@ import { intSteps } from "../types/models"
   export const createUser = async (userId:string,name:string) => {
     try{
       return await prisma.user.create({data:{id:userId,name}})
-    }catch{
+    }catch(err){
+      consoleError(err)
       errorResponse(`Error al crear el usuario ${name}`)
     }
   }
@@ -27,7 +29,8 @@ import { intSteps } from "../types/models"
     }
     try{
       await prisma.step.create({data})
-    }catch{
+    }catch (err){
+      consoleError(err)
       errorResponse(`Error al crear el step ${userId}-${themeId}`)
     }
   }
@@ -41,7 +44,8 @@ import { intSteps } from "../types/models"
     }
     try{
       await prisma.step.update({where:{id:stepId},data})
-    }catch{
+    }catch (err){
+      consoleError(err)
       errorResponse(`Error al resetear el step ${stepId}`)
     }
   }
@@ -49,7 +53,8 @@ import { intSteps } from "../types/models"
   export const updateStep = async (stepId:number,data:intSteps) => {
     try{
       await prisma.step.update({where:{id:stepId},data})
-    }catch{
+    }catch(err){
+      consoleError(err)
       errorResponse(`Error al actualizar el step ${stepId}`)
     }
   }
@@ -58,7 +63,8 @@ import { intSteps } from "../types/models"
     const data = {stage}
     try{
       await updateStep(stepId,data)
-    }catch{
+    }catch(err){
+      consoleError(err)
       errorResponse(`Error al actualizar el stage del step ${stepId}`)
     }
   }
