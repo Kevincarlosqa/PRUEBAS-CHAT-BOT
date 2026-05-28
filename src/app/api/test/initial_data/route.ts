@@ -16,6 +16,7 @@ export async function GET(request: Request) {
   
   try {
     const deletes = [
+      prisma.user.deleteMany(),
       prisma.paper.deleteMany(),
       prisma.answer.deleteMany(),
       prisma.theme.deleteMany(),

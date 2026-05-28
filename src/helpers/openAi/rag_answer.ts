@@ -15,7 +15,7 @@ export const ragAnswer = async (question:string,paperId:number) => {
    ${question}
   `
 
-  return prompt
+  // return prompt
   const llm = new ChatOpenAI({
     modelName: 'gpt-3.5-turbo',
     temperature: 0
