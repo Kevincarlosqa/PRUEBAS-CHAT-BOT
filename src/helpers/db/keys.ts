@@ -13,7 +13,7 @@ export const themeList = [
   },
   {
     key:process.env.TELEGRAM_TEMA_02_KEY , 
-    link:'t.me/chat_rag_2_bot' , 
+    link:'t.me/char_rag_2_bot' , 
     webhook: 'bot_02', 
     name:'Tema 02 Demo' 
   },
