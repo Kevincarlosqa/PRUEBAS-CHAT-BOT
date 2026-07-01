@@ -1,72 +1,193 @@
-import { intAnswers, intCases, intImages, intPapers } from "../types/models"
+﻿import { intAnswers, intCases, intImages, intPapers } from "../types/models"
 
-export const papers_info =[
+export const papers_info = [
   { title: "Fundamentos Avanzados de Endodoncia", autor: "Dr. Ricardo Montalvo" },
-  { title: "Prótesis Dental: Innovaciones y Técnicas", autor: "Dra. Valeria Guzmán" },
-  { title: "Periodoncia Clínica y Cirugía Oral", autor: "Dr. Esteban Romero" },
   { title: "Radiología Odontológica: Interpretación y Diagnóstico", autor: "Dra. Sofía Ledesma" },
-  { title: "Odontología Estética: Principios y Aplicaciones", autor: "Dr. Alejandro Paredes" },
-  { title: "Biomecánica en Ortodoncia: Teoría y Práctica", autor: "Dra. Patricia Herrera" },
-  { title: "Cirugía Maxilofacial: Casos Clínicos y Resolución", autor: "Dr. Francisco Núñez" },
-  { title: "Materiales Dentales: Propiedades y Aplicaciones", autor: "Dra. Carolina Vélez" },
-  { title: "Oclusión y ATM: Diagnóstico y Tratamiento", autor: "Dr. Javier Montes" },
-  { title: "Odontología Pediátrica: Manejo Integral del Paciente Joven", autor: "Dra. Elena Salgado" }
+  { title: "Odontología Pediátrica: Manejo Integral del Paciente Joven", autor: "Dra. Elena Salgado" },
 ]
 
-
 export const answers_info = [
-  {name:'caries profunda con exposición pulpar'},
-  {name:'pulpitis reversible'},
-  {name:'necrosis pulpar'},
-  {name:'abceso periapical'},
-  {name:'caries profunda con compromiso pulpar'},
-  {name:'pulpitis irreversible'},
-  {name:'fistula crónica'},
+  { name: 'Pulpitis reversible' },
+  { name: 'Pulpitis irreversible' },
+  { name: 'Necrosis pulpar' },
+  { name: 'Periodontitis apical crónica' },
+  { name: 'Absceso periapical' },
+  { name: 'Pulpotomía indicada' },
+  { name: 'Pulpectomía indicada' },
 ]
 
 export const case01_info = {
-  title: 'Caso Clínico N°01',
-  exam: 'El examen clínico intraoral presenta una dentición mixta temprana. Se observan varias lesiones cariosas en distintas piezas dentales, con lesiones de diversa profundidad. En el primer cuadrante, la pieza 55 presenta una pequeña cavidad en la superficie oclusal, afectando el esmalte. En el segundo cuadrante, la pieza 65 tiene una cavidad que abarca la dentina de poca profundidad. En el tercer cuadrante, la pieza 74 presenta una cavidad superficial en el esmalte, mientras que el diente 75 presenta una cavidad profunda que compromete la pulpa. En el cuarto cuadrante, la pieza 85 presenta una cavidad en distal, también comprometiendo la pulpa dental. En general, las encías y tejidos blandos están en buen estado, con una adecuada inserción gingival y una cantidad de saliva serosa, fluida y abundante.',
-  history: 'No se precisa el tiempo de evolución. El niño no reporta dolor actualmente, pero la madre refiere que notó el problema “hace varias semanas”.',
-  background: 'Niño de 6 años y 10 meses de edad, en buen estado general de salud (ABEG). Acude a consulta acompañado de su madre, quien menciona que el niño presenta varias lesiones cariosas, incluyendo una pieza dental inferior que parece tener un proceso fistuloso; no se precisa el tiempo de aparición, pero actualmente está asintomático. Tiene una experiencia odontológica previa satisfactoria y sus hábitos alimenticios incluyen el consumo frecuente de dulces, como galletas de chocolate y helados. Presenta una conducta de "paciente colaborador". No padece enfermedades en la actualidad, aunque a los dos años tuvo una infección por el virus mano-pie-boca.',
-  work: 'Cual seria tu diagnostico de las pieza 75',
-  pain: 'El paciente se encuentra asintomático al momento de la consulta. La madre no puede precisar cuándo apareció la lesión',
+  title: 'Caso Clínico N° 1 - Mitzi Callalli',
+  exam: 'Paciente de 8 años y 6 meses con lesiones cavitadas en piezas 74 y 75. La pieza 74 presenta lesión oclusal en dentina con aspecto blando. La pieza 75 presenta lesión profunda con dolor espontáneo prolongado.',
+  history: 'Dolor espontáneo de 3 semanas en el sector inferior izquierdo. La madre reporta molestias persistentes y ausencia de mejoría.',
+  background: 'Paciente sin antecedentes patológicos relevantes. Higiene oral deficiente, bruxismo leve y onicofagia. Acude con su madre en un estado general estable.',
+  work: 'Analiza los hallazgos clínicos y radiográficos para determinar el diagnóstico pulpar de las piezas 74 y 75.',
+  pain: 'Dolor espontáneo de intensidad fuerte en la pieza 75, con mayor molestia durante la noche.',
 }
+
+export const case01_teeth = [
+  {
+    toothNumber: '74',
+    clinicalExam: 'Lesión cavitada oclusal, color marrón, consistencia blanda y extensión aparente hacia dentina. Asintomático.',
+    radiographicNotes: 'Radiolúcido oclusal en ECP/R5, con profundidad estimada 1/3.',
+    radiographicDepth: '1/3',
+    rootResorption: '1/3',
+    correctDiagnosis: 'Necrosis pulpar',
+    detailSummary: 'La pieza 74 evidencia compromiso pulpar crónico sin signos claros de inflamación aguda.',
+  },
+  {
+    toothNumber: '75',
+    clinicalExam: 'Lesión cavitada oclusal marrón, consistencia blanda y dolor espontáneo desde hace 3 semanas.',
+    radiographicNotes: 'Radiolúcido oclusal en ACP, con compromiso pulpar evidente.',
+    radiographicDepth: '1/3',
+    rootResorption: '1/3',
+    correctDiagnosis: 'Pulpitis irreversible',
+    detailSummary: 'La pieza 75 presenta inflamación pulpar activa y hallazgos radiográficos compatibles con daño irreversible.',
+  },
+]
 
 export const images_case01 = [
   {
     url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/132.png',
     title: 'Radiografía pieza 75',
-    info: 'La 75 muestra una lesión profunda con compromiso pulpar y un área radiolúcida apical sugerente de necrosis. La 85 presenta una lesión profunda distal con compromiso pulpar, zona radiolúcida y posible trayecto fistuloso',
+    caption: 'Radiografía que muestra compromiso pulpar profundo en la pieza 75.',
+    info: 'La pieza 75 evidencia lesión radiolúcida apical y daño pulpar claro.',
     type: true,
+    toothNumber: '75',
   },
   {
     url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png',
-    title: 'Fotografia pieza 75',
-    info: 'Imagen clínica donde la 75 tiene cavidad profunda con posible exposición pulpar. La 85 muestra lesión distal con zona rojiza y supuración mínima visible',
+    title: 'Fotografía clínica pieza 75',
+    caption: 'Imagen de la pieza 75 con cavidad profunda en oclusal.',
+    info: 'La fotografía muestra cavidad profunda y posibles signos clínicos de compromiso pulpar.',
     type: false,
+    toothNumber: '75',
   },
 ]
 
-export const answers_case01 =[
-  {name:'pulpitis irreversible', isCorrect: false},
-  {name:'pulpitis reversible', isCorrect: false},
-  {name:'necrosis pulpar', isCorrect: false},
-  {name:'abceso periapical', isCorrect: true}
+export const answers_case01 = [
+  { name: 'Necrosis pulpar', isCorrect: true },
+  { name: 'Pulpitis irreversible', isCorrect: true },
+]
+
+export const case02_info = {
+  title: 'Caso Clínico N° 2 - Joselyn Chapoñán',
+  exam: 'Paciente de 7 años con cavidades en piezas 55 y 65. La pieza 55 evidencia compromiso de esmalte y dentina; la pieza 65 presenta extensión profunda y dolor súbito.',
+  history: 'La madre describe sensibilidad al empaquetamiento de alimentos en 55 y dolor repentino en 65, con evolución progresiva.',
+  background: 'Higiene oral sin supervisión, con antecedentes de extracciones y tratamientos de flúor. El paciente consume alimentos cariogénicos con frecuencia.',
+  work: 'Determina el diagnóstico pulpar para las piezas 55 y 65 y el manejo recomendado.',
+  pain: 'Dolor localizado al empaquetamiento en 55 y episodios de dolor agudo en 65.',
+}
+
+export const case02_teeth = [
+  {
+    toothNumber: '55',
+    clinicalExam: 'Lesión cavitada oclusomesial, consistencia blanda, halo blanquecino y compromiso de esmalte y dentina. Sintomático al empaquetamiento.',
+    radiographicNotes: 'Radiolúcido oclusomesial con desarrollo hacia PAP, profundidad 2/3.',
+    radiographicDepth: '2/3',
+    rootResorption: '2/3',
+    correctDiagnosis: 'Pulpitis reversible',
+    detailSummary: 'La pieza 55 mantiene lesión inflamatoria pulpar leve con posibilidad de tratamiento conservador.',
+  },
+  {
+    toothNumber: '65',
+    clinicalExam: 'Lesión cavitada oclusomesial con extensión a esmalte y dentina, consistencia blanda.',
+    radiographicNotes: 'Radiolúcido oclusomesial en ACP, profundidad 2/3.',
+    radiographicDepth: '2/3',
+    rootResorption: '2/3',
+    correctDiagnosis: 'Pulpitis irreversible',
+    detailSummary: 'La pieza 65 muestra signos compatibles con inflamación pulpar irreversible.',
+  },
+]
+
+export const images_case02 = [
+  {
+    url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/25.png',
+    title: 'Radiografía pieza 65',
+    caption: 'Radiografía de la pieza 65 con lesión profunda.',
+    info: 'La radiografía evidencia compromiso dentinario y lesión pulpar en 65.',
+    type: true,
+    toothNumber: '65',
+  },
+  {
+    url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/2.png',
+    title: 'Fotografía pieza 55',
+    caption: 'Imagen clínica de la pieza 55 con cavidad oclusomesial.',
+    info: 'La pieza 55 muestra lesión blanda con halo blanquecino.',
+    type: false,
+    toothNumber: '55',
+  },
+]
+
+export const answers_case02 = [
+  { name: 'Pulpitis reversible', isCorrect: true },
+  { name: 'Pulpitis irreversible', isCorrect: true },
+]
+
+export const case03_info = {
+  title: 'Caso Clínico N° 3 - Angelina Vanessa Chico',
+  exam: 'Niña de 4 años 11 meses con lesiones visibles en piezas superiores y dolor localizado en 74. Se identifica pólipo pulpar y fístula en 54.',
+  history: 'Evolución progresiva de caries visibles en múltiples piezas, con molestia a la palpación en 74.',
+  background: 'Buena higiene supervisada. Antecedentes de alopecia infantil y succión digital ocasional. Conducta colaboradora.',
+  work: 'Evalúa el diagnóstico pulpar en piezas 54 y 74 para establecer el manejo pulpar ideal.',
+  pain: 'Dolor a la palpación en la pieza 74, sin dolor espontáneo generalizado.',
+}
+
+export const case03_teeth = [
+  {
+    toothNumber: '54',
+    clinicalExam: 'Lesión cavitada oclusal con pólipo pulpar y fístula presente.',
+    radiographicNotes: 'Radiolúcido oclusal en ECP, profundidad 2/3.',
+    radiographicDepth: '2/3',
+    rootResorption: '2/3',
+    correctDiagnosis: 'Periodontitis apical crónica',
+    detailSummary: 'La pieza 54 presenta proceso apical crónico con comunicación fistulosa.',
+  },
+  {
+    toothNumber: '74',
+    clinicalExam: 'Lesión cavitada oclusal profunda, coloración negruzca y dolor a la exploración.',
+    radiographicNotes: 'Radiolúcido oclusodistal en PAP, profundidad 1/3.',
+    radiographicDepth: '1/3',
+    rootResorption: '1/3',
+    correctDiagnosis: 'Pulpitis reversible',
+    detailSummary: 'La pieza 74 evidencia compromiso pulpar leve con posibilidad de tratamiento conservador.',
+  },
+]
+
+export const images_case03 = [
+  {
+    url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/133.png',
+    title: 'Radiografía pieza 54',
+    caption: 'Radiografía que sugiere periodontitis apical crónica en 54.',
+    info: 'La imagen muestra lesión apical en la pieza 54.',
+    type: true,
+    toothNumber: '54',
+  },
+  {
+    url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/4.png',
+    title: 'Fotografía pieza 74',
+    caption: 'Imagen clínica de la pieza 74 con cavidad profunda.',
+    info: 'La pieza 74 presenta daño pulpar leve-moderado con dolor a la exploración.',
+    type: false,
+    toothNumber: '74',
+  },
+]
+
+export const answers_case03 = [
+  { name: 'Periodontitis apical crónica', isCorrect: true },
+  { name: 'Pulpitis reversible', isCorrect: true },
 ]
 
 export const themes = [
-  {name: 'Tema 01',botIndex:1}
+  { name: 'Tema 01', botIndex: 1 }
 ]
 
 export const themes_case01 = [
-  {name: 'Tema 01'}
+  { name: 'Tema 01' }
 ]
 
 export const papers_case01 = [
   { title: "Fundamentos Avanzados de Endodoncia" },
-  { title: "Prótesis Dental: Innovaciones y Técnicas" },
-  { title: "Periodoncia Clínica y Cirugía Oral" },
   { title: "Radiología Odontológica: Interpretación y Diagnóstico" },
-  { title: "Odontología Estética: Principios y Aplicaciones" },
+  { title: "Odontología Pediátrica: Manejo Integral del Paciente Joven" },
 ]

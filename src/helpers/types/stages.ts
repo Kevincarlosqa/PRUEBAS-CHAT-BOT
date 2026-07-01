@@ -7,6 +7,7 @@ export interface stage_data {
   themeId: number
   caseId: number | null
   paperId: number | null
+  selectedTooth?: string | null
   stage: number
   userName: string
 }

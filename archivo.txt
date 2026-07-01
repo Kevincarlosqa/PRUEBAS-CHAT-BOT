@@ -1,0 +1,218 @@
+🦷 BIENVENIDO AL CHATBOT DE COMPETENCIAS DIAGNÓSTICAS EN TERAPIA PULPAR
+Estimado(a) estudiante:
+El presente chatbot ha sido desarrollado como una herramienta de apoyo para el fortalecimiento de tus competencias diagnósticas en terapia pulpar, específicamente en el contexto de la odontopediatría.
+🤖 ¿QUÉ SOY Y CÓMO FUNCIONO?
+Soy un asistente virtual basado en inteligencia artificial, especializado en odontopediatría. He sido entrenado con casos clínicos reales, guías actualizadas y evidencia científica en terapia pulpar para dientes temporales.
+A diferencia de un chatbot convencional, cuento con una arquitectura de generación aumentada por recuperación (RAG), lo que significa que mis respuestas se basan exclusivamente en una base de conocimiento validada por especialistas y de literatura de relevancia. Esto reduce el riesgo de información inexacta.
+
+¿ESTÁS LISTO(A) PARA COMENZAR?
+Para iniciar, escribe "COMENZAR" o presiona el botón correspondiente. A continuación, te presentaré una serie de casos, que puedes seleccionar uno de ellos.
+Mucho éxito en esta experiencia de aprendizaje.
+
+Atentamente,
+Equipo de investigación - Chatbot Terapia Pulpar
+│  📋 Antecedentes      📈 Historia de progresión     │
+│  😖 Dolencia          │ 📸 Fotografías       
+│  📷 Radiografías clínicas       Menu 
+
+
+
+CASO CLÍNICO N° 1 (CASO DE MITZI CALLALLI)
+
+📋 ANTECEDENTES
+Paciente masculino de 8 años y 6 meses acude a consulta en compañía de su madre. No presenta antecedentes patológicos familiares y personales de relevancia. Tuvo una lactancia materna de 0 a 3 años; y artificial de 3 a 8 años. Respecto a la higiene oral, se cepilla 1 veces al día, sin la supervisión de los padres, no refiere utilizar hilo dental, ni enjuagatorios. También refiere que suele rechinar ligeramente los dientes en ocasiones por aprox. 5 a 6 minutos y regularmente suele comerse las uñas cuando está nervioso aprox. 5 minutos. 
+😖 DOLENCIA
+Paciente acude por presentar dolor espontáneo de intensidad fuerte y duración prolongada en diente del sector inferior lado izquierdo desde hace 3 semanas. Se observa presencia de lesiones cavitadas en zona inferior del lado izquierdo, en piezas 74 y 75.
+-¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+-¿De qué pieza dental necesitas más información?
+74
+75
+📈 Examen clínico de la pieza 74
+Lesión cavitada en superficie oclusal de color marrón, de consistencia blanda, y con aparente extensión hacia dentina, asintomático.
+📈 Examen clínico de la pieza 75
+Lesión cavitada en superficie oclusal de color marrón, de consistencia blanda, y con aparente extensión hacia dentina, dolor espontáneo desde hace 3 semanas.
+-¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+-¿De qué pieza dental necesitas más información?
+74
+75
+📸 FOTOGRAFÍAS 
+Registro fotográfico clínico
+
+Figura 1: Piezas 74 y 75
+
+- ¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+-¿De qué pieza dental necesitas más información?
+74
+75
+
+📷 RADIOGRAFÍAS CLÍNICAS 
+Figura 2 - Piezas 74
+
+Figura 2 - Piezas 75
+
+
+
+Pieza dental	Que veo	Donde	Profundidad	Grado de reabsorción radicular
+74	Radiolúcido	Oclusal	ECP/ R5	1/3
+75	Radiolúcido	Oclusal	ACP	1/3
+
+-¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+
+RESPUESTAS CORRECTAS:
+PIEZA 74: NECROSIS PULPAR
+PIEZA 75: PULPITIS IRREVERSIBLE.
+
+🎯 DIAGNÓSTICO 
+- Respuesta del participante. 
+1.Te felicitamos por haber dado un diagnóstico correcto basado en toda la información disponible.
+2.Te felicitamos por haber dado un diagnóstico, pero te recomendamos que, para ser precisos, debes tener en cuenta los exámenes auxiliares que te podrán definir si es NP, PAA, PAC.
+3.Te felicitamos por participar, pero es necesario revisar algunos conceptos. Te sugerimos revisar la bibliografía.
+
+ENLACE DE LOS ARTICULOS
+
+
+
+
+
+
+
+
+
+CASO CLÍNICO N° 2 (CASO DE JOSELYN CHAPOÑAN)
+
+📋 ANTECEDENTES
+Paciente masculino de 7 años acude a consulta acompañado de su madre. En la etapa prenatal la madre consumió ácido fólico y calcio. No refiere enfermedades en la infancia. Con respecto a los antecedentes familiares, los abuelos padecen de hipertensión. Paciente se cepilla 2 veces al día, sin supervisión. Tiene como hábito nocivo: interposición lingual. Anteriormente se le han realizado los siguientes tratamientos odontológicos: extracción, limpieza y flúor.
+😖 DOLENCIA
+La madre menciona que su niño tiene cavidades en diferentes piezas dentales y fractura de una pieza superior. Refiere que su niño manifiesta sintomatología al empaquetamiento de alimentos en piezas 55 y dolor que se presenta de pronto en pieza 65. Fractura de corona de pieza 64.
+-¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+-¿De qué pieza dental necesitas más información?
+55
+65
+📈 Examen clínico de la pieza 55
+Lesión cavitada en ocluso mesial, de consistencia blanda. Con halo blanquecino. Con compromiso de esmalte y dentina. Sintomático al empaquetamiento de comida.
+📈 Examen clínico de la pieza 65
+Lesión cavitada en cara ocluso mesial, con extensión a esmalte y dentina, de consistencia blanda. 
+-¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+-¿De qué pieza dental necesitas más información?
+55
+65
+📸 FOTOGRAFÍAS 
+Registro fotográfico clínico
+
+Figura 1: Pieza 55
+
+Figura 2: Pieza 65
+
+- ¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+-¿De qué pieza dental necesitas más información?
+55
+65
+📷 RADIOGRAFÍAS CLÍNICAS 
+Figura 2 - Pieza 55
+
+Figura 2 - Pieza 65
+
+Pieza dental	Que veo	Donde	Profundidad	Grado de reabsorción radicular
+55	Radiolúcido	Oclusomesial	PAP	2/3
+65	Radiolúcido	Oclusomesial	ACP	2/3
+
+-¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+
+RESPUESTAS CORRECTAS:
+PIEZA 55: PULPITIS RREVERSIBLE.
+PIEZA 65: PULPITIS IRREVERSIBLE.
+
+🎯 DIAGNÓSTICO 
+- Respuesta del participante. 
+4.Te felicitamos por haber dado un diagnóstico correcto basado en toda la información disponible.
+5.Te felicitamos por haber dado un diagnóstico, pero te recomendamos que, para ser precisos, debes tener en cuenta los exámenes auxiliares que te podrán definir si es NP, PAA, PAC.
+6.Te felicitamos por participar, pero es necesario revisar algunos conceptos. Te sugerimos revisar la bibliografía.
+
+ENLACE DE LOS ARTICULOS
+
+
+
+
+
+
+
+
+CASO CLÍNICO N° 3 (CASO DE ANGIELINA VANESSA CHICO)
+
+📋 ANTECEDENTES
+La paciente es una niña de 4 años 11 meses de edad, clasificada como infante colaborador. Durante el periodo prenatal, la madre consumió ácido fólico. El parto fue por cesárea y el nacimiento ocurrió a término. La lactancia materna se prolongó por 1 año y 4 meses, continuando posteriormente con lactancia artificial durante 11 meses, sin adición de endulzantes. Como antecedente patológico, la paciente presentó alopecia a los 3 años, sin que se haya registrado un diagnóstico específico. En cuanto a hábitos, refiere succión digital poco frecuente. La higiene oral es realizada por los padres tres veces al día con supervisión. La conducta de la paciente se clasifica como Frankl tipo 3 (positiva).
+😖 DOLENCIA
+La enfermedad actual ha tenido una evolución progresiva. La madre acude a consulta refiriendo la presencia de caries visibles en múltiples piezas dentales. La paciente se encuentra asintomática en la mayoría de las piezas dentales. Sin embargo, durante la exploración clínica se identificó dolor a la palpación o percusión en la pieza 74. No se reporta dolor espontáneo en otras localizaciones. En las superficies oclusales de los molares superiores se observan lesiones cariosas cavitadas.
+-¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+-¿De qué pieza dental necesitas más información?
+54
+74
+📈 Examen clínico de la pieza 54
+Lesión cavitada en oclusal, presencia de pólipo pulpar. Se observa presencia de fistula. 
+📈 Examen clínico de la pieza 74
+Lesión cavitada en oclusal, a nivel de dentina profunda con aparente compromiso pulpar, textura blanda, coloración negruzca, dolor a la exploración.
+-¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+-¿De qué pieza dental necesitas más información?
+54
+74
+
+📸 FOTOGRAFÍAS 
+Registro fotográfico clínico
+Figura 1: Pieza 54
+
+Figura 2: Pieza 74
+
+- ¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+-¿De qué pieza dental necesitas más información?
+54
+74
+📷 RADIOGRAFÍAS CLÍNICAS 
+Figura 2 - Pieza 54
+
+Figura 2 - Pieza 74
+
+Pieza dental	Que veo	Donde	Profundidad	Grado de reabsorción radicular
+54	Radiolúcido	Oclusal	ECP	2/3
+74	Radiolúcido	Oclusodistal	PAP	1/3
+
+-¿Estas listo para brindarnos tu diagnostico o necesitas más información?
+Rpta: Necesito mayor información
+
+RESPUESTAS CORRECTAS:
+PIEZA 54: PERIODONTITIS APICAL CRONICA.
+PIEZA 74: PULPITIS RREVERSIBLE.
+
+🎯 DIAGNÓSTICO 
+- Respuesta del participante. 
+7.Te felicitamos por haber dado un diagnóstico correcto basado en toda la información disponible.
+8.Te felicitamos por haber dado un diagnóstico, pero te recomendamos que, para ser precisos, debes tener en cuenta los exámenes auxiliares que te podrán definir si es NP, PAA, PAC.
+9.Te felicitamos por participar, pero es necesario revisar algunos conceptos. Te sugerimos revisar la bibliografía.
+
+ENLACE DE LOS ARTICULOS
+
+
+
+
+
+
+
+
+SUGERENCIAS
+🎯 PARA EMITIR DIAGNÓSTICO Y PLAN DE TRATAMIENTO
+Con base en la información proporcionada, el estudiante debe ser capaz de:
+1.Clasificar el riesgo estomatológico del paciente
+2.Describir las patologías de tejidos blandos y duros presentes
+3.Diferenciar entre remanente coronario y radicular
+4.Justificar el tipo de terapia pulgar indicada para las piezas 74 y 84 (pulpotomía vs pulpectomía)
+5.Proponer un plan de tratamiento completo, incluyendo sellantes, restauraciones, tratamientos pulpares y exodoncias según corresponda

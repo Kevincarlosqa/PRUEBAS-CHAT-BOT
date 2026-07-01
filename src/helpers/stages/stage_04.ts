@@ -40,11 +40,17 @@ import { stage_start } from "./stage_start";
       }) || {isCorrect:false}
       
       if( isCorrect ){
-        const text = 'Felicidades tu respuesta es correcta'
+        const correctAnswers = await prisma.answersOnCases.findMany({
+          where:{caseId,isCorrect:true},
+          select:{answer:{select:{name:true}}}
+        })
+
+        const answersText = correctAnswers.map(({answer}) => answer.name).join('\n')
+        const text = `✅ Excelente. Tu diagnóstico fue correcto.\n\nRespuestas correctas del caso:\n${answersText}\n\nPuedes seguir revisando la bibliografía o volver a analizar el caso.`
         await Bot_sendMsg(text,userId,botIndex)
         return await stage_start(inputInfo)
       }
-      const text = 'Ups!! parece que la respuesta no es correcta'
+      const text = '😬 Esa respuesta no fue la correcta. Puedes pedir más información o revisar la bibliografía para reforzar el diagnóstico.'
       
       await Bot_sendMsg(text,userId,botIndex)
       await stage_06(inputInfo)

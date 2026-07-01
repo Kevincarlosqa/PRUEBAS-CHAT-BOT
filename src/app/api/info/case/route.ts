@@ -24,6 +24,7 @@ interface BodyPostCase {
     title: string
     type: boolean
     info: string
+    caption?: string
   }[]
 }
 
@@ -41,7 +42,7 @@ interface BodyPostCase {
       const newThemes = themes.map( themeId => ({themeId,caseId}))
       await prisma.themesOnCases.createMany({data:newThemes})
 
-      const newImages = images.map( el => ({...el,caseId}))
+      const newImages = images.map( el => ({ ...el, caseId, caption: el.caption ?? "" }))
       await prisma.image.createMany({data:newImages})
 
       return goodResponse('Caso agregado correctamente')
