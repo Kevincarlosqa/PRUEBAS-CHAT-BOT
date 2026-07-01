@@ -27,22 +27,22 @@ export const answers_info = [
 
 export const case01_info = {
   title: "Caso Clínico N° 1 - Mitzi Callalli",
-  exam: "Paciente de 8 años y 6 meses con lesiones cavitadas en piezas 74 y 75. La pieza 74 presenta lesión oclusal en dentina con aspecto blando. La pieza 75 presenta lesión profunda con dolor espontáneo prolongado.",
+  exam: "Paciente de 8 años y 6 meses acude a consulta en compañía de su madre. No presenta antecedentes patológicos familiares y personales de relevancia. Se observa presencia de lesiones cavitadas en zona inferior del lado izquierdo, en piezas 74 y 75.",
   history:
-    "Dolor espontáneo de 3 semanas en el sector inferior izquierdo. La madre reporta molestias persistentes y ausencia de mejoría.",
+    "Paciente acude por presentar dolor espontáneo de intensidad fuerte y duración prolongada en diente del sector inferior lado izquierdo desde hace 3 semanas. La madre reporta molestias persistentes y ausencia de mejoría.",
   background:
-    "Paciente sin antecedentes patológicos relevantes. Higiene oral deficiente, bruxismo leve y onicofagia. Acude con su madre en un estado general estable.",
+    "Tuvo lactancia materna de 0 a 3 años y artificial de 3 a 8 años. Respecto a la higiene oral, se cepilla 1 vez al día sin supervisión de los padres, no refiere utilizar hilo dental ni enjuagatorios. Suele rechinar ligeramente los dientes en ocasiones por aprox. 5 a 6 minutos y regularmente suele comerse las uñas cuando está nervioso aprox. 5 minutos.",
   work: "Analiza los hallazgos clínicos y radiográficos para determinar el diagnóstico pulpar de las piezas 74 y 75.",
-  pain: "Dolor espontáneo de intensidad fuerte en la pieza 75, con mayor molestia durante la noche.",
+  pain: "Dolor espontáneo de intensidad fuerte y duración prolongada en diente del sector inferior lado izquierdo desde hace 3 semanas.",
 };
 
 export const case01_teeth = [
   {
     toothNumber: "74",
     clinicalExam:
-      "Lesión cavitada oclusal, color marrón, consistencia blanda y extensión aparente hacia dentina. Asintomático.",
+      "Lesión cavitada en superficie oclusal de color marrón, de consistencia blanda, y con aparente extensión hacia dentina, asintomático.",
     radiographicNotes:
-      "Radiolúcido oclusal en ECP/R5, con profundidad estimada 1/3.",
+      "Radiolúcido oclusal en ECP/R5, con profundidad estimada 1/3. Hallazgos compatibles con compromiso pulpar crónico.",
     radiographicDepth: "1/3",
     rootResorption: "1/3",
     correctDiagnosis: "Necrosis pulpar",
@@ -52,14 +52,14 @@ export const case01_teeth = [
   {
     toothNumber: "75",
     clinicalExam:
-      "Lesión cavitada oclusal marrón, consistencia blanda y dolor espontáneo desde hace 3 semanas.",
+      "Lesión cavitada en superficie oclusal de color marrón, de consistencia blanda, y con aparente extensión hacia dentina, dolor espontáneo desde hace 3 semanas.",
     radiographicNotes:
-      "Radiolúcido oclusal en ACP, con compromiso pulpar evidente.",
+      "Radiolúcido oclusal en ACP, con compromiso pulpar evidente. Profundidad 1/3.",
     radiographicDepth: "1/3",
     rootResorption: "1/3",
     correctDiagnosis: "Pulpitis irreversible",
     detailSummary:
-      "La pieza 75 presenta inflamación pulpar activa y hallazgos radiográficos compatibles con daño irreversible.",
+      "La pieza 75 presenta inflamación pulpar activa con dolor espontáneo prolongado y hallazgos radiográficos compatibles con daño irreversible.",
   },
 ];
 
@@ -110,22 +110,22 @@ export const answers_case01 = [
 
 export const case02_info = {
   title: "Caso Clínico N° 2 - Joselyn Chapoñán",
-  exam: "Paciente de 7 años con cavidades en piezas 55 y 65. La pieza 55 evidencia compromiso de esmalte y dentina; la pieza 65 presenta extensión profunda y dolor súbito.",
+  exam: "Paciente masculino de 7 años acude a consulta acompañado de su madre. Se observan cavidades en diferentes piezas dentales y fractura de corona de pieza 64. Presenta sintomatología al empaquetamiento de alimentos en piezas 55 y dolor que se presenta de pronto en pieza 65.",
   history:
-    "La madre describe sensibilidad al empaquetamiento de alimentos en 55 y dolor repentino en 65, con evolución progresiva.",
+    "La madre menciona que su niño tiene cavidades en diferentes piezas dentales y fractura de una pieza superior. Refiere que su niño manifiesta sintomatología al empaquetamiento de alimentos en piezas 55 y dolor que se presenta de pronto en pieza 65.",
   background:
-    "Higiene oral sin supervisión, con antecedentes de extracciones y tratamientos de flúor. El paciente consume alimentos cariogénicos con frecuencia.",
+    "En la etapa prenatal la madre consumió ácido fólico y calcio. No refiere enfermedades en la infancia. Con respecto a los antecedentes familiares, los abuelos padecen de hipertensión. Paciente se cepilla 2 veces al día sin supervisión. Tiene como hábito nocivo: interposición lingual. Anteriormente se le han realizado los siguientes tratamientos odontológicos: extracción, limpieza y flúor.",
   work: "Determina el diagnóstico pulpar para las piezas 55 y 65 y el manejo recomendado.",
-  pain: "Dolor localizado al empaquetamiento en 55 y episodios de dolor agudo en 65.",
+  pain: "Sintomatología al empaquetamiento de alimentos en piezas 55 y dolor que se presenta de pronto en pieza 65.",
 };
 
 export const case02_teeth = [
   {
     toothNumber: "55",
     clinicalExam:
-      "Lesión cavitada oclusomesial, consistencia blanda, halo blanquecino y compromiso de esmalte y dentina. Sintomático al empaquetamiento.",
+      "Lesión cavitada en ocluso mesial, de consistencia blanda. Con halo blanquecino. Con compromiso de esmalte y dentina. Sintomático al empaquetamiento de comida.",
     radiographicNotes:
-      "Radiolúcido oclusomesial con desarrollo hacia PAP, profundidad 2/3.",
+      "Radiolúcido oclusomesial en PAP, con profundidad estimada 2/3.",
     radiographicDepth: "2/3",
     rootResorption: "2/3",
     correctDiagnosis: "Pulpitis reversible",
@@ -135,8 +135,9 @@ export const case02_teeth = [
   {
     toothNumber: "65",
     clinicalExam:
-      "Lesión cavitada oclusomesial con extensión a esmalte y dentina, consistencia blanda.",
-    radiographicNotes: "Radiolúcido oclusomesial en ACP, profundidad 2/3.",
+      "Lesión cavitada en cara ocluso mesial, con extensión a esmalte y dentina, de consistencia blanda.",
+    radiographicNotes:
+      "Radiolúcido oclusomesial en ACP, con profundidad estimada 2/3.",
     radiographicDepth: "2/3",
     rootResorption: "2/3",
     correctDiagnosis: "Pulpitis irreversible",
@@ -191,37 +192,39 @@ export const answers_case02 = [
 
 export const case03_info = {
   title: "Caso Clínico N° 3 - Angelina Vanessa Chico",
-  exam: "Niña de 4 años 11 meses con lesiones visibles en piezas superiores y dolor localizado en 74. Se identifica pólipo pulpar y fístula en 54.",
+  exam: "Paciente de 4 años 11 meses de edad, clasificada como infante colaborador. Durante el periodo prenatal, la madre consumió ácido fólico. El parto fue por cesárea y el nacimiento ocurrió a término. Se observan lesiones cariosas cavitadas en superficies oclusales de los molares superiores.",
   history:
-    "Evolución progresiva de caries visibles en múltiples piezas, con molestia a la palpación en 74.",
+    "La enfermedad actual ha tenido una evolución progresiva. Se observa presencia de caries visibles en múltiples piezas dentales. La paciente se encuentra asintomática en la mayoría de las piezas dentales. Sin embargo, durante la exploración clínica se identificó dolor a la palpación o percusión en la pieza 74. No se reporta dolor espontáneo en otras localizaciones.",
   background:
-    "Buena higiene supervisada. Antecedentes de alopecia infantil y succión digital ocasional. Conducta colaboradora.",
+    "La lactancia materna se prolongó por 1 año y 4 meses, continuando posteriormente con lactancia artificial durante 11 meses, sin adición de endulzantes. Como antecedente patológico, la paciente presentó alopecia a los 3 años, sin que se haya registrado un diagnóstico específico. Refiere succión digital poco frecuente. La higiene oral es realizada por los padres tres veces al día con supervisión. La conducta de la paciente se clasifica como Frankl tipo 3 (positiva).",
   work: "Evalúa el diagnóstico pulpar en piezas 54 y 74 para establecer el manejo pulpar ideal.",
-  pain: "Dolor a la palpación en la pieza 74, sin dolor espontáneo generalizado.",
+  pain: "Dolor a la palpación en la pieza 74, sin dolor espontáneo en otras localizaciones.",
 };
 
 export const case03_teeth = [
   {
     toothNumber: "54",
     clinicalExam:
-      "Lesión cavitada oclusal con pólipo pulpar y fístula presente.",
-    radiographicNotes: "Radiolúcido oclusal en ECP, profundidad 2/3.",
+      "Lesión cavitada en oclusal, presencia de pólipo pulpar. Se observa presencia de fístula.",
+    radiographicNotes:
+      "Radiolúcido oclusal en ECP, con profundidad estimada 2/3.",
     radiographicDepth: "2/3",
     rootResorption: "2/3",
     correctDiagnosis: "Periodontitis apical crónica",
     detailSummary:
-      "La pieza 54 presenta proceso apical crónico con comunicación fistulosa.",
+      "La pieza 54 presenta proceso apical crónico con comunicación fistulosa y pólipo pulpar.",
   },
   {
     toothNumber: "74",
     clinicalExam:
-      "Lesión cavitada oclusal profunda, coloración negruzca y dolor a la exploración.",
-    radiographicNotes: "Radiolúcido oclusodistal en PAP, profundidad 1/3.",
+      "Lesión cavitada en oclusal, a nivel de dentina profunda con aparente compromiso pulpar, textura blanda, coloración negruzca, dolor a la exploración.",
+    radiographicNotes:
+      "Radiolúcido oclusodistal en PAP, con profundidad estimada 1/3.",
     radiographicDepth: "1/3",
     rootResorption: "1/3",
     correctDiagnosis: "Pulpitis reversible",
     detailSummary:
-      "La pieza 74 evidencia compromiso pulpar leve con posibilidad de tratamiento conservador.",
+      "La pieza 74 evidencia compromiso pulpar leve con dolor a la exploración y posibilidad de tratamiento conservador.",
   },
 ];
 

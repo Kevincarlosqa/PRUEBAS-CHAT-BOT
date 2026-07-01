@@ -155,24 +155,22 @@ export const stage_10 = async (inputInfo: stage_data) => {
     if ([OPTION_ANCECDENTES, OPTION_HISTORY, OPTION_PAIN].includes(input)) {
       const caseData =
         (await prisma.case.findFirst({ where: { id: caseId } })) ||
-        ({ background: "", history: "", pain: "" } as any);
+        ({ background: "", history: "", pain: "", exam: "" } as any);
 
-      if (input === OPTION_ANCECDENTES)
-        await Bot_sendMsg(
-          `📝 Antecedentes del caso:\n${caseData.background}`,
-          userId,
-          botIndex,
-        );
+      if (input === OPTION_ANCECDENTES) {
+        const antecedentesText = `📋 ANTECEDENTES DEL CASO\n\n${caseData.background}\n\n📝 Examen General:\n${caseData.exam}`;
+        await Bot_sendMsg(antecedentesText, userId, botIndex);
+      }
 
-      if (input === OPTION_HISTORY)
-        await Bot_sendMsg(
-          `📖 Historia de progresión:\n${caseData.history}`,
-          userId,
-          botIndex,
-        );
+      if (input === OPTION_HISTORY) {
+        const historyText = `📈 HISTORIA DE PROGRESIÓN\n\n${caseData.history}`;
+        await Bot_sendMsg(historyText, userId, botIndex);
+      }
 
-      if (input === OPTION_PAIN)
-        await Bot_sendMsg(`⚠️ Dolencia:\n${caseData.pain}`, userId, botIndex);
+      if (input === OPTION_PAIN) {
+        const painText = `😖 DOLENCIA Y PRESENTACIÓN CLÍNICA\n\n${caseData.pain}`;
+        await Bot_sendMsg(painText, userId, botIndex);
+      }
 
       return stage_09(inputInfo);
     }

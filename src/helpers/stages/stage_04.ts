@@ -7,6 +7,7 @@ import {
 import { badResponse, errorResponse } from "../api/response";
 import { stage_data } from "../types/stages";
 import { updateStage, updateStep } from "./helpers";
+import { stage_00 } from "./stage_00";
 import { stage_09 } from "./stage_09";
 import { stage_start } from "./stage_start";
 
@@ -75,8 +76,40 @@ export const stage_05 = async (inputInfo: stage_data) => {
         userId,
         botIndex,
       );
+
+      // Contar piezas del caso
+      const totalTeeth = await prisma.caseTooth.count({
+        where: { caseId },
+      });
+
+      // Contar respuestas correctas posibles para el caso
+      const totalCorrectAnswers = await prisma.answersOnCases.count({
+        where: { caseId, isCorrect: true },
+      });
+
       await updateStage(id, 5);
       await updateStep(id, { selectedTooth: null });
+
+      // Si todas las piezas podrían ser respondidas correctamente, terminar el caso
+      if (totalTeeth > 0 && totalCorrectAnswers >= totalTeeth) {
+        const caseTitle = (
+          await prisma.case.findUnique({
+            where: { id: caseId },
+            select: { title: true },
+          })
+        )?.title;
+
+        const congratsMsg = `🎉 ¡Excelente trabajo!\n\nHas completado el análisis de todas las piezas del caso "${caseTitle}" con diagnósticos correctos.\n\nTe felicitamos por haber demostrado competencia en el diagnóstico diferencial de patología pulpar.`;
+        await Bot_sendMsg(congratsMsg, userId, botIndex);
+
+        await Bot_sendMsg(
+          "Selecciona otro caso para continuar con tu entrenamiento.",
+          userId,
+          botIndex,
+        );
+
+        return await stage_00({ ...inputInfo, caseId: null, selectedTooth: null });
+      }
 
       return await stage_09({ ...inputInfo, selectedTooth: null });
     }
