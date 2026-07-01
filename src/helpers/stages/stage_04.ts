@@ -6,15 +6,23 @@ import {
 } from "../api/message";
 import { badResponse, errorResponse } from "../api/response";
 import { stage_data } from "../types/stages";
-import { updateStage } from "./helpers";
+import { updateStage, updateStep } from "./helpers";
 import { stage_09 } from "./stage_09";
 import { stage_start } from "./stage_start";
 
 //* MENU DIAGNOSTICO
 export const stage_04 = async (inputInfo: stage_data) => {
-  const { caseId, userId, botIndex, id } = inputInfo;
+  const { caseId, userId, botIndex, id, selectedTooth } = inputInfo;
 
   if (!caseId) return console.log("CaseId null en stage_04");
+  if (!selectedTooth) {
+    await Bot_sendMsg(
+      "Selecciona primero una pieza dental antes de dar diagnóstico.",
+      userId,
+      botIndex,
+    );
+    return await stage_09(inputInfo);
+  }
 
   try {
     const answers = await prisma.answer.findMany({
@@ -22,7 +30,7 @@ export const stage_04 = async (inputInfo: stage_data) => {
     });
 
     const list = answers.map((el) => el.name);
-    const text = "Selecciona la respuesta más adecuada para este caso clínico:";
+    const text = `Selecciona la respuesta más adecuada para la pieza ${selectedTooth}:`;
 
     await Bot_sendKeyboard(text, userId, botIndex, list);
     await updateStage(id, 3);
@@ -33,28 +41,46 @@ export const stage_04 = async (inputInfo: stage_data) => {
 
 //* RESPUESTA MENU DIAGNOSTICO
 export const stage_05 = async (inputInfo: stage_data) => {
-  const { input, userId, botIndex, caseId } = inputInfo;
+  const { input, userId, botIndex, caseId, selectedTooth, id } = inputInfo;
 
   if (!caseId) return console.log("caseId null en stage_05");
+  if (!selectedTooth) {
+    await Bot_sendMsg(
+      "Debes tener seleccionada una pieza para dar la respuesta diagnóstica.",
+      userId,
+      botIndex,
+    );
+    return await stage_09(inputInfo);
+  }
 
   try {
-    const { isCorrect } = (await prisma.answersOnCases.findFirst({
-      where: { caseId, answer: { name: input } },
-    })) || { isCorrect: false };
+    const tooth = await prisma.caseTooth.findFirst({
+      where: { caseId, toothNumber: selectedTooth },
+    });
+
+    if (!tooth) {
+      await Bot_sendMsg(
+        "No se encontró la pieza seleccionada. Elige otra pieza para continuar.",
+        userId,
+        botIndex,
+      );
+      return await stage_09({ ...inputInfo, selectedTooth: null });
+    }
+
+    const isCorrect = input === tooth.correctDiagnosis;
 
     if (isCorrect) {
-      const correctAnswers = await prisma.answersOnCases.findMany({
-        where: { caseId, isCorrect: true },
-        select: { answer: { select: { name: true } } },
-      });
+      await Bot_sendMsg(
+        `✅ Correcto. El diagnóstico para la pieza ${selectedTooth} es ${input}.`,
+        userId,
+        botIndex,
+      );
+      await updateStage(id, 5);
+      await updateStep(id, { selectedTooth: null });
 
-      const answersText = correctAnswers
-        .map(({ answer }) => answer.name)
-        .join("\n");
-      const text = `✅ Excelente. Tu diagnóstico fue correcto.\n\nRespuestas correctas del caso:\n${answersText}\n\nPuedes seguir revisando la bibliografía o volver a analizar el caso.`;
-      await Bot_sendMsg(text, userId, botIndex);
-      return await stage_start(inputInfo);
+      return await stage_09({ ...inputInfo, selectedTooth: null });
     }
+
     const text =
       "😬 Esa respuesta no fue la correcta. Puedes pedir más información o revisar la bibliografía para reforzar el diagnóstico.";
 
@@ -113,25 +139,35 @@ export const stage_08 = async (inputInfo: stage_data) => {
     const result = await prisma.step.findUnique({
       where: { id },
       select: {
-        case: {
-          select: {
-            answers: {
-              where: { isCorrect: true },
-              select: { answer: { select: { name: true } } },
-            },
-          },
-        },
+        selectedTooth: true,
+        caseId: true,
       },
     });
-    if (!result) return console.log("no hay coincidencias");
-    if (!result.case) return console.log("no hay coincidencias");
+    if (!result || result.caseId == null)
+      return console.log("no hay coincidencias");
 
-    const answer = result.case.answers[0].answer.name;
+    const toothNumber = result.selectedTooth;
+    let answer: string | null = null;
 
-    const text = `La respuesta al caso es: ${answer}`;
+    if (toothNumber) {
+      const tooth = await prisma.caseTooth.findFirst({
+        where: { caseId: result.caseId, toothNumber },
+      });
+      answer = tooth?.correctDiagnosis ?? null;
+    } else {
+      const correctAnswer = await prisma.answersOnCases.findFirst({
+        where: { caseId: result.caseId, isCorrect: true },
+        select: { answer: { select: { name: true } } },
+      });
+      answer = correctAnswer?.answer?.name ?? null;
+    }
+
+    const text = toothNumber
+      ? `La respuesta correcta para la pieza ${toothNumber} es: ${answer}`
+      : `La respuesta correcta del caso es: ${answer}`;
 
     await Bot_sendMsg(text, userId, botIndex);
-    await stage_start(inputInfo);
+    await stage_09(inputInfo);
   } catch {
     errorResponse(`Error en el stage08`, inputInfo);
   }

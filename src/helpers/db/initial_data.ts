@@ -65,7 +65,25 @@ export const case01_teeth = [
 
 export const images_case01 = [
   {
+    url: "https://i.ibb.co/4nBw9Xqr/74chatradio.png",
+    title: "Radiografía pieza 74",
+    caption:
+      "Radiografía que muestra el sector inferior izquierdo y hallazgos de la pieza 74.",
+    info: "La pieza 74 presenta un radiolúcido oclusal compatible con compromiso pulpar crónico.",
+    type: true,
+    toothNumber: "74",
+  },
+  {
     url: "https://i.ibb.co/Z1wW904z/74chat.png",
+    title: "Fotografía clínica pieza 74",
+    caption:
+      "Imagen del sector inferior izquierdo con cavidad oclusal en la pieza 74.",
+    info: "La fotografía muestra el color y la cavidad de la pieza 74 sin signos de absceso evidente.",
+    type: false,
+    toothNumber: "74",
+  },
+  {
+    url: "https://i.ibb.co/m5HkW0YB/75chatradio.png",
     title: "Radiografía pieza 75",
     caption:
       "Radiografía que muestra compromiso pulpar profundo en la pieza 75.",
@@ -129,7 +147,7 @@ export const case02_teeth = [
 
 export const images_case02 = [
   {
-    url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/25.png",
+    url: "https://i.ibb.co/6JGqQT7T/radio65.png",
     title: "Radiografía pieza 65",
     caption: "Radiografía de la pieza 65 con lesión profunda.",
     info: "La radiografía evidencia compromiso dentinario y lesión pulpar en 65.",
@@ -137,7 +155,25 @@ export const images_case02 = [
     toothNumber: "65",
   },
   {
-    url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/2.png",
+    url: "https://i.ibb.co/wrdr6sgw/foto65.png",
+    title: "Fotografía clínica pieza 65",
+    caption:
+      "Imagen clínica de la pieza 65 con cavidad profunda y signos inflamatorios.",
+    info: "La pieza 65 presenta inflamación visible y cambios de coloración asociados a dolor espontáneo.",
+    type: false,
+    toothNumber: "65",
+  },
+  {
+    url: "https://i.ibb.co/tTvwdLh0/radio55.png",
+    title: "Radiografía pieza 55",
+    caption:
+      "Radiografía de la pieza 55 con lesión oclusomesial en esmalte y dentina.",
+    info: "La imagen muestra un compromiso pulpar leve con posible tratamiento conservador.",
+    type: true,
+    toothNumber: "55",
+  },
+  {
+    url: "https://i.ibb.co/hRpGrbyT/foto55.png",
     title: "Fotografía pieza 55",
     caption: "Imagen clínica de la pieza 55 con cavidad oclusomesial.",
     info: "La pieza 55 muestra lesión blanda con halo blanquecino.",
@@ -191,7 +227,7 @@ export const case03_teeth = [
 
 export const images_case03 = [
   {
-    url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/133.png",
+    url: "https://i.ibb.co/ycF63NnC/radio54.png",
     title: "Radiografía pieza 54",
     caption: "Radiografía que sugiere periodontitis apical crónica en 54.",
     info: "La imagen muestra lesión apical en la pieza 54.",
@@ -199,11 +235,28 @@ export const images_case03 = [
     toothNumber: "54",
   },
   {
-    url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/4.png",
+    url: "https://i.ibb.co/gbyPS42t/foto54.png",
+    title: "Fotografía pieza 54",
+    caption: "Imagen clínica de la pieza 54 con pólipo pulpar y fístula.",
+    info: "La pieza 54 presenta signos de inflamación crónica y fístula activa.",
+    type: false,
+    toothNumber: "54",
+  },
+  {
+    url: "https://i.ibb.co/7J84WFpw/foto74.png",
     title: "Fotografía pieza 74",
     caption: "Imagen clínica de la pieza 74 con cavidad profunda.",
     info: "La pieza 74 presenta daño pulpar leve-moderado con dolor a la exploración.",
     type: false,
+    toothNumber: "74",
+  },
+  {
+    url: "https://i.ibb.co/gLZpRG2T/radio74.png",
+    title: "Radiografía pieza 74",
+    caption:
+      "Radiografía de la pieza 74 con lesión oclusal y radiolucidez leve.",
+    info: "La pieza 74 muestra compromiso pulpar leve compatible con pulpitis reversible.",
+    type: true,
     toothNumber: "74",
   },
 ];
@@ -215,9 +268,18 @@ export const answers_case03 = [
   { name: "Pulpectomía indicada", isCorrect: false },
 ];
 
-export const themes = [{ name: "Tema 01", botIndex: 1 }];
+export const themes = [
+  {
+    name: "Chatbot de competencias diagnósticas en terapia pulpar",
+    botIndex: 1,
+  },
+];
 
-export const themes_case01 = [{ name: "Tema 01" }];
+export const themes_case01 = [
+  {
+    name: "Chatbot de competencias diagnósticas en terapia pulpar",
+  },
+];
 
 export const papers_case01 = [
   { title: "Fundamentos Avanzados de Endodoncia" },
