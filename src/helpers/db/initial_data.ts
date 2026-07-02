@@ -26,7 +26,7 @@ export const answers_info = [
 ];
 
 export const case01_info = {
-  title: "Caso Clínico N° 1 - Mitzi Callalli",
+  title: "Caso Clínico N° 1 - M. C.",
   exam: "Paciente de 8 años y 6 meses acude a consulta en compañía de su madre. No presenta antecedentes patológicos familiares y personales de relevancia. Se observa presencia de lesiones cavitadas en zona inferior del lado izquierdo, en piezas 74 y 75.",
   history:
     "Paciente acude por presentar dolor espontáneo de intensidad fuerte y duración prolongada en diente del sector inferior lado izquierdo desde hace 3 semanas. La madre reporta molestias persistentes y ausencia de mejoría.",
@@ -109,7 +109,7 @@ export const answers_case01 = [
 ];
 
 export const case02_info = {
-  title: "Caso Clínico N° 2 - Joselyn Chapoñán",
+  title: "Caso Clínico N° 2 - J. C.",
   exam: "Paciente masculino de 7 años acude a consulta acompañado de su madre. Se observan cavidades en diferentes piezas dentales y fractura de corona de pieza 64. Presenta sintomatología al empaquetamiento de alimentos en piezas 55 y dolor que se presenta de pronto en pieza 65.",
   history:
     "La madre menciona que su niño tiene cavidades en diferentes piezas dentales y fractura de una pieza superior. Refiere que su niño manifiesta sintomatología al empaquetamiento de alimentos en piezas 55 y dolor que se presenta de pronto en pieza 65.",
@@ -191,7 +191,7 @@ export const answers_case02 = [
 ];
 
 export const case03_info = {
-  title: "Caso Clínico N° 3 - Angelina Vanessa Chico",
+  title: "Caso Clínico N° 3 - A. V. C.",
   exam: "Paciente de 4 años 11 meses de edad, clasificada como infante colaborador. Durante el periodo prenatal, la madre consumió ácido fólico. El parto fue por cesárea y el nacimiento ocurrió a término. Se observan lesiones cariosas cavitadas en superficies oclusales de los molares superiores.",
   history:
     "La enfermedad actual ha tenido una evolución progresiva. Se observa presencia de caries visibles en múltiples piezas dentales. La paciente se encuentra asintomática en la mayoría de las piezas dentales. Sin embargo, durante la exploración clínica se identificó dolor a la palpación o percusión en la pieza 74. No se reporta dolor espontáneo en otras localizaciones.",
