@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "CaseTooth" ADD COLUMN "pain" TEXT NOT NULL DEFAULT '';
+ALTER TABLE "CaseTooth" ALTER COLUMN "pain" DROP DEFAULT;
+
+ALTER TABLE "CaseTooth" DROP COLUMN "detailSummary";

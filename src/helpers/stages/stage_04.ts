@@ -103,7 +103,7 @@ export const stage_05 = async (inputInfo: stage_data) => {
         await Bot_sendMsg(congratsMsg, userId, botIndex);
 
         await Bot_sendMsg(
-          "Selecciona otro caso para continuar con tu entrenamiento.",
+          "Selecciona la pieza siguiente u otro caso para continuar con tu entrenamiento.",
           userId,
           botIndex,
         );

@@ -115,7 +115,7 @@ model CaseTooth {
   radiographicDepth String
   rootResorption    String
   correctDiagnosis  String
-  detailSummary     String
+  pain              String
   createdAt         DateTime @default(now())
 }
 

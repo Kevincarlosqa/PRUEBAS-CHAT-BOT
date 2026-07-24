@@ -80,8 +80,8 @@ export const stage_10 = async (inputInfo: stage_data) => {
       select: {
         toothNumber: true,
         clinicalExam: true,
-        detailSummary: true,
         correctDiagnosis: true,
+        pain: true,
       },
     });
 
@@ -91,7 +91,7 @@ export const stage_10 = async (inputInfo: stage_data) => {
 
     if (toothSelection) {
       await updateStep(id, { selectedTooth: input });
-      const text = `📌 Pieza ${input}\n\nExamen clínico: ${toothSelection.clinicalExam}\n\nResumen: ${toothSelection.detailSummary}`;
+      const text = `📌 Pieza ${input}\n\nExamen clínico: ${toothSelection.clinicalExam}`;
       await Bot_sendMsg(text, userId, botIndex);
       return await stage_09({ ...inputInfo, selectedTooth: input });
     }
@@ -168,7 +168,13 @@ export const stage_10 = async (inputInfo: stage_data) => {
       }
 
       if (input === OPTION_PAIN) {
-        const painText = `😖 DOLENCIA Y PRESENTACIÓN CLÍNICA\n\n${caseData.pain}`;
+        const toothPain = selectedTooth
+          ? teeth.find(
+              (item: { toothNumber: string }) =>
+                item.toothNumber === selectedTooth,
+            )?.pain
+          : undefined;
+        const painText = `😖 DOLENCIA Y PRESENTACIÓN CLÍNICA\n\n${toothPain ?? caseData.pain}`;
         await Bot_sendMsg(painText, userId, botIndex);
       }
 

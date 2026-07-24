@@ -29,7 +29,7 @@ export const case01_info = {
   title: "Caso Clínico N° 1 - M. C.",
   exam: "Paciente de 8 años y 6 meses acude a consulta en compañía de su madre. No presenta antecedentes patológicos familiares y personales de relevancia. Se observa presencia de lesiones cavitadas en zona inferior del lado izquierdo, en piezas 74 y 75.",
   history:
-    "Paciente acude por presentar dolor espontáneo de intensidad fuerte y duración prolongada en diente del sector inferior lado izquierdo desde hace 3 semanas. La madre reporta molestias persistentes y ausencia de mejoría.",
+    "Paciente acude por presentar dolor espontáneo de intensidad fuerte y duración prolongada en piezas del sector inferior lado izquierdo desde hace 3 semanas, compatible con lesiones cariosas en piezas 74 y 75. La madre reporta molestias persistentes y ausencia de mejoría.",
   background:
     "Tuvo lactancia materna de 0 a 3 años y artificial de 3 a 8 años. Respecto a la higiene oral, se cepilla 1 vez al día sin supervisión de los padres, no refiere utilizar hilo dental ni enjuagatorios. Suele rechinar ligeramente los dientes en ocasiones por aprox. 5 a 6 minutos y regularmente suele comerse las uñas cuando está nervioso aprox. 5 minutos.",
   work: "Analiza los hallazgos clínicos y radiográficos para determinar el diagnóstico pulpar de las piezas 74 y 75.",
@@ -46,8 +46,7 @@ export const case01_teeth = [
     radiographicDepth: "1/3",
     rootResorption: "1/3",
     correctDiagnosis: "Necrosis pulpar",
-    detailSummary:
-      "La pieza 74 evidencia compromiso pulpar crónico sin signos claros de inflamación aguda.",
+    pain: "A la exploración se observa pieza 74 con lesión cavitada en superficie oclusal de color marrón, de consistencia blanda, y con aparente extensión hacia dentina, asintomático.",
   },
   {
     toothNumber: "75",
@@ -58,8 +57,7 @@ export const case01_teeth = [
     radiographicDepth: "1/3",
     rootResorption: "1/3",
     correctDiagnosis: "Pulpitis irreversible",
-    detailSummary:
-      "La pieza 75 presenta inflamación pulpar activa con dolor espontáneo prolongado y hallazgos radiográficos compatibles con daño irreversible.",
+    pain: "Dolor espontáneo de intensidad fuerte y duración prolongada en pieza 75 desde hace 3 semanas. Lesión cavitada en superficie oclusal de color marrón, de consistencia blanda, y con aparente extensión hacia dentina.",
   },
 ];
 
@@ -69,7 +67,7 @@ export const images_case01 = [
     title: "Radiografía pieza 74",
     caption:
       "Radiografía que muestra el sector inferior izquierdo y hallazgos de la pieza 74.",
-    info: "La pieza 74 presenta un radiolúcido oclusal compatible con compromiso pulpar crónico.",
+    info: "En la pieza 74 se observa imagen radiolúcida en oclusal compatible con compromiso pulpar crónico.",
     type: true,
     toothNumber: "74",
   },
@@ -87,7 +85,7 @@ export const images_case01 = [
     title: "Radiografía pieza 75",
     caption:
       "Radiografía que muestra compromiso pulpar profundo en la pieza 75.",
-    info: "La pieza 75 evidencia lesión radiolúcida apical y daño pulpar claro.",
+    info: "La pieza 75 evidencia lesión radiolúcida en oclusal y daño pulpar claro.",
     type: true,
     toothNumber: "75",
   },
@@ -129,8 +127,7 @@ export const case02_teeth = [
     radiographicDepth: "2/3",
     rootResorption: "2/3",
     correctDiagnosis: "Pulpitis reversible",
-    detailSummary:
-      "La pieza 55 mantiene lesión inflamatoria pulpar leve con posibilidad de tratamiento conservador.",
+    pain: "Sintomatología al empaquetamiento de alimentos en piezas 55 y dolor que se presenta de pronto en pieza 65.",
   },
   {
     toothNumber: "65",
@@ -141,8 +138,7 @@ export const case02_teeth = [
     radiographicDepth: "2/3",
     rootResorption: "2/3",
     correctDiagnosis: "Pulpitis irreversible",
-    detailSummary:
-      "La pieza 65 muestra signos compatibles con inflamación pulpar irreversible.",
+    pain: "Sintomatología al empaquetamiento de alimentos en piezas 55 y dolor que se presenta de pronto en pieza 65.",
   },
 ];
 
@@ -160,7 +156,7 @@ export const images_case02 = [
     title: "Fotografía clínica pieza 65",
     caption:
       "Imagen clínica de la pieza 65 con cavidad profunda y signos inflamatorios.",
-    info: "La pieza 65 presenta inflamación visible y cambios de coloración asociados a dolor espontáneo.",
+    info: "La pieza 65 presenta inflamación visible y cambios de coloración.",
     type: false,
     toothNumber: "65",
   },
@@ -211,20 +207,18 @@ export const case03_teeth = [
     radiographicDepth: "2/3",
     rootResorption: "2/3",
     correctDiagnosis: "Periodontitis apical crónica",
-    detailSummary:
-      "La pieza 54 presenta proceso apical crónico con comunicación fistulosa y pólipo pulpar.",
+    pain: "A la exploración se observa pieza 54 con lesión cavitada en oclusal, presencia de pólipo pulpar. Se observa presencia de fístula.",
   },
   {
     toothNumber: "74",
     clinicalExam:
-      "Lesión cavitada en oclusal, a nivel de dentina profunda con aparente compromiso pulpar, textura blanda, coloración negruzca, dolor a la exploración.",
+      "Lesión cavitada en oclusal, a nivel de dentina profunda próximo a pulpa, textura blanda, coloración negruzca, dolor a la exploración.",
     radiographicNotes:
       "Radiolúcido oclusodistal en PAP, con profundidad estimada 1/3.",
     radiographicDepth: "1/3",
     rootResorption: "1/3",
     correctDiagnosis: "Pulpitis reversible",
-    detailSummary:
-      "La pieza 74 evidencia compromiso pulpar leve con dolor a la exploración y posibilidad de tratamiento conservador.",
+    pain: "Dolor a la palpación en la pieza 74, sin dolor espontáneo en otras localizaciones.",
   },
 ];
 
@@ -258,7 +252,7 @@ export const images_case03 = [
     title: "Radiografía pieza 74",
     caption:
       "Radiografía de la pieza 74 con lesión oclusal y radiolucidez leve.",
-    info: "La pieza 74 muestra compromiso pulpar leve compatible con pulpitis reversible.",
+    info: "Se observa imagen radiolúcida en oclusal próxima a pulpa.",
     type: true,
     toothNumber: "74",
   },
