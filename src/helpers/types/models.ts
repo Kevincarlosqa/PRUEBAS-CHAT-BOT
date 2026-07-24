@@ -39,8 +39,9 @@ export interface intSteps {
   errors?: number;
   userId?: string;
   themeId?: number;
-  caseId?: number;
+  caseId?: number | null;
   selectedTooth?: string | null;
+  solvedTeeth?: string[];
   stage?: number;
   paperId?: number;
 }

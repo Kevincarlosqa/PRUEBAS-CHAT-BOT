@@ -82,16 +82,20 @@ export const stage_05 = async (inputInfo: stage_data) => {
         where: { caseId },
       });
 
-      // Contar respuestas correctas posibles para el caso
-      const totalCorrectAnswers = await prisma.answersOnCases.count({
-        where: { caseId, isCorrect: true },
+      // Registrar la pieza recién diagnosticada como resuelta por el usuario
+      const step = await prisma.step.findUnique({
+        where: { id },
+        select: { solvedTeeth: true },
       });
+      const solvedTeeth = Array.from(
+        new Set([...(step?.solvedTeeth ?? []), selectedTooth]),
+      );
 
       await updateStage(id, 5);
-      await updateStep(id, { selectedTooth: null });
+      await updateStep(id, { selectedTooth: null, solvedTeeth });
 
-      // Si todas las piezas podrían ser respondidas correctamente, terminar el caso
-      if (totalTeeth > 0 && totalCorrectAnswers >= totalTeeth) {
+      // Si el usuario ya diagnosticó correctamente todas las piezas del caso, terminar el caso
+      if (totalTeeth > 0 && solvedTeeth.length >= totalTeeth) {
         const caseTitle = (
           await prisma.case.findUnique({
             where: { id: caseId },

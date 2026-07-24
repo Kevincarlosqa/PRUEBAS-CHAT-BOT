@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Step" ADD COLUMN "solvedTeeth" TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[];

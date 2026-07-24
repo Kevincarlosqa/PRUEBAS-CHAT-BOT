@@ -42,6 +42,7 @@ import { intSteps } from "../types/models"
       caseId:null,
       paperId:null,
       selectedTooth:null,
+      solvedTeeth:[],
     }
     try{
       await prisma.step.update({where:{id:stepId},data})

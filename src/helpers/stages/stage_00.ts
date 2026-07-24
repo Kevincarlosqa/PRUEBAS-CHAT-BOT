@@ -37,7 +37,7 @@ import { stage_02 } from "./stage_02";
 
       const text = `${exam}\n${work}`
       await Bot_sendMsg(text,userId,botIndex)
-      await updateStep(id,{caseId})
+      await updateStep(id,{caseId, solvedTeeth:[]})
       await stage_02(inputInfo)
     }catch{
       errorResponse(`Error en el stage01`,inputInfo)
